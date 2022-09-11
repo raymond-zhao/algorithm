@@ -2,6 +2,8 @@ package com.kuaishou.raymond.algorithm.sorting;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -10,13 +12,74 @@ public class HeapSort {
     public static void main(String[] args) {
         int[] nums1 = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1};
         int[] nums2 = {1, 2, 3, 5, 2, 1, 5, 15, 193, 9};
-        int[] array = nums1;
+        int[] nums3 = {15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
+        int[] array = nums3;
         log.info("递归最大堆 = {}", buildMaxHeap(array));
-        log.info("最小堆 = {}", buildMinHeap(array));
-        log.info("迭代最大堆 = {}", buildMaxHeapIteratively(array));
+        // log.info("最小堆 = {}", buildMinHeap(array));
+        // log.info("迭代最大堆 = {}", buildMaxHeapIteratively(array));
         // log.info("最大堆排序结果 = {}", heapSort(array));
-        log.info("提取最大堆最大值 = {}", heapExtractMax(array, array.length));
-        log.info("提取最大堆后的数组 = {}", array);
+        // log.info("提取最大堆最大值 = {}", heapExtractMax(array, array.length));
+        // log.info("提取最大堆后的数组 = {}", array);
+        // log.info("增加优先队列某个值 = {}", heapIncreaseKey(array, 9, 100));
+        log.info("增加最大堆 Key = {}", maxHeapInsert(array, 10));
+    }
+
+    /**
+     * 向堆中新增一个元素
+     * 首先增加一个 key=-\infty 的叶子结点来扩展最大堆，
+     * 然后调用 heapIncreaseKey 将这个新增的叶子结点增加到 key。
+     * 用数组的话，可能需要复制一遍数组，以存储新的叶子结点，
+     * 如果是 list 的话，则可以省略这个复制。
+     */
+    public static int[] maxHeapInsert(int[] array, int key) {
+        int[] newHeap = new int[array.length + 1];
+        System.arraycopy(array, 0, newHeap, 0, array.length);
+        newHeap[newHeap.length - 1] = Integer.MIN_VALUE;
+        return heapIncreaseKeyInsertion(newHeap, newHeap.length - 1, key);
+    }
+
+    public static int[] maxHeapDelete(int[] array, int idx, int heapSize) {
+        if (array[idx] > array[heapSize]) {
+            array[idx] = array[heapSize];
+            maxHeapify(array, idx, heapSize);
+        } else {
+            heapIncreaseKey(array, idx, array[heapSize]);
+        }
+        heapSize--;
+        return array;
+    }
+
+    /**
+     * 将堆中位置 i 处的值增加到 k
+     */
+    public static int[] heapIncreaseKey(int[] array, int i, int key) {
+        if (key <= array[i]) {
+            throw new UnsupportedOperationException("New key must greater than current key.");
+        }
+
+        // 把 i 位置的数值增加到 key，但这时可能会违反最大堆性质，应该获取其父节点进行调整。
+        array[i] = key;
+        while (i > 0 && array[parent(i)] < array[i]) {
+            exchange(array, i, parent(i)); // 需要三次变量复制
+            i = parent(i);
+        }
+
+        return array;
+    }
+
+    public static int[] heapIncreaseKeyInsertion(int[] array, int i, int key) {
+        if (key <= array[i]) {
+            throw new UnsupportedOperationException("New key must greater than current key.");
+        }
+
+        // 利用插入排序的思想，向前寻找。
+        while (i > 0 && array[parent(i)] < key) {
+            array[i] = array[parent(i)]; // array[j + 1] = array[j]
+            i = parent(i); // j--
+        }
+        array[i] = key;
+
+        return array;
     }
 
     public static int heapExtractMax(int[] array, int heapSize) {
@@ -140,7 +203,7 @@ public class HeapSort {
     }
 
     public static int parent(int i) {
-        return i >>> 1;
+        return (i - 1) >>> 1;
     }
 
     public static int left(int i) {
@@ -155,5 +218,11 @@ public class HeapSort {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
+    }
+
+    // TODO: 合并 K 个有序链表/数组
+    public static List<Integer> mergeK(List<List<Integer>> arrays) {
+        //
+        return new ArrayList<>();
     }
 }

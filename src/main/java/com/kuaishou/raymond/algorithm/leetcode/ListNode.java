@@ -5,13 +5,13 @@ package com.kuaishou.raymond.algorithm.leetcode;
  * created on 2023-01-31 17:27
  */
 public class ListNode {
-    int val;
-    ListNode next;
+    public int val;
+    public ListNode next;
 
     ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(int val) {
         this.val = val;
     }
 

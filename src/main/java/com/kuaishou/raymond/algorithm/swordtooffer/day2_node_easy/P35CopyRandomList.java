@@ -1,4 +1,6 @@
-package com.kuaishou.raymond.algorithm.swordtooffer;
+package com.kuaishou.raymond.algorithm.swordtooffer.day2_node_easy;
+
+import com.kuaishou.raymond.algorithm.swordtooffer.Node;
 
 import java.util.HashMap;
 import java.util.Map;

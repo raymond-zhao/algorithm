@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer;
+package com.kuaishou.raymond.algorithm.swordtooffer.day3_string_easy;
 
 /**
  * 旋转字符串

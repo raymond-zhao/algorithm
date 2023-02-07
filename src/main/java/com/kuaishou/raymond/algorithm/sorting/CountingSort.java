@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CountingSort {
 
     public static void main(String[] args) {
-        int[] nums1 = {2, 5, 3, 0, 2, 3, 0, 3};
+        // int[] nums1 = {2, 5, 3, 0, 2, 3, 0, 3};
         int[] nums2 = {6, 0, 2, 0, 1, 3, 4, 6, 1, 3, 2};
         int[] array = nums2;
         log.info("计数排序 = {}", countingSort(array, 7));

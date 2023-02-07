@@ -1,12 +1,9 @@
 package com.kuaishou.raymond.algorithm.design_patterns.creation.factory_method;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2022-09-26 21:20
  */
-@Slf4j
 public class FactoryMethodTest {
 
     public static void main(String[] args) {

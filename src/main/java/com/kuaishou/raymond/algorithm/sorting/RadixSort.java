@@ -1,7 +1,5 @@
 package com.kuaishou.raymond.algorithm.sorting;
 
-import static com.kuaishou.raymond.algorithm.sorting.CountingSort.countingSort;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**

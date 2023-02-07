@@ -10,13 +10,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2022-09-28 15:09
  */
-@Slf4j
 public class WindowsButton implements Button {
 
     private JPanel panel = new JPanel();

@@ -10,8 +10,8 @@ import java.util.Objects;
 public class HeapSort {
 
     public static void main(String[] args) {
-        int[] nums1 = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1};
-        int[] nums2 = {1, 2, 3, 5, 2, 1, 5, 15, 193, 9};
+        // int[] nums1 = {16, 14, 10, 8, 7, 9, 3, 2, 4, 1};
+        // int[] nums2 = {1, 2, 3, 5, 2, 1, 5, 15, 193, 9};
         int[] nums3 = {15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2, 1};
         int[] array = nums3;
         log.info("递归最大堆 = {}", buildMaxHeap(array));
@@ -220,9 +220,8 @@ public class HeapSort {
         array[j] = temp;
     }
 
-    // TODO: 合并 K 个有序链表/数组
+    // 合并 K 个有序链表/数组
     public static List<Integer> mergeK(List<List<Integer>> arrays) {
-        //
         return new ArrayList<>();
     }
 }

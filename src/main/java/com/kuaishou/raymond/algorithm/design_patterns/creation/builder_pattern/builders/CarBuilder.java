@@ -7,13 +7,10 @@ import com.kuaishou.raymond.algorithm.design_patterns.creation.builder_pattern.c
 import com.kuaishou.raymond.algorithm.design_patterns.creation.builder_pattern.components.Transmission;
 import com.kuaishou.raymond.algorithm.design_patterns.creation.builder_pattern.components.TripComputer;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2022-09-29 09:59
  */
-@Slf4j
 public class CarBuilder implements Builder {
 
     private CarType type;

@@ -13,7 +13,7 @@ package com.kuaishou.raymond.algorithm.swordtooffer.day4_search_easy;
 public class P3FindRepeatNumber {
 
     public static void main(String[] args) {
-        int[] nums = {2, 3, 1, 0, 2, 5, 3};
+        // int[] nums = {2, 3, 1, 0, 2, 5, 3};
         int[] nums2 = {3, 4, 2, 1, 1, 0};
         P3FindRepeatNumber p3 = new P3FindRepeatNumber();
         System.out.println("p3.findRepeatNumber(nums) = " + p3.findRepeatNumber(nums2));

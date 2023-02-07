@@ -1,10 +1,7 @@
 package com.kuaishou.raymond.algorithm.math;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Objects;
 
-@Slf4j
 public class MatrixMultiply {
 
     public static void main(String[] args) {
@@ -25,7 +22,7 @@ public class MatrixMultiply {
 
         // printMatrix(squareMatrixMultiplyBF(A, B));
 
-        // partition(A);
+        partition(A);
         partition(B);
     }
 

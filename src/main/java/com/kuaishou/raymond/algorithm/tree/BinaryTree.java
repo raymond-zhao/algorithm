@@ -4,13 +4,6 @@ import static io.vavr.API.print;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.List;
-import java.util.Stack;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import io.vavr.control.Try;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -26,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
  * 中序遍历：左根右
  * 后序遍历：左右根
  */
-@Slf4j
 public class BinaryTree {
 
     public static void main(String[] args) {

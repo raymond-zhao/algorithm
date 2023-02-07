@@ -8,7 +8,7 @@ import java.util.Objects;
 public class MaxSubArray {
 
     public static void main(String[] args) {
-        int[] nums1 = {3, -1, 2, -45, 1, 5, 7, 305, 92};
+        // int[] nums1 = {3, -1, 2, -45, 1, 5, 7, 305, 92};
         int[] nums2 = {3, 4, -10, 5, -6};
         int[] array = nums2;
         log.info("最大子数组 = {}", maxSubArray(array, 0, array.length - 1));

@@ -1,7 +1,5 @@
 package com.kuaishou.raymond.algorithm.tree;
 
-import lombok.Data;
-
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2022-09-15 09:47

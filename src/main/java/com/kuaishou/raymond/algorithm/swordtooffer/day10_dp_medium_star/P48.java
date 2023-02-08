@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer.day10_dp_medium;
+package com.kuaishou.raymond.algorithm.swordtooffer.day10_dp_medium_star;
 
 import java.util.HashMap;
 import java.util.Map;

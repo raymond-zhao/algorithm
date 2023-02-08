@@ -11,11 +11,32 @@ package com.kuaishou.raymond.algorithm.swordtooffer.day13_bipointer;
  */
 public class P58_1 {
 
+    public static void main(String[] args) {
+        P58_1 p581 = new P58_1();
+        String s = "I am a student.";
+        String s2 = " Raymond is me. ";
+        System.out.println("p581.reverseWords(s) = " + p581.reverseWords(s));
+        System.out.println("p581.reverseWords(s2) = " + p581.reverseWords(s2));
+    }
+
     public String reverseWords(String s) {
         if (s == null || s.length() == 0) {
             return s;
         }
-        return null;
+        s = s.trim();
+        StringBuilder builder = new StringBuilder();
+        int leftPointer = s.length() - 1;
+        int rightPointer = s.length(); // right 指向上一次空格所在的位置
+        while (leftPointer >= 0) {
+            while (leftPointer >= 0 && s.charAt(leftPointer) != ' ') {
+                --leftPointer;
+            }
+            builder.append(s.substring(leftPointer + 1, rightPointer));
+            builder.append(' ');
+            rightPointer = leftPointer;
+            --leftPointer;
+        }
+        return builder.toString().trim();
     }
 
 }

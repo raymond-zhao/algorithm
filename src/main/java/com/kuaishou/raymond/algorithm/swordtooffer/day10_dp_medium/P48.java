@@ -1,5 +1,8 @@
 package com.kuaishou.raymond.algorithm.swordtooffer.day10_dp_medium;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * <a href="https://leetcode.cn/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/">最长不含重复字符的子字符串
  * 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。
@@ -16,8 +19,28 @@ package com.kuaishou.raymond.algorithm.swordtooffer.day10_dp_medium;
  */
 public class P48 {
 
-    public int lengthOfLongestSubstring(String s) {
+    public static void main(String[] args) {
+        P48 p48 = new P48();
+        String s = "abcabcbb";
+        System.out.println("p48.lengthOfLongestSubstring(s) = " + p48.lengthOfLongestSubstring(s));
+    }
 
+    public int lengthOfLongestSubstring(String s) {
+        if (s == null || s.length() == 0) {
+            return 0;
+        }
+        Map<Character, Integer> map = new HashMap<>();
+        int max = 0;
+
+        for (int start = 0, end = 0; end < s.length(); end++) {
+            char ch = s.charAt(end);
+            if (map.containsKey(ch)) {
+                start = Math.max(start, map.get(ch) + 1);
+            }
+            map.put(ch, end);
+            max = Math.max(max, end - start + 1);
+        }
+        return max;
     }
 
 }

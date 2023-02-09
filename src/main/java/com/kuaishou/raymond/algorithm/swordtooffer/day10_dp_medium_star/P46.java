@@ -14,7 +14,7 @@ public class P46 {
     public static void main(String[] args) {
         int num = 12258;
         P46 p46 = new P46();
-        System.out.println("p46.translateNum(num) = " + p46.translateNum(num));
+        System.out.println("p46.translateNum(num) = " + p46.translateNum(26));
     }
 
     /**
@@ -25,10 +25,10 @@ public class P46 {
      */
     public int translateNum(int num) {
         String s = String.valueOf(num);
-        int[] dp = new int[s.length()];
+        int[] dp = new int[s.length() + 1]; // n+1
         dp[0] = 1; // 当有 2 个数字时，dp[2] = dp[0] + dp[1] = 2，而 dp[1]=1，所以 dp[0]=1。
         dp[1] = 1; // 只有 1 个数字时，只有 1 种翻译方式。
-        for (int i = 2; i < s.length(); i++) {
+        for (int i = 2; i <= s.length(); i++) { // <=
             String digitStr = s.substring(i - 2, i);
             int digit = Integer.parseInt(digitStr);
             if (digit >= 10 && digit <= 25) {
@@ -37,6 +37,6 @@ public class P46 {
                 dp[i] = dp[i - 1];
             }
         }
-        return dp[s.length() - 1];
+        return dp[s.length()];
     }
 }

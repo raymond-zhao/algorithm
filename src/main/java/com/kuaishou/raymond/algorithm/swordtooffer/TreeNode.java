@@ -11,6 +11,14 @@ public class TreeNode {
         val = x;
     }
 
+    /**
+     *            3
+     *           / \
+     *          9  20
+     *            /  \
+     *           15  7
+     *
+     */
     public static TreeNode defaultTree() {
         TreeNode root = new TreeNode(3);
         TreeNode node1 = new TreeNode(9);

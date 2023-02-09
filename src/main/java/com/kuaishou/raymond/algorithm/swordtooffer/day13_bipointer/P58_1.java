@@ -15,8 +15,10 @@ public class P58_1 {
         P58_1 p581 = new P58_1();
         String s = "I am a student.";
         String s2 = " Raymond is me. ";
+        String s3 = "a good   example";
         System.out.println("p581.reverseWords(s) = " + p581.reverseWords(s));
         System.out.println("p581.reverseWords(s2) = " + p581.reverseWords(s2));
+        System.out.println("p581.reverseWords(s3) = " + p581.reverseWords(s3));
     }
 
     public String reverseWords(String s) {
@@ -31,10 +33,14 @@ public class P58_1 {
             while (leftPointer >= 0 && s.charAt(leftPointer) != ' ') {
                 --leftPointer;
             }
-            builder.append(s.substring(leftPointer + 1, rightPointer));
+            builder.append(s, leftPointer + 1, rightPointer);
             builder.append(' ');
-            rightPointer = leftPointer;
-            --leftPointer;
+
+            while (leftPointer >= 0 && s.charAt(leftPointer) == ' ') {
+                // 跳过单词之间的空格
+                rightPointer = leftPointer;
+                --leftPointer;
+            }
         }
         return builder.toString().trim();
     }

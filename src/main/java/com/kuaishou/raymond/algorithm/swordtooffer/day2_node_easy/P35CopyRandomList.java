@@ -1,6 +1,6 @@
 package com.kuaishou.raymond.algorithm.swordtooffer.day2_node_easy;
 
-import com.kuaishou.raymond.algorithm.swordtooffer.Node;
+import com.kuaishou.raymond.algorithm.swordtooffer.RandomNode;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,14 +10,14 @@ import java.util.Map;
  */
 public class P35CopyRandomList {
 
-    public Node copyRandomList(Node head) {
+    public RandomNode copyRandomList(RandomNode head) {
         if (head == null) {
             return null;
         }
-        Node cur = head;
-        Map<Node, Node> map = new HashMap<>();
+        RandomNode cur = head;
+        Map<RandomNode, RandomNode> map = new HashMap<>();
         while (cur != null) {
-            map.put(cur, new Node(cur.val));
+            map.put(cur, new RandomNode(cur.val));
             cur = cur.next;
         }
         cur = head;

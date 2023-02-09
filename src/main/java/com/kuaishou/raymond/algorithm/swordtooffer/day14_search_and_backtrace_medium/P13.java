@@ -18,36 +18,61 @@ public class P13 {
         System.out.println("p13.movingCount(3, 1, 0) = " + p13.movingCount(3, 1, 0)); // 1
     }
 
+    private boolean[][] visited;
+
+    private int m = 0;
+
+    private int n = 0;
+
+    private int k = 0;
+
     public int movingCount(int m, int n, int k) {
-        int movingCount = 0;
-        int[][] matrix = new int[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                int searchingCount = backtrace(matrix, i, j, k);
-                movingCount = Math.max(movingCount, searchingCount);
-            }
-        }
-        return movingCount;
+        this.m = m;
+        this.n = n;
+        this.k = k;
+        visited = new boolean[m][n];
+        return dfs(0, 0, 0, 0);
     }
 
-    private int backtrace(int[][] matrix, int i, int j, int k) {
-        if (i < 0 || i > matrix.length || j < 0 || j > matrix[0].length) {
+    private int dfs(int i, int j, int digitSumOfI, int digitSumOfJ) {
+        if (i >= m || i < 0 || j < 0 || j >= n || visited[i][j] || digitSumOfI + digitSumOfJ > k) {
             return 0;
         }
 
-        if (k < 0) {
+        visited[i][j] = true;
+        int res = 1 + dfs(i + 1, j, sumOfDigit(i + 1), digitSumOfJ)
+                + dfs(i - 1, j, sumOfDigit(i - 1), digitSumOfJ)
+                + dfs(i, j + 1, digitSumOfI, sumOfDigit(j + 1))
+                + dfs(i, j - 1, digitSumOfI, sumOfDigit(j - 1));
+        return res;
+    }
+
+    public int movingCount2(int m, int n, int k) {
+        this.m = m;
+        this.n = n;
+        this.k = k;
+        this.visited = new boolean[m][n];
+        return dfs(0, 0, 0, 0);
+    }
+
+    private int dfs2(int i, int j, int s_i, int s_j) {
+        if (i >= m || j >= n || s_i + s_j > k || visited[i][j]) {
             return 0;
         }
+        visited[i][j] = true;
+        return 1 + dfs(i + 1, j, sumOfDigit(i, s_i), s_j) + dfs(i, j + 1, s_i, sumOfDigit(j, s_j));
+    }
 
-        int i1 = i / 10;
-        int i2 = i % 10;
-        int j1 = j / 10;
-        int j2 = j % 10;
+    private int sumOfDigit(int x, int s_x) {
+        return (x + 1) % 10 != 0 ? s_x + 1 : s_x - 8;
+    }
 
-        int sumOfDigits = i1 + i2 + j1 + j2;
-        k = k - sumOfDigits;
-
-        return (sumOfDigits <= k ? 1 : 0) + backtrace(matrix, i - 1, j, k) + backtrace(matrix, i + 1, j, k) + backtrace(
-                matrix, i, j - 1, k) + backtrace(matrix, i, j + 1, k);
+    private int sumOfDigit(int x) {
+        int sum = 0;
+        while (x != 0) {
+            sum += x % 10;
+            x = x / 10;
+        }
+        return sum;
     }
 }

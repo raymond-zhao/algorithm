@@ -51,7 +51,7 @@ public class P12 {
             return true;
         }
 
-         board[i][j] = ' '; // 必须做访问标记，如果不做的话，一个字符可能会被访问多次。
+        board[i][j] = ' '; // 必须做访问标记，如果不做的话，一个字符可能会被访问多次。
         boolean res = backtrace(board, i + 1, j, word, k + 1)
                 || backtrace(board, i - 1, j, word, k + 1)
                 || backtrace(board, i, j + 1, word, k + 1)

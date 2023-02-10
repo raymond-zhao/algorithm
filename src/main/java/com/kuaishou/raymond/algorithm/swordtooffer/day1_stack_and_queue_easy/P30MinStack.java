@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer.day1_stack_and_queue;
+package com.kuaishou.raymond.algorithm.swordtooffer.day1_stack_and_queue_easy;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer.day2_node_easy;
+package com.kuaishou.raymond.algorithm.swordtooffer.day2_list_node_easy;
 
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 

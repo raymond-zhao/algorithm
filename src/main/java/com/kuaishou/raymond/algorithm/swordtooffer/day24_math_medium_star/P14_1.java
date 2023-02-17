@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer.day24_math_medium;
+package com.kuaishou.raymond.algorithm.swordtooffer.day24_math_medium_star;
 
 /**
  * 剪绳子

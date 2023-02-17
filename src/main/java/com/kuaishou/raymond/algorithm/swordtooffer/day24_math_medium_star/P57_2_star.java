@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.swordtooffer.day24_math_medium;
+package com.kuaishou.raymond.algorithm.swordtooffer.day24_math_medium_star;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import java.util.List;
  * 算法流程：
  * - 根据 2 * target=n(a_1 + a_n)，得 a_1 最大为 target / n，如果 a_1 + a_1 + 1 > target，则不成立。
  */
-public class P57_2 {
+public class P57_2_star {
 
     public static void main(String[] args) {
         int target_1 = 9; // [[2,3,4], [4,5]]

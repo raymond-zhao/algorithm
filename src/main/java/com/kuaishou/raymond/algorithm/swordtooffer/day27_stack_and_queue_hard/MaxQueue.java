@@ -1,16 +1,14 @@
 package com.kuaishou.raymond.algorithm.swordtooffer.day27_stack_and_queue_hard;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
- * 队列的最大值
- * 请定义一个队列并实现函数 max_value 得到队列里的最大值。
- * 要求函数 max_value，push_back 和 pop_front 的均摊时间复杂度都是 O(1)。
- * 若队列为空，pop_front 和 max_value 需要返回 -1.
- * MaxQueue
+ * @author raymond <zhaolei09@kuaishou.com>
+ * created on 2023-02-20 13:48
  */
-public class P59_2 {
-
+public class MaxQueue {
 
     /**
      * 真正地存储数据的队列
@@ -22,7 +20,7 @@ public class P59_2 {
      */
     private Deque<Integer> deque;
 
-    public P59_2() {
+    public MaxQueue() {
         queue = new LinkedList<>();
         deque = new LinkedList<>();
     }
@@ -59,5 +57,4 @@ public class P59_2 {
         }
         return data;
     }
-
 }

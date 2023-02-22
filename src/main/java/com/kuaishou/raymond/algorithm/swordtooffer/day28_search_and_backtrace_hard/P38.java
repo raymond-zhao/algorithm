@@ -9,7 +9,7 @@ public class P38 {
 
     public static void main(String[] args) {
         P38 p38 = new P38();
-        System.out.println("p38.permutation(\"abc\") = " + Arrays.toString(p38.permutation("abc")));
+        System.out.println("Arrays.toString(p38.permutation(\"abc\")) = " + Arrays.toString(p38.permutation("abc")));
         System.out.println("p38.permutationV2(\"abc\") = " + Arrays.toString(p38.permutationV2("abc")));
     }
 

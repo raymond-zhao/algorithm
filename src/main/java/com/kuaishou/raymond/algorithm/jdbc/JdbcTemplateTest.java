@@ -42,15 +42,6 @@ public class JdbcTemplateTest {
         return dataSource;
     }
 
-    public static DataSource mysqlDataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://cluster01.proxysql.staging.internal:6032/gifshow");
-        dataSource.setUsername("gifshow_48580_v1_rw");
-        dataSource.setPassword("Kv1a5pP2TSk3K1IuQO6dXe7GtVxgLfFo");
-        return dataSource;
-    }
-
     @Data
     public static class SingleTableEntity {
         private Integer id;

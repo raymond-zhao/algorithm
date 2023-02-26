@@ -11,9 +11,11 @@ public class P51 {
 
     public static void main(String[] args) {
         int[] nums = {7, 5, 6, 4}; // 5
+        int[] nums2 = {1, 3, 2, 3, 1};
         P51 p51 = new P51();
         System.out.println("p51.reversePairs(nums) = " + p51.reversePairs(nums));
         System.out.println("p51.reversePairsV2(nums) = " + p51.reversePairsV2(nums));
+        System.out.println("p51.reversePairsV2(nums2) = " + p51.reversePairsV2(nums2));
     }
 
     public int reversePairs(int[] nums) {

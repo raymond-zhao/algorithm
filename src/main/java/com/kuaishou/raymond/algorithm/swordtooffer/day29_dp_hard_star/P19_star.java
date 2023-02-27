@@ -11,13 +11,13 @@ public class P19_star {
         String p1 = "a.a";
         String p2 = "ab*ac*a";
         String p3 = "aa.a";
-        System.out.println("p19.isMatch(s, p1) = " + p19.isMatch(s, p1));
+        // System.out.println("p19.isMatch(s, p1) = " + p19.isMatch(s, p1));
         System.out.println("p19.isMatch(s, p2) = " + p19.isMatch(s, p2));
         System.out.println("p19.isMatch(s, p3) = " + p19.isMatch(s, p3));
     }
 
     /**
-     * 状态定义：f[i][j] 表示 s 的第 i 个字符能被 p 的第 j 个字符匹配
+     * 状态定义：f[i][j] 表示 s 的第 i 个字符是否能被 p 的第 j 个字符匹配
      * 状态转移方程：
      * if p[j]=除 ./* 之外的普通字符,
      * - if s[i]=p[j], f[i][j]=f[i-1][j-1];
@@ -37,36 +37,38 @@ public class P19_star {
     public boolean isMatch(String s, String p) {
         int m = s.length();
         int n = p.length();
-
-        boolean[][] f = new boolean[m + 1][n + 1];
-        f[0][0] = true;
+        // 状态定义：dp[i][j] 表示 s 的第 i 个字符与 p 的第 j 个字符是否能够匹配，字符的位置从 1 开始计数，数组索引从 0 开始计数，相差 1.
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true; // 两个空字符串可以匹配
 
         for (int i = 0; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-                if (p.charAt(j - 1) == '*') {
-                    f[i][j] = f[i][j - 2];
+                if (p.charAt(j - 1) == '*') { // p 的第 j 个字符
+                    dp[i][j] = dp[i][j - 2];
                     if (matches(s, p, i, j - 1)) {
-                        f[i][j] = f[i][j] || f[i-1][j];
+                        // 丢弃 p 中「字符+*」号的组合，或者丢弃 s 中的字符。
+                        dp[i][j] = dp[i][j] || dp[i - 1][j];
                     }
                 } else {
                     if (matches(s, p, i, j)) {
-                        f[i][j] = f[i - 1][j - 1];
+                        // 如果 p 的第 j 个字符是 . 或普通字符
+                        dp[i][j] = dp[i - 1][j - 1];
                     }
                 }
             }
         }
 
-        return f[m][n];
+        return dp[m][n];
     }
 
     private boolean matches(String s, String p, int i, int j) {
         if (i == 0) {
-            return false;
+            return false; // 字符从 1 计数，s 的第 0 个字符为 false。
         }
         if (p.charAt(j - 1) == '.') {
             return true;
         }
-        return s.charAt(i - 1) == p.charAt(j - 1);
+        return s.charAt(i - 1) == p.charAt(j - 1); // 字符位置与索引下标相差 1
     }
 
 }

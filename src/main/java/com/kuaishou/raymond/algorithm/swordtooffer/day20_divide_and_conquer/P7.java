@@ -45,10 +45,10 @@ public class P7 {
             map.put(inorder[i], i);
         }
         this.preorder = preorder;
-        return recur(0, 0, inorder.length - 1);
+        return buildTree(0, 0, inorder.length - 1);
     }
 
-    private TreeNode recur(int rootIndexInPreorder, int leftIndexInInorder, int rightIndexInInorder) {
+    private TreeNode buildTree(int rootIndexInPreorder, int leftIndexInInorder, int rightIndexInInorder) {
         if (leftIndexInInorder > rightIndexInInorder) {
             return null;
         }
@@ -58,9 +58,9 @@ public class P7 {
         // 中序遍历区间此时被划分为 [[left, rootIndexInInorder - 1], [rootIndexInInorder], [rootIndexInInorder + 1, right]]
 
         // 先序遍历中的根结点后的第一个结点为其左子树的根结点
-        TreeNode left = recur(rootIndexInPreorder + 1, leftIndexInInorder, rootIndexInInorder - 1);
+        TreeNode left = buildTree(rootIndexInPreorder + 1, leftIndexInInorder, rootIndexInInorder - 1);
         // 首先要确定根结点右子树的索引，等于当前根结点起始索引 + 左子树的结点个数
-        TreeNode right = recur(rootIndexInPreorder + (rootIndexInInorder - leftIndexInInorder + 1), rootIndexInInorder + 1, rightIndexInInorder);
+        TreeNode right = buildTree(rootIndexInPreorder + (rootIndexInInorder - leftIndexInInorder + 1), rootIndexInInorder + 1, rightIndexInInorder);
 
         node.left = left;
         node.right = right;

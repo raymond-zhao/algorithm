@@ -117,6 +117,9 @@ public class P1TwoSum {
         return numOfFourSumCombination(A, B, C, D, 0);
     }
 
+    /**
+     * 以 O(n^2) 的时间复杂度查找 A，B，C，D 四个数组中各取一个元素相加之和等于 target 的组合数。
+     */
     public static int numOfFourSumCombination(int[] A, int[] B, int[] C, int[] D, int target) {
         Map<Integer, Integer> map = new HashMap<>();
         for (int a : A) {

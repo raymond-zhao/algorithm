@@ -12,8 +12,8 @@ public class P21 {
         int[] nums = {1, 2, 3, 4};
         int[] nums2 = {1, 3, 5};
         P21 p21 = new P21();
-        System.out.println("Arrays.toString(p21.exchange(nums)) = " + Arrays.toString(p21.exchange(nums)));
-        System.out.println("Arrays.toString(p21.exchange(nums)) = " + Arrays.toString(p21.exchange(nums2)));
+        System.out.println("Arrays.toString(p21.swap(nums)) = " + Arrays.toString(p21.exchange(nums)));
+        System.out.println("Arrays.toString(p21.swap(nums)) = " + Arrays.toString(p21.exchange(nums2)));
     }
 
     public int[] exchange(int[] nums) {

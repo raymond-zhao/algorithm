@@ -1,10 +1,10 @@
 package com.kuaishou.raymond.algorithm.sorting;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class HeapSort {
@@ -60,7 +60,7 @@ public class HeapSort {
         // 把 i 位置的数值增加到 key，但这时可能会违反最大堆性质，应该获取其父节点进行调整。
         array[i] = key;
         while (i > 0 && array[parent(i)] < array[i]) {
-            exchange(array, i, parent(i)); // 需要三次变量复制
+            swap(array, i, parent(i)); // 需要三次变量复制
             i = parent(i);
         }
 
@@ -108,7 +108,7 @@ public class HeapSort {
     public static int[] heapSort(int[] array) {
         buildMaxHeap(array);
         for (int i = array.length - 1; i > 0; i--) {
-            exchange(array, 0, i);
+            swap(array, 0, i);
             maxHeapify(array, 0, i);
         }
         return array;
@@ -150,7 +150,7 @@ public class HeapSort {
         }
 
         if (largest != idx) {
-            exchange(array, largest, idx);
+            swap(array, largest, idx);
             maxHeapify(array, largest, heapSize);
         }
 
@@ -171,7 +171,7 @@ public class HeapSort {
         }
 
         if (smallest != idx) {
-            exchange(array, smallest, idx);
+            swap(array, smallest, idx);
             minHeapify(array, smallest);
         }
 
@@ -196,7 +196,7 @@ public class HeapSort {
                 break;
             }
 
-            exchange(array, idx, largest);
+            swap(array, idx, largest);
             idx = largest;
         }
         return array;
@@ -214,7 +214,7 @@ public class HeapSort {
         return (i << 1) + 2;
     }
 
-    public static void exchange(int[] array, int i, int j) {
+    public static void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;

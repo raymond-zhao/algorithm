@@ -24,13 +24,16 @@ public class P45 {
         String[] strArray = new String[nums.length];
         int i = 0;
         for (int num : nums) {
+            // 把数字转成字符串
             strArray[i++] = String.valueOf(num);
         }
 
+        // 指定规则对字符串排序
         Arrays.sort(strArray, (x, y) -> (x + y).compareTo(y + x));
 
         StringBuilder builder = new StringBuilder();
         for (String s : strArray) {
+            // 直接拼接
             builder.append(s);
         }
         return builder.toString();
@@ -40,7 +43,7 @@ public class P45 {
      * 将数组中的数字看做字符串，比较规则如下：
      * 如果 x + y > y + x, 则 x > y; 如 3 + 30 = 330 > 30 + 3 = 303，则 3 > 30;
      * 如果 x + y < y + x, 则 x < y; 如 30 + 34 = 3034 < 34 + 30 = 3430，则 30 < 34;
-     * 使用任意一种排序方法，排序后的数组从到到位相连即为最小的数字。
+     * 使用任意一种排序方法，排序后的数组相连即为最小的数字。
      */
     public String minNumber(int[] nums) {
         StringBuilder builder = new StringBuilder();

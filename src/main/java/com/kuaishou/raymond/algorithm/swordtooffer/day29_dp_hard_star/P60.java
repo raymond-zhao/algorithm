@@ -22,6 +22,7 @@ public class P60 {
      */
     public double[] dicesProbability(int n) {
         // 根据状态定义可知，不能有 0 个骰子，也不会有点数为 0 的情况，所以，声明 dp 数组时需要包含并处理这种情况。
+        // dp[i][j] 使用 i 个骰子时可以组成点数 j 的次数
         double[][] dp = new double[n + 1][6 * n + 1];
         // 初始化 1 个骰子时的情况
         for (int i = 1; i <= 6; i++) {

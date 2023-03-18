@@ -6,7 +6,8 @@ package com.kuaishou.raymond.algorithm.swordtooffer.day26_string_medium_star;
 public class P67_star {
 
     public static void main(String[] args) {
-        System.out.println("strToIntV2(\"42\") = " + strToIntV2("42"));
+        System.out.println("Integer.parseInt(\"+100\") = " + Double.valueOf("0123"));
+        System.out.println("strToIntV2(\"42\") = " + strToIntV2("-hello42"));
     }
 
     public static int strToIntV2(String str) {
@@ -36,10 +37,12 @@ public class P67_star {
         for (int i = beginIndex; i < str.length(); i++) {
             char c = str.charAt(i);
             if (c < '0' || c > '9') {
+                // 如果不是数字，跳出。
                 break;
             }
 
             if (res > boundary || (res == boundary && c > '7')) {
+                // 如果再多填一位就越界，则返回整数类型界。
                 return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
             }
 

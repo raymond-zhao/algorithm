@@ -63,9 +63,11 @@ public class QuickSort {
 
         while (i < j) {
             while (i < j && array[i] < key) {
+                // 寻找大于等于 key 的值
                 i++;
             }
             while (i < j && array[j] >= key) {
+                // 寻找小于 key 的值
                 j--;
             }
             swap(array, i, j);

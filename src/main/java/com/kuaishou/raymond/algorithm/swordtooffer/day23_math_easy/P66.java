@@ -29,7 +29,6 @@ public class P66 {
             // b[i-1] 代表的是当前元素上上个元素及其之前的所有元素的积。
             b[i] = b[i - 1] * nums[i - 1];
         }
-        // b = {1, 1, 2, 6, 24}
         int temp = 1;
         for (int i = nums.length - 2; i >= 0; i--) {
             // 当前元素右边所有元素的乘积

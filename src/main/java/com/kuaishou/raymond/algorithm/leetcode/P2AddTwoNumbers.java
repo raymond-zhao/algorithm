@@ -8,11 +8,6 @@ import java.util.Objects;
  */
 public class P2AddTwoNumbers {
 
-    public static void main(String[] args) {
-        P2AddTwoNumbers p2 = new P2AddTwoNumbers();
-        p2.addTwoNumbers(null, null);
-    }
-
     private ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (Objects.isNull(l1) && Objects.isNull(l2)) {
             return null;

@@ -1,8 +1,8 @@
 package com.kuaishou.raymond.algorithm.leetcode;
 
-import java.util.Arrays;
-
 import com.kuaishou.raymond.algorithm.swordtooffer.TreeNode;
+
+import java.util.Arrays;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -82,9 +82,34 @@ public class P198HouseRobbing {
      * 打家劫舍 3：树形房屋
      */
     public int houseRobbingV3(TreeNode root) {
+        int[] data = houseRobbingV3Internal(root);
+        return Math.max(data[0], data[1]);
+    }
+
+    private int[] houseRobbingV3Internal(TreeNode root) {
         if (root == null) {
-            return 0;
+            return new int[2];
         }
+        int[] data = new int[2];
+
+        int[] left = houseRobbingV3Internal(root.left);
+        int[] right = houseRobbingV3Internal(root.right);
+
+        // 不偷当前节点，则最大价值 = 左子节点偷/不偷的最大值 + 右子节点偷/不偷的最大值
+        data[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        // 偷当前结点，则最大价值 = root.val + 不偷左子节点 + 不偷右子节点
+        data[1] = root.val + left[0] + right[0];
+
+        return data;
+    }
+
+    /**
+     * 最小窃取能力："最大化最小值/最小化最大值首先想到二分" 这个结论让我大为震惊
+     * 暂时选择放弃
+     * {2, 7, 9, 3, 1}, k=2
+     * 下标组合：0-2, 0-3, 0-4, 1-3, 1-4, 2-4, 0-1-4，最小窃取组合 0-4，
+     */
+    public int houseRobbingV4(int[] nums, int k) {
         return 0;
     }
 }

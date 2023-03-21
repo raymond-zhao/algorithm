@@ -22,6 +22,7 @@ public class P48 {
     public static void main(String[] args) {
         P48 p48 = new P48();
         String s = "abcabcbb";
+        String s1 = "dvdf";
         System.out.println("p48.lengthOfLongestSubstring(s) = " + p48.lengthOfLongestSubstring(s));
     }
 

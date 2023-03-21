@@ -1,5 +1,8 @@
 package com.kuaishou.raymond.algorithm.swordtooffer.day20_divide_and_conquer;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /**
  * 33. 二叉搜索树的后序遍历序列
  * 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。
@@ -24,9 +27,11 @@ public class P33_star {
     public static void main(String[] args) {
         int[] postorder = {1, 6, 3, 2, 5};
         int[] postorder2 = {1, 3, 2, 6, 5};
+        int[] postorder3 = {2, 1, 4, 3};
         P33_star p33Star = new P33_star();
         System.out.println("p33.verifyPostorder(postorder) = " + p33Star.verifyPostorder(postorder));
         System.out.println("p33.verifyPostorder(postorder2) = " + p33Star.verifyPostorder(postorder2));
+        p33Star.verifyPostorderV2(postorder3);
     }
 
     /**
@@ -60,5 +65,23 @@ public class P33_star {
         }
         // 循环结束时，如果复合二叉搜索树特性，则 rightRootIndex = right.
         return rightRootIndex == right && recur(postorder, left, middle - 1) && recur(postorder, middle, right - 1);
+    }
+
+    public boolean verifyPostorderV2(int[] postorder) {
+        if (postorder == null || postorder.length == 0) {
+            return true;
+        }
+        Deque<Integer> stack = new ArrayDeque<>();
+        int root = Integer.MAX_VALUE;
+        for (int i = postorder.length - 1; i >= 0; i--) {
+            if (postorder[i] > root) {
+                return false;
+            }
+            while (!stack.isEmpty() && postorder[i] < stack.peek()) {
+                root = stack.pop();
+            }
+            stack.push(postorder[i]);
+        }
+        return true;
     }
 }

@@ -20,8 +20,6 @@ public class MatrixMultiply {
                 {13, 14, 15, 16}
         };
 
-        // printMatrix(squareMatrixMultiplyBF(A, B));
-
         partition(A);
         partition(B);
     }

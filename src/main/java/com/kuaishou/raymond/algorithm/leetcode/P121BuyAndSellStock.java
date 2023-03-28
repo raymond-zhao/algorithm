@@ -54,4 +54,101 @@ public class P121BuyAndSellStock {
 
         return dp[length - 1][0];
     }
+
+    /**
+     * 买卖股票的最佳时机（最多交易两次）
+     * 交易次数的可能情况为 0、1、2
+     */
+    public int maxProfit2Trade(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int length = prices.length;
+        int[][][] dp = new int[length][3][2];
+
+        dp[0][1][0] = 0;
+        dp[0][1][1] = -prices[0];
+        dp[0][2][0] = 0;
+        dp[0][2][1] = -prices[0];
+
+        for (int i = 1; i < length; i++) {
+            dp[i][1][0] = Math.max(dp[i - 1][0][0], dp[i - 1][1][1] + prices[i]); // 休息/卖出
+            dp[i][1][1] = Math.max(dp[i - 1][1][1], -prices[i]); // 休息/买入
+            dp[i][2][0] = Math.max(dp[i - 1][2][0], dp[i - 1][2][1] + prices[i]); // 休息/卖出
+            dp[i][2][1] = Math.max(dp[i - 1][2][1], dp[i - 1][1][0] - prices[i]); // 休息/买入
+        }
+
+        return dp[length - 1][2][0];
+    }
+
+    /**
+     * 买卖股票的最佳时机（最多交易 K 次）
+     */
+    public int maxProfitKTrade(int[] prices, int k) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int length = prices.length;
+        if (k >= length / 2) {
+            return maxProfitNTrade(prices);
+        }
+        // 状态定义
+        int[][][] dp = new int[length][k + 1][2];
+        // 基准条件
+        for (int i = 0; i <= k; i++) {
+            dp[0][i][0] = 0;
+            dp[0][i][1] = -prices[0];
+        }
+        // 状态转移
+        for (int i = 1; i < length; i++) {
+            for (int j = k; j > 0; j--) {
+                dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i]); // 休息或卖出
+                dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i]); // 休息或买入
+            }
+        }
+
+        return dp[length - 1][k][0];
+    }
+
+    /**
+     * 买卖股票的最佳时机（不限制交易次数但包含冷冻期）
+     */
+    public int maxProfitNTradeWithFrozen(int[] prices) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int length = prices.length;
+        int[][] dp = new int[length][2];
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+
+        for (int i = 1; i < length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]); // 休息或卖出
+            dp[i][1] = Math.max(dp[i - 1][1], (i >= 2 ? dp[i - 2][0] : 0) - prices[i]); // 休息或买入
+        }
+
+        return dp[length - 1][0];
+    }
+
+    /**
+     * 不限制交易次数但有手续费
+     */
+    public int maxProfitNTradeWithFee(int[] prices, int fee) {
+        if (prices == null || prices.length == 0) {
+            return 0;
+        }
+        int length = prices.length;
+        int[][] dp = new int[length][2];
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0] - fee; // 买入时支付手续费
+
+        for (int i = 1; i < length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i] - fee);
+        }
+
+        return dp[length - 1][0];
+    }
 }

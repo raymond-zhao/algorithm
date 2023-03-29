@@ -1,6 +1,7 @@
 package com.kuaishou.raymond.algorithm.dp;
 
-import java.util.Arrays;
+import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.printMatrix;
+import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.printRow;
 
 /**
  * 背包问题
@@ -87,13 +88,4 @@ public class KnapsackZeroOne {
         return dp[capacity];
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int[] row : matrix) {
-            printRow(row);
-        }
-    }
-
-    public static void printRow(int[] row) {
-        System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
-    }
 }

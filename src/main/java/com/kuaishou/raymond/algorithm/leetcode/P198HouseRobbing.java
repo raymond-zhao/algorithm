@@ -1,6 +1,6 @@
 package com.kuaishou.raymond.algorithm.leetcode;
 
-import com.kuaishou.raymond.algorithm.swordtooffer.TreeNode;
+import com.kuaishou.raymond.algorithm.sword.to.offer1.TreeNode;
 
 import java.util.Arrays;
 

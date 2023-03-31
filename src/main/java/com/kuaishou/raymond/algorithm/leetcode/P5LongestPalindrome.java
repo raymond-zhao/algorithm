@@ -1,6 +1,6 @@
 package com.kuaishou.raymond.algorithm.leetcode;
 
-import java.util.Arrays;
+import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.printMatrix;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -10,46 +10,11 @@ public class P5LongestPalindrome {
 
     public static void main(String[] args) {
         String s = "ababa";
-        String s1 = "babad";
-        String s2 = "cbbd";
+        String s2 = "babad";
+        String s1 = "cbbd";
         P5LongestPalindrome p5 = new P5LongestPalindrome();
         System.out.println("p5.longestPalindromeBrutalForce(s) = " + p5.longestPalindromeBrutalForce(s2));
-        System.out.println("p5.longestPalindromeDP(s) = " + p5.longestPalindrome(s2));
-    }
-
-    public String longestPalindrome(String s) {
-        if (s == null || s.length() <= 1) {
-            return s;
-        }
-        int len = s.length();
-        int maxLength = 1;
-        int beginning = 0;
-        boolean[][] dp = new boolean[len][len];
-        for (int i = 0; i < len; i++) {
-            dp[i][i] = true;
-        }
-
-        char[] chars = s.toCharArray();
-
-        for (int j = 1; j < len; j++) {
-            for (int i = 0; i < j; i++) {
-                if (chars[i] != chars[j]) {
-                    dp[i][j] = false;
-                } else {
-                    if (j - i < 3) {
-                        dp[i][j] = true;
-                    } else {
-                        dp[i][j] = dp[i + 1][j - 1];
-                    }
-                }
-                if (dp[i][j] && j - i + 1 > maxLength) {
-                    maxLength = j - i + 1;
-                    beginning = i;
-                }
-            }
-        }
-
-        return s.substring(beginning, beginning + maxLength);
+        System.out.println("p5.longestPalindromeDP(s) = " + p5.longestPalindromeDP(s2));
     }
 
     /**
@@ -140,7 +105,8 @@ public class P5LongestPalindrome {
      * 动态规划
      * 状态定义：dp[i][j] 表示 s[i..j] 是否是回文串
      * 状态转移方程：
-     * 如果 s[i]==s[j]，dp[i][j] = dp[i+1][j-1]
+     * if s[i]==s[j], dp[i][j] = dp[i+1][j-1]，
+     * if s[i]!=s[j], dp[i][j] = false;
      */
     public String longestPalindromeDP(String s) {
         if (s == null || s.length() <= 1) {
@@ -148,7 +114,7 @@ public class P5LongestPalindrome {
         }
         int len = s.length();
         int maxLength = 1;
-        int begin = 0;
+        int beginIndex = 0;
         char[] chars = s.toCharArray();
 
         boolean[][] dp = new boolean[len][len];
@@ -157,8 +123,8 @@ public class P5LongestPalindrome {
             dp[i][i] = true;
         }
 
-        // dp 的过程就是填写二维表格的过程
-        // 观察状态转移方程可以发现：dp[i][j] 的值需要从其左下角转换而来，不像 dp[i][j]=dp[i-1][j-1] 这种从其左上方转换而来，
+        // 观察状态转移方程可以发现：dp[i][j]=dp[i+1][j-1]，
+        // 这个值需要从其左下角转换而来，不像 dp[i][j]=dp[i-1][j-1] 这种从其左上方转换而来，
         // 所以不能按行填表，需要按列填表。
         for (int j = 1; j < len; j++) {
             // 先填左下角，先按列填写，再按行填写。
@@ -179,13 +145,12 @@ public class P5LongestPalindrome {
                 // 检查此时最新的 dp[i][j] 是否代表回文串
                 if (dp[i][j] && j - i + 1 > maxLength) {
                     maxLength = j - i + 1;
-                    begin = i;
+                    beginIndex = i;
                 }
             }
         }
-        for (boolean[] row : dp) {
-            System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
-        }
-        return s.substring(begin, begin + maxLength);
+
+        printMatrix(dp);
+        return s.substring(beginIndex, beginIndex + maxLength);
     }
 }

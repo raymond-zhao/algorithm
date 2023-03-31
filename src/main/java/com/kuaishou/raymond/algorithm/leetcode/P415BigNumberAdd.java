@@ -2,7 +2,6 @@ package com.kuaishou.raymond.algorithm.leetcode;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.function.BiFunction;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -33,12 +32,6 @@ public class P415BigNumberAdd {
         System.out.println("addStrings(num1, num2) = " + addStrings(num4, num5));
         System.out.println("addStrings(num1, num3) = " + addStrings(num1, num3));
 
-    }
-
-    public String bigIntegerOperation(String num1, String num2, BiFunction<BigInteger, BigInteger, String> function) {
-        BigInteger n1 = new BigInteger(num1);
-        BigInteger n2 = new BigInteger(num2);
-        return function.apply(n1, n2);
     }
 
     /***

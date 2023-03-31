@@ -1,8 +1,8 @@
 package com.kuaishou.raymond.algorithm.sorting;
 
-import static com.kuaishou.raymond.algorithm.sorting.HeapSort.swap;
-
 import lombok.extern.slf4j.Slf4j;
+
+import static com.kuaishou.raymond.algorithm.sorting.HeapSort.swap;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -22,7 +22,7 @@ public class QuickSort {
      */
     public static int[] tailRecursiveQuickSort(int[] array, int left, int right) {
         while (left < right) {
-            int middle = partition(array, left, right);
+            int middle = clrsPartition(array, left, right);
             tailRecursiveQuickSort(array, left, middle - 1);
             left = right + 1;
         }
@@ -31,14 +31,14 @@ public class QuickSort {
 
     public static int[] quickSort(int[] array, int left, int right) {
         if (left < right) {
-            int middle = partition(array, left, right);
+            int middle = hoarePartition(array, left, right);
             quickSort(array, left, middle - 1);
             quickSort(array, middle + 1, right);
         }
         return array;
     }
 
-    private static int partition(int[] array, int left, int right) {
+    private static int clrsPartition(int[] array, int left, int right) {
         int key = array[right]; // 选择数组中最右元素作为基准元素
         int idx = left - 1; // idx 及其左侧的数均小于等于 key，所以 idx + 1 指向的是第一个大于 key 的数。
 
@@ -59,7 +59,7 @@ public class QuickSort {
     public static int hoarePartition(int[] array, int left, int right) {
         int key = array[right];
         int i = left;
-        int j = right;
+        int j = right - 1;
 
         while (i < j) {
             while (i < j && array[i] < key) {

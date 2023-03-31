@@ -12,65 +12,662 @@
 
 > 请给我一些拼多多Java工程师面试中出现的笔试题
 
-1. 数组去重：给定一个数组，去除其中重复的元素。
+26. 删除有序数组中的重复项
 
 ```java
-import java.util.HashSet;
-
 public class Solution {
-    public int[] removeDuplicates(int[] nums) {
+    /**
+     * 快慢指针
+     * 慢指针：指向归位后的数组中不重复字符第一次出现的位置
+     * 快指针：寻找某个数字第一次出现的位置，如果遇到相同的则跳过。
+     */
+    public int removeDuplicates(int[] nums) {
         if (nums == null || nums.length == 0) {
-            return nums;
+            return 0;
         }
-        Set<Integer> set = new HashSet<>();
-        for (int num : nums) {
-            set.add(num);
+        int slow = 0;
+        int fast = 0;
+        int length = nums.length;
+        while (fast < length) {
+            if (nums[fast] != nums[slow]) {
+                // 此时，fast 与 slow 指向的字符不同
+                slow++;
+                nums[slow] = nums[fast];
+            }
+            fast++;
         }
-        int[] data = new int[set.size()];
-        int idx = 0;
-        for (int num : set) {
-            data[idx++] = num;
-        }
-        return data;
+        return slow + 1;
     }
 }
 ```
 
-2. 最长公共前缀：给定一组字符串，找出它们的最长公共前缀。
+14. 最长公共前缀：给定一组字符串，找出它们的最长公共前缀。
 ```java
 public class Solution {
     public String longestCommonPrefix(String[] words) {
         if (words == null || words.length == 0) {
             return null;
         }
-        
+        String prefix = words[0];
+        for (String word : words) {
+            // 依次取当前字符串与当前单词的最长前缀
+            prefix = longestCommonPrefix(prefix, word);
+        }
+        return prefix;
+    }
+
+    /**
+     * 求两个字符串的最长公共前缀
+     */
+    private String longestCommonPrefix(String prefix, String word) {
+        int idx1 = 0;
+        int idx2 = 0;
+        while (idx1 < prefix.length() && idx2 < word.length()
+                && prefix.charAt(idx1) == word.charAt(idx2)) {
+            idx1++;
+            idx2++;
+        }
+        return prefix.substring(0, Math.min(idx1, idx2));
     }
 }
 ```
 
 3. 反转链表：给定一个链表，将其反转。
+```java
+public class Solution {
+    /**
+     * 1->2->3->null
+     */
+    public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        ListNode prev = null;
+        ListNode current = head;
+        
+        while (head != null) {
+            head = head.next;
+            current.next = prev;
+            prev = current;
+            current = head;
+        }
+        
+        return prev;
+    }
+}
+```
 
 4. 快速排序：给定一个数组，使用快速排序算法对其进行排序。
+```java
+public class Solution {
+    public void quickSort(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return;
+        }
+        quickSort(nums, 0, nums.length - 1);
+    }
+    
+    private void quickSort(int[] nums, int left, int right) {
+        if (left < right) {
+            int partition = lomutoPartition(nums, left, right);
+            quickSort(nums, left, partition - 1);
+            quickSort(nums, partition + 1, right);
+        }
+    }
+
+    /**
+     * 《算法导论》与《编程珠玑》中用于快排划分的算法
+     * Nico Lomuto
+     * 效率略低于 Hoare Partition
+     */
+    private int lomutoPartition(int[] nums, int left, int right) {
+        int key = nums[right];
+        int idx = left - 1;
+        
+        for (int i = left; i < right; i++) {
+            if (nums[i] <= key) {
+                // 保证 [left, idx] 之间的值均小于等于 key 
+                // [idx + 1, i] 之间的值均大于 key
+                // [i + 1, right - 1] 未知
+                idx++;
+                swap(nums, idx, i);
+            }
+        }
+        
+        swap(nums, idx + 1, right);
+        
+        return idx + 1;
+    }
+
+    /**
+     * 《算法导论》中提到的最原始的快排划分方式，
+     * 也是国内大部分人知道和使用的方式
+     * Author: Tony Hoare, 1959.
+     */
+    private int hoarePartition(int[] nums, int left, int right) {
+        int pivot = nums[right];
+        int l = left;
+        int r = right;
+        
+        while (l < r) {
+            while (l < r &&  nums[l] < pivot) {
+                l++;
+            }
+            while (l <  r && nums[r] >= pivot) {
+                r--;
+            }
+            // 此时 nums[l] >= pivot，nums[r] < pivot，交换。
+            swap(nums, l, r);
+        }
+        // 此时 l == r，这个位置是 pivot 在最终排序数组中的位置，交换 pivot 与 nums[l]。
+        swap(nums, l, right);
+        
+        return l;
+    }
+    
+    private void swap(int[] nums, int l, int r) {
+        int temp = nums[l];
+        nums[l] = nums[r];
+        nums[r] = temp;
+    }
+}
+```
 
 5. 二分查找：给定一个有序数组和一个目标值，使用二分查找算法查找目标值在数组中的位置。
+```java
+public class Solution {
+    public int binarySearch(int[] nums, int target) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int middle = (left + right) >>> 1;
+            if (nums[middle] == target) {
+                return middle;
+            } else if (nums[middle] < target) {
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        
+        return -1;
+    }
+}
+```
 
-6. 字符串匹配：给定一个文本串和一个模式串，查找模式串在文本串中的位置。
+6. **❤️字符串匹配**：给定一个文本串和一个模式串，查找模式串在文本串中的位置。
+```java
+public class Solution {
+    /**
+     * 暴力解法：O(mn)
+     */
+    public int searchPattern(String word, String pattern) {
+        if (word == null || word.length() == 0 || pattern == null
+                || pattern.length() == 0 || word.length() < pattern.length()) {
+            return -1;
+        }
+        int m = word.length();
+        int n = pattern.length();
+        int endIndex = m - n;
+        for (int i = 0; i < endIndex; i++) {
+            if (word.charAt(i) == pattern.charAt(0)) {
+                int index = searchPattern(word, pattern, endIndex, i);
+                if (index != -1) {
+                    return index;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    private int searchPattern(String word, String pattern, int endIndex, int beginIndex) {
+        int idx = beginIndex;
+        for (int i = 0; i < pattern.length(); i++) {
+            if (pattern.charAt(i) != word.charAt(idx)) {
+                return -1;
+            } else {
+                idx++;
+            }
+        }
+        return beginIndex;
+    }
+}
+```
 
-7. 斐波那契数列：计算斐波那契数列的第n项。
+7. 斐波那契数列：计算斐波那契数列的第 n 项。
+```java
+public class Solution {
+    /**
+     * 斐波那契数列：0，1，1，2，3，5，8
+     */
+    public long fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        
+        int nMinus2 = 0;
+        int nMinus1 = 1;
+        for (int i = 2; i <= n; i++) {
+            int cur = nMinus1 + nMinus2;
+            nMinus2 = nMinus1;
+            nMinus1 = cur;
+        }
+        return nMinus1;
+    }
+}
+```
 
-8. 最长回文子串：给定一个字符串，找出其中的最长回文子串。
+8. **❤️最长回文子串**：给定一个字符串，找出其中的最长回文子串。
+
+```java
+public class Solution {
+
+    /**
+     * 动态规划法
+     * T(n) = O(n^2)
+     */
+    public String longestPalindromeDynamicProgramming(String str) {
+        if (str == null || str.length() < 2) {
+            return str;
+        }
+        int len = str.length();
+        // 状态定义：dp[i][j] 表示子串 str[i..j] 是否为回文串
+        boolean[][] dp = new boolean[len][len];
+        // 基准条件：所有长度为 1 的子串都是回文串
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
+        }
+        
+        char[] chars = str.toCharArray();
+        int beginIndex = 0;
+        int palindromeLength = 0;
+        
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = i + 1; j < len; j++) {
+                if (chars[i] != chars[j]) {
+                    dp[i][j] = false;
+                } else {
+                    // s[i] == s[j]
+                    if (j - i < 3) {
+                        dp[i][j] = true;
+                    } else {
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+                if (dp[i][j] && j - i + 1 > palindromeLength) {
+                    beginIndex = i;
+                    palindromeLength = j - i + 1;
+                }
+            }
+        }
+        
+        return str.substring(beginIndex, beginIndex + palindromeLength);
+    }
+    
+    /**
+     * T(n) = O(n^3)
+     * 暴力法：枚举所有的字符串，记录最长的回文子串。
+     */
+    public String longestPalindromeBrutalForce(String str) {
+        if (str == null || str.length() < 2) {
+            return str;
+        }
+        char[] chars = str.toCharArray();
+        int maxLength = 1;
+        int beginIndex = 0;
+        for (int i = 0; i < str.length() - 1; i++) {
+            for (int j = i + 1; j < str.length(); j++) {
+                if (j - i + 1 > maxLength && isPalindrome(chars, i, j)) {
+                    maxLength = j - i + 1;
+                    beginIndex = i;
+                }
+            }
+        }
+        
+        return str.substring(beginIndex, beginIndex + maxLength);
+    }
+
+    /**
+     * 中心扩散
+     */
+    public String longestPalindromeCenterSpread(String str) {
+        // TODO
+    }
+
+    /**
+     * 判断是否是回文串
+     */
+    private boolean isPalindrome(char[] charArray, int i, int j) {
+        while (i < j) {
+            if (charArray[i] != charArray[j]) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+}
+```
 
 9. 单例模式：实现单例模式。
+```java
+/**
+ * 饿汉式：在类加载时就完成实例化，线程安全。
+ */
+public class Singleton {
+    
+    private static final Singleton INSTANCE = new Singleton();
+    
+    private Singleton() {}
+    
+    public static Singleton getInstance() {
+        return INSTANCE;
+    }
+    
+}
 
-10. 哈希表：实现一个哈希表，并实现其中的put、get、remove等操作。
+/**
+ * 懒汉式：使用时才创建，非线程安全。
+ */
+class Singleton {
+    
+    private static final Singleton INSTANCE = null;
+    
+    private Singleton() {}
+    
+    public static Singleton getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new Singleton();
+        }
+        return INSTANCE;
+    }
+    
+}
+
+/**
+ * 懒汉式：双端检锁，线程安全。
+ */
+class Singleton {
+
+    /**
+     * volatile 作用：创建对象不是原子操作，需要禁止指令重排。
+     */
+    private static volatile Singleton INSTANCE;
+    
+    private Singleton() {}
+    
+    public static Singleton getInstance() {
+        if (INSTANCE == null) {
+            synchronized (Singleton.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new Singleton();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+}
+
+/**
+ * 《Effective Java》作者推荐的单例实现方式
+ * 线程安全，天生支持序列化，还可防止反序列化时新建对象。
+ */
+enum Singleton {
+    INSTANCE,
+    ;
+    
+    public void getInstance() {
+        // TODO
+    }
+}
+```
+
+10. **💚哈希表**：实现一个哈希表，并实现其中的put、get、remove等操作。
+```java
+import java.util.ArrayList;
+
+public class MyHashMap<K, V> {
+
+    private ArrayList<Entry<K, V>> bucketArray;
+    private int numBuckets;
+    private int size;
+
+    public MyHashMap() {
+        bucketArray = new ArrayList<>();
+        numBuckets = 10;
+        size = 0;
+
+        for (int i = 0; i < numBuckets; i++) {
+            bucketArray.add(null);
+        }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    private int getBucketIndex(K key) {
+        int hashCode = key.hashCode();
+        return hashCode % numBuckets;
+    }
+
+    public V get(K key) {
+        int bucketIndex = getBucketIndex(key);
+        Entry<K, V> head = bucketArray.get(bucketIndex);
+
+        while (head != null) {
+            if (head.key.equals(key)) {
+                return head.value;
+            }
+            head = head.next;
+        }
+        return null;
+    }
+
+    public V remove(K key) {
+        int bucketIndex = getBucketIndex(key);
+        Entry<K, V> head = bucketArray.get(bucketIndex);
+        Entry<K, V> prev = null;
+
+        while (head != null) {
+            if (head.key.equals(key)) {
+                break;
+            }
+            prev = head;
+            head = head.next;
+        }
+
+        if (head == null) {
+            return null;
+        }
+
+        size--;
+
+        if (prev != null) {
+            prev.next = head.next;
+        } else {
+            bucketArray.set(bucketIndex, head.next);
+        }
+
+        return head.value;
+    }
+
+    public void put(K key, V value) {
+        int bucketIndex = getBucketIndex(key);
+        Entry<K, V> head = bucketArray.get(bucketIndex);
+
+        while (head != null) {
+            if (head.key.equals(key)) {
+                head.value = value;
+                return;
+            }
+            head = head.next;
+        }
+
+        size++;
+        head = bucketArray.get(bucketIndex);
+        Entry<K, V> newEntry = new Entry<>(key, value);
+        newEntry.next = head;
+        bucketArray.set(bucketIndex, newEntry);
+
+        if ((1.0 * size) / numBuckets >= 0.7) {
+            ArrayList<Entry<K, V>> temp = bucketArray;
+            bucketArray = new ArrayList<>();
+            numBuckets = 2 * numBuckets;
+            size = 0;
+
+            for (int i = 0; i < numBuckets; i++) {
+                bucketArray.add(null);
+            }
+
+            for (Entry<K, V> entry : temp) {
+                while (entry != null) {
+                    put(entry.key, entry.value);
+                    entry = entry.next;
+                }
+            }
+        }
+    }
+
+    private static class Entry<K, V> {
+        final K key;
+        V value;
+        Entry<K, V> next;
+
+        Entry(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+}
+
+```
 
 11. 给定一个数组，找到其中两个数的和等于给定的目标值。要求时间复杂度为 O(n)。
+```java
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        if (Objects.isNull(nums) || nums.length < 2) {
+            return new int[0];
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(nums[0], 0);
+
+        for (int idx = 1; idx < nums.length; idx++) {
+            int residual = target - nums[idx];
+            if (map.containsKey(residual)) {
+                return new int[] {map.get(residual), idx};
+            }
+            map.put(nums[idx], idx);
+        }
+        return new int[0];
+    }
+}
+```
 
 12. 给定一个链表，将链表从中间断开成两个部分，如果链表长度为奇数，则第一个部分长度要比第二个部分长一个节点。
 
-13. 给定一个字符串，判断它是否是一个回文字符串。回文字符串是指从左往右和从右往左读都是一样的字符串。
+```java
 
-14. 实现一个 LRU（Least Recently Used）缓存算法，包含 get 和 put 两个方法，时间复杂度应该为 O(1)。
+public class Solution {
+    /**
+     * 1. 遍历链表，统计结点个数 n。
+     * 2. 再遍历一次，
+     *  2.1 当 n 为奇数时，走到 n/2 + 1 时停止。
+     *  2.2 当 n 为偶数时，走到 n/2 时停止。
+     * 3. 先保存中点的下一个结点，再把中点的下一个结点置为 null。
+     */
+    public ListNode[] splitList(ListNode head) {
+        if (head == null) {
+            return new ListNode[0];
+        }
+        int count = 0;
+        ListNode node = head;
+        while (node != null) {
+            count++;
+            node = node.next;
+        }
+        int middle = count % 2 == 0 ? n / 2 : n / 2 + 1;
+
+        node = head;
+
+        for (int i = 0; i < middle; i++) {
+            node = node.next;
+        }
+
+        ListNode secondList = node.next;
+        node.next = null;
+
+        return new ListNode[] {head, secondList};
+    }
+
+    /**
+     * 快慢指针
+     * 1->2->3->4->5->null
+     * 1->2->3->4->null
+     * 1. slow 指针
+     */
+    public ListNode[] splitListInHalf(ListNode head) {
+        if (head == null) {
+            return new ListNode[0];
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+        
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        
+        fast = slow.next;
+        slow.next = null;
+        
+        return new ListNode[] {slow, fast};
+    }
+}
+```
+
+13. 给定一个字符串，判断它是否是一个回文字符串。回文字符串是指从左往右和从右往左读都是一样的字符串。
+```java
+public class Solution {
+    public boolean isPalindrome(String word) {
+        if (word == null || word.length() == 0) {
+            return false;
+        }
+        int left = 0;
+        int right = word.length() - 1;
+        while (left < right) {
+            if (word.charAt(left) != word.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+```
+
+14. **❤️LRU 缓存**实现一个 LRU 缓存（Least Recently Used），支持 put(key, value) 和 get(key) 操作。如果缓存已满，当再次添加新的键值对时，应该淘汰最近最少使用的键值对时间复杂度应该为 O(1)。
+
+```java
+/**
+ * 
+ * @param <K> key
+ * @param <V> value
+ */
+public class LRU<K, V> {
+    
+}
+```
 
 15. 给定一个矩阵，其中每个元素表示一个数字。从矩阵的左上角出发，每次可以向右或者向下走一步，最终到达矩阵的右下角。找到一条路径，使得经过的数字之和最小。
 
@@ -78,7 +675,6 @@ public class Solution {
 
 17. 实现一个线程安全的单例模式。
 
-18. 实现一个 LRU 缓存（Least Recently Used），支持 put(key, value) 和 get(key) 操作。如果缓存已满，当再次添加新的键值对时，应该淘汰最近最少使用的键值对。
 
 19. 实现一个二叉树的先序、中序、后序遍历，以及按层遍历。
 

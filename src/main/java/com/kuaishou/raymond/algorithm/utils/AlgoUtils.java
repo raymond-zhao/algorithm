@@ -18,8 +18,17 @@ public class AlgoUtils {
         }
     }
 
+    public static void printMatrix(boolean[][] matrix) {
+        for (boolean[] row : matrix) {
+            printRow(row);
+        }
+    }
+
     public static void printRow(int[] row) {
         System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
     }
 
+    public static void printRow(boolean[] row) {
+        System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
+    }
 }

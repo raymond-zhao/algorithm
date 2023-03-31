@@ -9,6 +9,11 @@ import java.util.Map;
  */
 public class P146LRU<K, V> {
 
+    /**
+     * 存储实际数据的缓存
+     * K: key
+     * V: 双向链表
+     */
     private final Map<K, DLinkedNode<K, V>> cache = new HashMap<>();
 
     /**

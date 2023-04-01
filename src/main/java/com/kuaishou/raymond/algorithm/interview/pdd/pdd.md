@@ -665,8 +665,142 @@ public class Solution {
  * @param <K> key
  * @param <V> value
  */
-public class LRU<K, V> {
-    
+public class P146LRU<K, V> {
+
+    /**
+     * 存储实际数据的缓存
+     * K: key
+     * V: 双向链表
+     */
+    private final Map<K, DLinkedNode<K, V>> cache = new HashMap<>();
+
+    /**
+     * LRU 缓存中实际存储的元素数量
+     */
+    private int size;
+
+    /**
+     * LRU 缓存的最大存储容量，如果超过最大容量，则要淘汰链表尾部数据。
+     */
+    private final int capacity;
+
+    private final DLinkedNode<K, V> head;
+
+    private final DLinkedNode<K, V> tail;
+
+    public P146LRU(int capacity) {
+        this.capacity = capacity;
+        this.size = 0;
+        head = new DLinkedNode<>();
+        tail = new DLinkedNode<>();
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    /**
+     * 从 LRU 缓存中获取数据
+     */
+    public V get(K key) {
+        DLinkedNode<K, V> node = cache.get(key);
+        if (node == null) {
+            throw new NullPointerException();
+        }
+        // 把这个结点移动到链表头部
+        moveToHead(node);
+        return node.value;
+    }
+
+    /**
+     * 向 LRU 缓存中添加数据
+     * 首先判断要插入的数据是否已经存在，
+     * - 如果存在，则更新该 Node 的值，并将其移动到链表头部；
+     * - 如果不存在，则将其直接插入到链表头部。
+     */
+    public void put(K key, V value) {
+        if (capacity == 0) {
+            throw new UnsupportedOperationException("This LRUCache has no capacity. Cannot put any value.");
+        }
+        DLinkedNode<K, V> node = cache.get(key);
+        if (node == null) {
+            DLinkedNode<K, V> newNode = new DLinkedNode<>(key, value);
+            cache.put(key, newNode);
+            addToHead(newNode);
+            size++;
+            if (size > capacity) {
+                // 已达到最大容量，删除链表最后一个结点，同时清除缓存中的数据。
+                DLinkedNode<K, V> last = removeLast();
+                cache.remove(last.key);
+                size--;
+            }
+        } else {
+            node.value = value;
+            moveToHead(node);
+        }
+    }
+
+    /**
+     * 删除链表尾部数据结点
+     * y <-> x <-> tail
+     * y <-> tail
+     */
+    private DLinkedNode<K, V> removeLast() {
+        DLinkedNode<K, V> last = tail.prev;
+        removeNode(last);
+        return last;
+    }
+
+    /**
+     * 将 node 移动到链表头部
+     * 1. 先在链表中删除当前结点；
+     * 2. 再把当前结点添加到链表头部。
+     * head <-> tail
+     * head <-> node <->tail
+     */
+    private void moveToHead(DLinkedNode<K, V> node) {
+        removeNode(node);
+        addToHead(node);
+    }
+
+    /**
+     * 从链表中删除键结点
+     * x <-> node <-> y
+     * x <-> y
+     */
+    private void removeNode(DLinkedNode<K, V> node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    /**
+     * 将结点添加到链表头部
+     */
+    private void addToHead(DLinkedNode<K, V> node) {
+        node.prev = head;
+        node.next = head.next;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    private static class DLinkedNode<K, V> {
+
+        private K key;
+
+        private V value;
+
+        private DLinkedNode<K, V> prev;
+
+        private DLinkedNode<K, V> next;
+
+        public DLinkedNode() {
+            // 无参构造器
+        }
+
+        public DLinkedNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+
+    }
 }
 ```
 
@@ -863,28 +997,184 @@ public class TraverseTree {
 ```
 
 18. **💚生产者-消费者**实现一个生产者-消费者（Producer-Consumer）模型，其中生产者线程生产随机数并将其放入一个共享的缓冲区，而消费者线程从缓冲区中获取随机数并将其打印出来。
+```java
+/**
+ * 生产者-消费者模式中的缓冲队列
+ * 这里提供了一种基于 Object 对象的 Wait-Notify 模式的视线，
+ * 另外也可以基于 J.U.C 中的 Lock 或阻塞队列 BlockingQueue 实现。
+ */
+public class ProducerConsumerQueue<E> {
+
+    /**
+     * 队列最大容量
+     */
+    private static final int MAX_SIZE = 4;
+
+    /**
+     * 存放实际元素的队列
+     */
+    private final Queue<E> queue;
+
+    public ProducerConsumerQueue() {
+        queue = new ArrayDeque<>();
+    }
+
+    /**
+     * 向队列中添加元素
+     */
+    public synchronized boolean offer(E e) throws InterruptedException {
+        // 如果队列已满，需要阻塞生产者继续向其中添加元素。
+        while (queue.size() == MAX_SIZE) {
+            this.wait();
+        }
+        // 如果队列未满，生产者向其中添加元素。
+        queue.offer(e);
+        System.out.println(Thread.currentThread().getName() + " is producing element = [" + e + "], current size = " + queue.size());
+        // 通知其他线程
+        this.notifyAll();
+
+        return true;
+    }
+
+    /**
+     * 从队列中取元素
+     */
+    public synchronized E poll() throws InterruptedException {
+        // 如果队列为空，需要阻塞消费者消费数据。
+        while (queue.isEmpty()) {
+            this.wait();
+        }
+        // 取数据
+        E e = queue.poll();
+        System.out.println(Thread.currentThread().getName() + " is consuming element [" + e + "]");
+        // 通知其他线程
+        this.notifyAll();
+
+        return e;
+    }
+}
+
+/**
+ * 测试主程序
+ */
+public class ProducerConsumerApplication {
+
+    private static final ExecutorService EXECUTORS = Executors.newFixedThreadPool(4);
+
+    public static void main(String[] args) {
+        ProducerConsumerQueue<Integer> queue = new ProducerConsumerQueue<>();
+
+        Producer producer = new Producer(queue);
+        Consumer consumer = new Consumer(queue);
+
+        for (int i = 0; i < 2; i++) {
+            // 2 个生产者线程
+            EXECUTORS.submit(producer);
+        }
+
+        for (int i = 0; i < 2; i++) {
+            // 2 个消费者线程
+            EXECUTORS.submit(consumer);
+        }
+
+        EXECUTORS.shutdown();
+    }
+
+}
+
+class Producer implements Runnable {
+
+    private final ProducerConsumerQueue<Integer> queue;
+
+    public Producer(ProducerConsumerQueue<Integer> queue) {
+        this.queue = queue;
+    }
+
+    @Override
+    public void run() {
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            try {
+                queue.offer(random.nextInt(10));
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+
+class Consumer implements Runnable {
+
+    private final ProducerConsumerQueue<Integer> queue;
+
+    public Consumer(ProducerConsumerQueue<Integer> queue) {
+        this.queue = queue;
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                queue.poll();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+```
 
 19. 实现一个字符串反转函数，不可以直接使用库函数。
 
 ```java
-public class Solution {
-    public String reverseString(String str) {
-        if (str == null || str.length() == 0) {
-            return str;
-        }
-        char[] chars = str.toCharArray();
+class ReverseString {
+
+    /**
+     * 反转所有字符
+     */
+    public void reverseString344(char[] s) {
         int l = 0;
-        int r = str.length() - 1;
+        int r = s.length - 1;
         while (l < r) {
-            swap(chars, l, r);
+            swap(s, l, r);
+            l++;
+            r--;
         }
-        return String.valueOf(chars);
     }
-    
+
+    /**
+     * 每 k 个一组反转字符
+     */
+    public String reverseStr541(String s, int k) {
+        char[] chars = s.toCharArray();
+        for (int start = 0; start < s.length(); start += 2 * k) {
+            int l = start;
+            int r = Math.min(start + k - 1, s.length() - 1);
+            while (l < r) {
+                // 反转从 start ~ start + k - 1 之间的字符
+                swap(chars, l++, r--);
+            }
+        }
+        return new String(chars);
+    }
+
     private void swap(char[] chars, int l, int r) {
         char c = chars[l];
         chars[l] = chars[r];
         chars[r] = c;
+    }
+}
+```
+24. 反转字符串中的单词。编写一个函数，将一个字符串反转，并返回反转后的字符串。例如，输入 "hello world"，输出 "dlrow olleh"。
+```java
+/**
+ * LeetCode：151，186，557
+ * 《剑指 Offer》 58-1
+ */
+public class ReverseWords {
+
+    public String reverseWords151(String s) {
+
     }
 }
 ```
@@ -896,8 +1186,6 @@ public class Solution {
 23. 写一个函数，接受一个整数参数n，返回一个n行杨辉三角的列表。例如，当n=5时，函数应该返回以下列表：
 
     [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
-
-24. 编写一个函数，将一个字符串反转，并返回反转后的字符串。例如，输入 "hello world"，输出 "dlrow olleh"。
 
 25. 给定一个二叉树和一个整数，找出从根节点到叶子节点的所有路径中，和等于该整数的路径。
 

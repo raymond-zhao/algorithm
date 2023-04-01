@@ -17,7 +17,7 @@ import java.util.Deque;
  * 中序遍历：左根右
  * 后序遍历：左右根
  */
-public class BinaryTree {
+public class TraverseTree {
 
     public static void main(String[] args) {
         TreeNode root = constructTree();

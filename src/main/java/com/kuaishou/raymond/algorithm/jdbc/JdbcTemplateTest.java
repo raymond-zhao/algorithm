@@ -1,14 +1,12 @@
 package com.kuaishou.raymond.algorithm.jdbc;
 
-import java.util.stream.IntStream;
-
-import javax.sql.DataSource;
-
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import javax.sql.DataSource;
+import java.util.stream.IntStream;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>

@@ -1,7 +1,5 @@
 package com.kuaishou.raymond.algorithm.tree;
 
-import static io.vavr.API.print;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -23,32 +21,32 @@ public class BinaryTree {
 
     public static void main(String[] args) {
         TreeNode root = constructTree();
-        print("先序遍历(递归): ");
+        System.out.println("先序遍历(递归): ");
         preorderRecursive(root);
         System.out.println();
-        print("先序遍历(迭代): ");
+        System.out.println("先序遍历(迭代): ");
         preorderIterative(root);
         System.out.println();
 
-        print("中序遍历(递归): ");
+        System.out.println("中序遍历(递归): ");
         middleOrderRecursive(root);
         System.out.println();
-        print("中序遍历(迭代): ");
+        System.out.println("中序遍历(迭代): ");
         middleOrderIterative(root);
         System.out.println();
 
-        print("后序遍历(递归): ");
+        System.out.println("后序遍历(递归): ");
         postOrderRecursive(root);
         System.out.println();
-        print("后序遍历(迭代): ");
+        System.out.println("后序遍历(迭代): ");
         postOrderIterative(root);
         System.out.println();
 
-        print("层次遍历(迭代): ");
+        System.out.println("层次遍历(迭代): ");
         levelTravelIterative(root);
         System.out.println();
 
-        print("Z 遍历(迭代): ");
+        System.out.println("Z 遍历(迭代): ");
         zTravelIterative(root);
         System.out.println();
     }
@@ -66,7 +64,7 @@ public class BinaryTree {
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            print(node.getKey() + " ");
+            System.out.println(node.getKey() + " ");
             if (node.left != null) {
                 queue.offer(node.left);
             }
@@ -94,7 +92,7 @@ public class BinaryTree {
             if (node.right == null || node.right == lastVisited) {
                 // 如果右子树为空或者右子结点刚被访问过，则可输出该结点。
                 node = stack.pop();
-                print(node.getKey() + " ");
+                System.out.println(node.getKey() + " ");
                 lastVisited = node;
                 node = null;
             } else {
@@ -118,7 +116,7 @@ public class BinaryTree {
 
             if (!stack.isEmpty()) {
                 node = stack.pop();
-                print(node.getKey() + " ");
+                System.out.println(node.getKey() + " ");
                 node = node.right;
             }
         }
@@ -132,7 +130,7 @@ public class BinaryTree {
             // 如果某个结点不为空，说明它还未被访问；
             // 如果栈不为空，说明它还有左孩子未被访问。
             while (node != null) {
-                print(node.getKey() + " ");
+                System.out.println(node.getKey() + " ");
                 stack.push(node);
                 node = node.left;
             }
@@ -150,7 +148,7 @@ public class BinaryTree {
         }
         postOrderRecursive(root.left);
         postOrderRecursive(root.right);
-        print(root.getKey() + " ");
+        System.out.println(root.getKey() + " ");
     }
 
     private static void middleOrderRecursive(TreeNode root) {
@@ -158,7 +156,7 @@ public class BinaryTree {
             return;
         }
         middleOrderRecursive(root.left);
-        print(root.getKey() + " ");
+        System.out.println(root.getKey() + " ");
         middleOrderRecursive(root.right);
     }
 
@@ -166,7 +164,7 @@ public class BinaryTree {
         if (root == null) {
             return;
         }
-        print(root.getKey() + " ");
+        System.out.println(root.getKey() + " ");
         preorderRecursive(root.left);
         preorderRecursive(root.right);
     }

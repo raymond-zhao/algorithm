@@ -1,10 +1,8 @@
 package com.kuaishou.raymond.algorithm.math;
 
-import java.util.Objects;
-
-import org.joda.time.DateTime;
-
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.Objects;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -21,8 +19,6 @@ public class FindMedian {
         log.info("min and max = {}", findMinimumAndMaximum(array));
         log.info("2nd large = {}", find2ndLarge(array));
 
-        long dateTime = new DateTime(System.currentTimeMillis()).withTimeAtStartOfDay().plusDays(1).toInstant().getMillis();
-        log.info("dateTime = {}", dateTime);
     }
 
     public static int minimum(int[] array) {

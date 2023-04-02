@@ -19,6 +19,9 @@ public class P58_1 {
         System.out.println("p581.reverseWords(s) = " + p581.reverseWords(s));
         System.out.println("p581.reverseWords(s2) = " + p581.reverseWords(s2));
         System.out.println("p581.reverseWords(s3) = " + p581.reverseWords(s3));
+
+        String s4 = "Let's take LeetCode contest";
+        System.out.println("p581.reverseWords557(s4) = " + p581.reverseWords557(s4));
     }
 
     public String reverseWords(String s) {
@@ -43,6 +46,39 @@ public class P58_1 {
             }
         }
         return builder.toString().trim();
+    }
+
+    public String reverseWords557(String s) {
+        char[] chars = s.toCharArray();
+
+        int rightIdx = 0; // 指向当前单词的结束位置
+        int leftIdx = 0; // 指向当前单词的起始位置
+
+        while (rightIdx < chars.length) {
+            while (rightIdx < chars.length && chars[rightIdx] != ' ') {
+                rightIdx++;
+            }
+            // 此时 rightIdx 指向单词间的第一个空格，交换 chars[leftIdx, rightIdx - 1] 之间的所有字符
+            swap(chars, leftIdx, rightIdx - 1);
+            // rightIdx 寻找下一个单词的开头
+            while (rightIdx < chars.length && chars[rightIdx] == ' ') {
+                rightIdx++;
+            }
+            // 此时 rightIdx 指向下一个单词的开头
+            leftIdx = rightIdx;
+        }
+
+        return String.valueOf(chars);
+    }
+
+    private void swap(char[] chars, int l, int r) {
+        while (l < r) {
+            char c = chars[l];
+            chars[l] = chars[r];
+            chars[r] = c;
+            l++;
+            r--;
+        }
     }
 
 }

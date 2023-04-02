@@ -429,127 +429,6 @@ enum Singleton {
 
 10. **💚哈希表**：实现一个哈希表，并实现其中的put、get、remove等操作。
 ```java
-import java.util.ArrayList;
-
-public class MyHashMap<K, V> {
-
-    private ArrayList<Entry<K, V>> bucketArray;
-    private int numBuckets;
-    private int size;
-
-    public MyHashMap() {
-        bucketArray = new ArrayList<>();
-        numBuckets = 10;
-        size = 0;
-
-        for (int i = 0; i < numBuckets; i++) {
-            bucketArray.add(null);
-        }
-    }
-
-    public int getSize() {
-        return size;
-    }
-
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-    private int getBucketIndex(K key) {
-        int hashCode = key.hashCode();
-        return hashCode % numBuckets;
-    }
-
-    public V get(K key) {
-        int bucketIndex = getBucketIndex(key);
-        Entry<K, V> head = bucketArray.get(bucketIndex);
-
-        while (head != null) {
-            if (head.key.equals(key)) {
-                return head.value;
-            }
-            head = head.next;
-        }
-        return null;
-    }
-
-    public V remove(K key) {
-        int bucketIndex = getBucketIndex(key);
-        Entry<K, V> head = bucketArray.get(bucketIndex);
-        Entry<K, V> prev = null;
-
-        while (head != null) {
-            if (head.key.equals(key)) {
-                break;
-            }
-            prev = head;
-            head = head.next;
-        }
-
-        if (head == null) {
-            return null;
-        }
-
-        size--;
-
-        if (prev != null) {
-            prev.next = head.next;
-        } else {
-            bucketArray.set(bucketIndex, head.next);
-        }
-
-        return head.value;
-    }
-
-    public void put(K key, V value) {
-        int bucketIndex = getBucketIndex(key);
-        Entry<K, V> head = bucketArray.get(bucketIndex);
-
-        while (head != null) {
-            if (head.key.equals(key)) {
-                head.value = value;
-                return;
-            }
-            head = head.next;
-        }
-
-        size++;
-        head = bucketArray.get(bucketIndex);
-        Entry<K, V> newEntry = new Entry<>(key, value);
-        newEntry.next = head;
-        bucketArray.set(bucketIndex, newEntry);
-
-        if ((1.0 * size) / numBuckets >= 0.7) {
-            ArrayList<Entry<K, V>> temp = bucketArray;
-            bucketArray = new ArrayList<>();
-            numBuckets = 2 * numBuckets;
-            size = 0;
-
-            for (int i = 0; i < numBuckets; i++) {
-                bucketArray.add(null);
-            }
-
-            for (Entry<K, V> entry : temp) {
-                while (entry != null) {
-                    put(entry.key, entry.value);
-                    entry = entry.next;
-                }
-            }
-        }
-    }
-
-    private static class Entry<K, V> {
-        final K key;
-        V value;
-        Entry<K, V> next;
-
-        Entry(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-}
-
 ```
 
 11. 给定一个数组，找到其中两个数的和等于给定的目标值。要求时间复杂度为 O(n)。
@@ -1174,34 +1053,451 @@ class ReverseString {
 public class ReverseWords {
 
     public String reverseWords151(String s) {
+        s = s.trim();
+        if (s.length() == 0) {
+            return s;
+        }
 
+        // 指向 leftIdx 右边的第一个空格
+        int rightIdx = s.length();
+        int leftIdx = s.length() - 1;
+
+        StringBuilder builder = new StringBuilder();
+
+        while (leftIdx >= 0) {
+            while (leftIdx >= 0 && s.charAt(leftIdx) != ' ') {
+                leftIdx--;
+            }
+            // 此时 leftIdx 指向从右向左数的第一个空格
+            // 将 s[leftIdx + 1, rightIdx] 之间的子串加入结果集
+            builder.append(s, leftIdx + 1, rightIdx).append(" ");
+
+            // 跳过两个单词之间的空格
+            while (leftIdx >= 0 && s.charAt(leftIdx) == ' ') {
+                leftIdx--;
+            }
+            // 此时 leftIdx 指向一个不为 空格 的字符，rightIdx 应该等于这个值 + 1。
+            rightIdx = leftIdx + 1;
+        }
+
+        return builder.toString().trim();
+    }
+
+    /**
+     * 反转每个单词的顺序，但单词之间的相对顺序不变。
+     */
+    public String reverseWords557(String s) {
+        char[] chars = s.toCharArray();
+
+        int rightIdx = 0; // 指向当前单词的结束位置
+        int leftIdx = 0; // 指向当前单词的起始位置
+
+        while (rightIdx < chars.length) {
+            while (rightIdx < chars.length && chars[rightIdx] != ' ') {
+                rightIdx++;
+            }
+            // 此时 rightIdx 指向单词间的第一个空格，交换 chars[leftIdx, rightIdx - 1] 之间的所有字符
+            swap(chars, leftIdx, rightIdx - 1);
+            // rightIdx 寻找下一个单词的开头
+            while (rightIdx < chars.length && chars[rightIdx] == ' ') {
+                rightIdx++;
+            }
+            // 此时 rightIdx 指向下一个单词的开头
+            leftIdx = rightIdx;
+        }
+
+        return String.valueOf(chars);
+    }
+
+    private void swap(char[] chars, int l, int r) {
+        while (l < r) {
+            char c = chars[l];
+            chars[l] = chars[r];
+            chars[r] = c;
+            l++;
+            r--;
+        }
     }
 }
 ```
 
 20. 实现一个正则表达式匹配函数，判断一个字符串是否符合给定的正则表达式。
+```java
+/**
+ * 面试中遇到这种级别的题，八成是已经挂了。
+ * 类似的题有 LeetCode 第 10 题
+ */
+public class RegexMatch {
+    public boolean isMatch(String string, String pattern) {
+        return string.matches(pattern);
+    }
+}
+```
 
 21. 写一个函数，接受一个字符串参数，返回该字符串中第一个不重复的字符。例如，对于字符串"hello"，函数应该返回'e'。
+```java
+/**
+ * LeetCode 387
+ */
+class Solution {
 
-23. 写一个函数，接受一个整数参数n，返回一个n行杨辉三角的列表。例如，当n=5时，函数应该返回以下列表：
+    /**
+     * 这个方法对于所有字符都有效，但是需要遍历两次字符串。
+     * 如果题目限定了仅小写字符/仅包含 ASCII 字符，则可以手动实现简单的哈希表加以优化。
+     * 直观上感觉可以通过一次遍历完成功能，但是需要维护某个"映射关系"，然后遍历这个映射关系，倒推出字符第一次出现的索引。
+     */
+    public int firstUniqChar(String s) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i), 0) + 1);
+        }
 
-    [[1], [1,1], [1,2,1], [1,3,3,1], [1,4,6,4,1]]
+        for (int i = 0; i < s.length(); i++) {
+            if (map.get(s.charAt(i)) == 1) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
+```
+
+23. 杨辉三角
+```java
+/**
+ * 力扣 118 与 119
+ */
+class Solution {
+
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> data = new ArrayList<>();
+        List<Integer> firstLevel = new ArrayList<>();
+        firstLevel.add(1);
+        data.add(firstLevel);
+        
+        for (int row = 1; row < numRows; row++) {
+            List<Integer> previousLevel = data.get(row - 1);
+            List<Integer> currentLevel = new ArrayList<>();
+
+            // 每行的第一个元素为 1
+            currentLevel.add(1);
+
+            // 填充中间部分
+            for (int col = 1; col < row; col++) {
+                currentLevel.add(previousLevel.get(col - 1) + previousLevel.get(col));
+            }
+
+            // 每行的最后一个元素也为 1
+            currentLevel.add(1);
+
+            // 添加当前行
+            data.add(currentLevel);
+        }
+
+        return data;
+    }
+}
+```
 
 25. 给定一个二叉树和一个整数，找出从根节点到叶子节点的所有路径中，和等于该整数的路径。
+```java
+/**
+ * 《剑指 Offer》34 与主站 113
+ */
+class Solution {
+
+    private List<List<Integer>> path;
+
+    private Deque<Integer> deque;
+
+    public List<List<Integer>> pathSum(TreeNode root, int target) {
+
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        path = new ArrayList<>();
+        deque = new ArrayDeque<>();
+
+        dfs(root, target);
+
+        return path;
+    }
+
+    private void dfs(TreeNode root, int target) {
+        if (root == null) {
+            return;
+        }
+
+        target = target - root.val;
+        deque.offerLast(root.val);
+
+        if (root.left == null && root.right == null && target == 0) {
+            path.add(new ArrayList<>(deque));
+        }
+
+        dfs(root.left, target);
+        dfs(root.right, target);
+
+        deque.pollLast();
+    }
+}
+```
 
 26. 写一个函数，接受一个整数数组作为输入，返回一个新的数组，其中每个元素是原数组中除了它自己以外所有元素的乘积。
+```java
+/**
+ * 《剑指 Offer》：66-构建乘积数组
+ * 空间可以进一步优化，省略掉 right 数组，在得出 left 数组之后，原地修改 a 的数组，然后计算 left x a。
+ */
+class Solution {
+    public int[] constructArr(int[] a) {
+        if (a == null || a.length == 0) {
+            return new int[0];
+        }
+        int len = a.length;
+        // 构建左乘积数据
+        int[] left = new int[len];
+        left[0] = 1;
+        for (int i = 1; i < len; i++) {
+            left[i] = left[i - 1] * a[i - 1];
+        }
+
+        // 构建右乘积数组
+        int[] right = new int[len];
+        right[len - 1] = 1;
+        for (int j = len - 2; j >= 0; j--) {
+            right[j] = right[j + 1] * a[j + 1];
+        }
+
+        // 获取最终乘积数组
+        for (int i = 0; i < len; i++) {
+            left[i] *= right[i];
+        }
+
+        return left;
+    }
+}
+```
 
 27. 写一个函数来判断两个给定的字符串是否是同构的（同构的定义为两个字符串中的每个字符都可以替换成另一个字符，使得两个字符串相同）。
+```java
+/**
+ * 力扣 205：同构字符串
+ * 力扣 290：
+ */
+class Solution {
+
+    public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        Map<Character, Character> sToT = new HashMap<>();
+        Map<Character, Character> tToS = new HashMap<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+            if (sToT.containsKey(sChar) && sToT.get(sChar) != tChar) {
+                return false;
+            }
+            if (tToS.containsKey(tChar) && tToS.get(tChar) != sChar) {
+                return false;
+            }
+            sToT.put(sChar, tChar);
+            tToS.put(tChar, sChar);
+        }
+
+        return true;
+    }
+
+    public boolean isIsomorphic(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            char sChar = s.charAt(i);
+            char tChar = t.charAt(i);
+            if (s.indexOf(sChar) != t.indexOf(tChar)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * 力扣 290：单次规律
+     */
+    public boolean wordPattern(String pattern, String s) {
+        Map<String, Character> strToCh = new HashMap<>();
+        Map<Character, String> chToStr = new HashMap<>();
+        int strLen = s.length();
+        int idxOfStr = 0;
+
+        for (int p = 0; p < pattern.length(); p++) {
+            if (idxOfStr >= strLen) {
+                return false;
+            }
+            int blankIdx = idxOfStr;
+            while (blankIdx < strLen && s.charAt(blankIdx) != ' ') {
+                blankIdx++;
+            }
+
+            char ch = pattern.charAt(p);
+            String word = s.substring(idxOfStr, blankIdx);
+            if (strToCh.containsKey(word) && strToCh.get(word) != ch) {
+                return false;
+            }
+
+            if (chToStr.containsKey(ch) && !word.equals(chToStr.get(ch))) {
+                return false;
+            }
+
+            strToCh.put(word, ch);
+            chToStr.put(ch, word);
+            idxOfStr = blankIdx + 1;
+        }
+
+        return idxOfStr >= strLen;
+    }
+
+    public boolean wordPatternV2(String pattern, String s) {
+        String[] words = s.split(" ");
+        if (pattern.length() != words.length) {
+            return false;
+        }
+
+        Map<Object, Integer> map = new HashMap<>();
+
+        for (Integer idx = 0; idx < pattern.length(); idx++) {
+
+            if (map.put(words[idx], idx) !=  map.put(pattern.charAt(idx), idx)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+```
 
 28. 给定两个字符串，写一个函数来确定其中一个字符串的字符重新排列后是否可以形成另一个字符串。
+```java
+
+```
 
 29. 数组中重复的数字：在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+```java
+class Solution {
+
+    /**
+     * 利用数字特性，原地交换并寻找。
+     */
+    public int findRepeatNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        int len = nums.length;
+        int idx = 0;
+
+        while (idx < len) {
+            if (nums[idx] == idx) {
+                ++idx;
+                continue;
+            }
+            if (nums[nums[idx]] == nums[idx]) {
+                return nums[idx];
+            }
+            swap(nums, idx, nums[idx]);
+        }
+
+        return - 1;
+    }
+
+    private void swap(int[] nums, int l, int r) {
+        int temp = nums[l];
+        nums[l] = nums[r];
+        nums[r] = temp;
+    }
+
+    /**
+     * 使用集合判重
+     */
+    public int findRepeatNumber(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return -1;
+        }
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (set.contains(num)) {
+                return num;
+            }
+            set.add(num);
+        }
+
+        return -1;
+    }
+}
+```
 
 30. 单词搜索：给定一个二维网格和一个单词，找出该单词是否存在于网格中。
+```java
+/**
+ * 力扣 79
+ * 《剑指 Offer》- 12
+ */
+public class Solution {
+    public boolean exist(char[][] board, String word) {
+        if (board == null || board.length == 0 || word == null || word.length() == 0) {
+            return false;
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == word.charAt(0)) {
+                    if (Boolean.TRUE.equals(backtrace(board, i, j, word, 0))) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean backtrace(char[][] board, int i, int j, String word, int k) {
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length) {
+            return false;
+        }
+
+        if (board[i][j] != word.charAt(k)) {
+            return false;
+        }
+
+        if (k == word.length() - 1) {
+            return true;
+        }
+
+        board[i][j] = ' '; // 必须做访问标记，如果不做的话，一个字符可能会被访问多次。
+        boolean res = backtrace(board, i + 1, j, word, k + 1)
+                || backtrace(board, i - 1, j, word, k + 1)
+                || backtrace(board, i, j + 1, word, k + 1)
+                || backtrace(board, i, j - 1, word, k + 1);
+        board[i][j] = word.charAt(k); // 还原
+        return res;
+    }
+}
+```
 
 31. 用递归实现一个斐波那契数列生成函数
 
 32. 实现一个简单的线程池
+```java
+
+```
 
 33. 实现一个简单的 RPC 框架
 

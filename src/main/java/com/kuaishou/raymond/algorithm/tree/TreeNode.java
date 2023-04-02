@@ -6,11 +6,11 @@ package com.kuaishou.raymond.algorithm.tree;
  */
 public class TreeNode {
 
-    TreeNode left;
+    public TreeNode left;
 
-    TreeNode right;
+    public TreeNode right;
 
-    private int key;
+    public int key;
 
     public int getKey() {
         return key;

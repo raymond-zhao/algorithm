@@ -1,5 +1,7 @@
 package com.kuaishou.raymond.algorithm.interview.pdd;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,42 +12,40 @@ import java.util.Map;
 public class Solution {
 
     public static void main(String[] args) {
-        wordPattern("abba", "dog cat cat dog");
+        isValid("([}}])");
     }
 
-    public static boolean wordPattern(String pattern, String str) {
-        Map<String, Character> str2ch = new HashMap<>();
-        Map<Character, String> ch2str = new HashMap<>();
-        int strLen = str.length();
-        int idxOfStr = 0;
-        for (int p = 0; p < pattern.length(); ++p) {
-            char ch = pattern.charAt(p);
-            if (idxOfStr >= strLen) {
-                // 如果指针已超出字符串长度，但是模式还未匹配完，
-                return false;
-            }
-            int blankIdx = idxOfStr; // str 搜索空格，分割单词的指针。
-            while (blankIdx < strLen && str.charAt(blankIdx) != ' ') {
-                blankIdx++;
-            }
-            // 此时 str[i, blankIdx) 字符串中某单词
-            String tmp = str.substring(idxOfStr, blankIdx);
+    private static final Map<Character, Character> MAP = new HashMap<>();
 
-            // 如果双射条件不成立，则匹配失败。
-            if (str2ch.containsKey(tmp) && str2ch.get(tmp) != ch) {
-                return false;
-            }
+    static {
+        MAP.put(')', '(');
+        MAP.put(']', '[');
+        MAP.put('}', '{');
+    }
 
-            if (ch2str.containsKey(ch) && !tmp.equals(ch2str.get(ch))) {
-                return false;
-            }
-            str2ch.put(tmp, ch);
-            ch2str.put(ch, tmp);
+    public static boolean isValid(String s) {
 
-            // 让字符串指向下一个单词的起始位置
-            idxOfStr = blankIdx + 1;
+        if (s.length() % 2 == 1) {
+            return false;
         }
-        return idxOfStr >= strLen;
+
+        Deque<Character> stack = new ArrayDeque<>();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (MAP.containsKey(ch)) {
+                // 如果是右括号
+                if (stack.isEmpty() || stack.peek() != MAP.get(ch)) {
+                    // 如果栈内没有左括号，或者栈顶括号与当前括号不匹配。
+                    return false;
+                }
+                stack.pop();
+            } else {
+                // 如果是左括号，入栈。
+                stack.push(ch);
+            }
+        }
+
+        return stack.isEmpty();
     }
 
 }

@@ -174,6 +174,52 @@ public class Solution {
 }
 ```
 
+35. 实现一个归并排序算法
+```java
+public class MergeSort {
+
+    public static void mergeSort(int[] nums, int left, int right) {
+        if (left < right) {
+            int middle = (left + right) >>> 1;
+            mergeSort(nums, left, middle);
+            mergeSort(nums, middle + 1, right);
+            merge(nums, left, middle, right);
+        }
+    }
+
+    private static void merge(int[] nums, int left, int middle, int right) {
+        // 存放本轮归并的结果
+        int[] tempArray = new int[right - left + 1];
+        int l = left;
+        int r = middle + 1;
+        int k = 0;
+
+        while (l <= middle && r <= right) {
+            // 比较并归并子数组中的数据
+            if (nums[l] <= nums[r]) {
+                tempArray[k++] = nums[l++];
+            } else {
+                tempArray[k++] = nums[r++];
+            }
+        }
+        // 此时 l > middle || r > right，数组可能未归并完成，需要拷贝未归并的数据。
+        while (l <= middle) {
+            tempArray[k++] = nums[l++];
+        }
+
+        while (r <= right) {
+            tempArray[k++] = nums[r++];
+        }
+
+        // 将排序后的子数组拷贝回原数组
+        System.arraycopy(tempArray, 0, nums, left, tempArray.length);
+    }
+}
+```
+
+39. 实现一个堆排序算法
+
+
 5. 二分查找：给定一个有序数组和一个目标值，使用二分查找算法查找目标值在数组中的位置。
 ```java
 public class Solution {
@@ -1499,39 +1545,94 @@ public class Solution {
 
 ```
 
-33. 实现一个简单的 RPC 框架
-
-34. 实现一个简单的 HTTP 服务器
-
-35. 实现一个归并排序算法
-
 36. 判断一个数是否为质数
-
-37. 实现一个线程安全的计数器
-
-38. 实现一个字符串匹配算法
-
-39. 实现一个堆排序算法
-
-40. 实现一个二叉搜索树
 
 41. 实现一个求最大公约数算法
 
 42. 实现一个求最小公倍数算法
 
+37. 实现一个线程安全的计数器
+
+38. 实现一个字符串匹配算法
+
+40. 实现一个二叉搜索树
+
 43. 实现一个约瑟夫环问题的解法
+
+```java
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+class Solution {
+    public int josephCircle(int n, int m) {
+        // 倒推：最后剩下的人的编号为 0
+        int position = 0;
+        for (int i = 2; i <= n; i++) {
+            // 从剩下两个人递推到剩下 n 个人
+            position = (position + m) % i;
+        }
+        return position;
+    }
+
+    public int josephCircle(int n, int m) {
+        List<Integer> data = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) {
+            data.add(i);
+        }
+        int idx = 0;
+        while (n > 1) {
+            idx = (idx + m - 1) % n;
+            data.remove(idx);
+            n--;
+        }
+        return data.get(0);
+    }
+}
+```
 
 44. 实现一个大数相加算法
 
-45. 实现一个大数相减算法
-
 46. 实现一个大数相乘算法
+
+45. 实现一个大数相减算法
 
 47. 实现一个大数相除算法
 
 48. 实现一个拓扑排序算法
+```java
+/**
+ * See {@link com.kuaishou.raymond.algorithm.sorting.TopologicalSort }
+ */
+public class TopologicalSort {
+    
+}
+```
 
 49. 实现一个广度优先搜索算法
 
+```java
+/**
+ * See {@link com.kuaishou.raymond.algorithm.graph.SimpleGraph#bfs(Character)} }
+ */
+public class BFS {
+
+}
+```
+
 50. 实现一个深度优先搜索算法
 
+```java
+import java.util.Set;
+
+/**
+ * See {@link com.kuaishou.raymond.algorithm.graph.SimpleGraph#dfs(Character, Set)} } }
+ */
+public class DFS {
+
+}
+```
+
+33. 实现一个简单的 RPC 框架
+
+34. 实现一个简单的 HTTP 服务器

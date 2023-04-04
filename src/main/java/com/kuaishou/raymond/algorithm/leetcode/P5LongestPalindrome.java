@@ -125,7 +125,6 @@ public class P5LongestPalindrome {
 
         // 观察状态转移方程可以发现：dp[i][j]=dp[i+1][j-1]，
         // 这个值需要从其左下角转换而来，不像 dp[i][j]=dp[i-1][j-1] 这种从其左上方转换而来，
-        // 所以不能按行填表，需要按列填表。
         for (int j = 1; j < len; j++) {
             // 先填左下角，先按列填写，再按行填写。
             for (int i = 0; i < j; i++) {

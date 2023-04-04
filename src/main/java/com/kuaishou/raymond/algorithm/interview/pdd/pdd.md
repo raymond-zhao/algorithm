@@ -1593,7 +1593,124 @@ class Solution {
 
 44. 实现一个大数相加算法
 
+```java
+import java.math.BigDecimal;
+
+public class BigNumberAdd {
+    
+    /**
+     * JDK 类库：BigInteger 或 BigDecimal
+     * @param augend 被加数
+     * @param addend 加数
+     * @return 和
+     */
+    public String addStringsUsingJDKLib(String augend, String addend) {
+        return new BigDecimal(augend).add(new BigDecimal(addend)).toString();
+    }
+
+    /**
+     * 大数相加
+     * 1. 从两个数字的个位开始相加，并加上前一位的进位 carry
+     * @param augend 被加数
+     * @param addend 加数
+     * @return 和
+     */
+    public String addStrings(String augend, String addend) {
+        if (augend == null || augend.length() == 0) {
+            return addend;
+        }
+        if (addend == null || addend.length() == 0) {
+            return augend;
+        }
+        
+        int m = augend.length();
+        int n = addend.length();
+        int idxM = m - 1;
+        int idxN = n - 1;
+        
+        StringBuilder builder = new StringBuilder();
+        int carry = 0; // 进位
+        
+        while (idxM >= 0 || idxN >= 0) {
+            int digitOfM = idxM >= 0 ? augend.charAt(idxM--) - '0' : 0;
+            int digitOfN = idxN >= 0 ? addend.charAt(idxN--) - '0' : 0;
+            int sum = digitOfM + digitOfN + carry;
+            
+            // 将当前位添加到结果集
+            builder.append(sum % 10);
+            // 计算新的进位
+            carry = sum / 10;
+        }
+        
+        // 检查进位
+        if (carry == 1) {
+            builder.append(carry);
+        }
+        
+        return builder.reverse().toString();
+    }
+}
+```
+
 46. 实现一个大数相乘算法
+
+```java
+import java.math.BigInteger;
+
+public class BigNumberMultiply {
+
+    public static String multiplyStringsUsingJDKLib(String multiplicand, String multiplier) {
+        return new BigDecimal(multiplicand).multiply(new BigDecimal(multiplier)).toString();
+    }
+
+    /**
+     * 大数相乘
+     * @param multiplicand 被乘数
+     * @param multiplier 乘数
+     * @return 积
+     */
+    public static String multiply(String multiplicand, String multiplier) {
+        if (multiplicand == null || multiplicand.length() == 0) {
+            return null;
+        }
+
+        if (multiplier == null || multiplier.length() == 0) {
+            return null;
+        }
+
+        if ("0".equals(multiplicand) || "0".equals(multiplier)) {
+            return "0";
+        }
+
+        int m = multiplicand.length();
+        int n = multiplier.length();
+
+        int carry = 0;
+        String data = "0";
+
+        // 使用乘数的每一位去乘以被乘数得到当前积，然后将当前积添加到结果集上。
+        for (int idxN = n - 1; idxN >= 0; idxN--) {
+            StringBuilder builder = new StringBuilder();
+            // 需要在 builder 补上 n-2-idxN + 1 = n-idx-1N 个 0
+            builder.append("0".repeat(Math.max(0, n - 1 - idxN)));
+            // 开始相乘
+            int digitN = multiplier.charAt(idxN) - '0';
+            for (int idxM = m - 1; idxM >= 0; idxM--) {
+                int digitM = multiplicand.charAt(idxM) - '0';
+                int product = digitN * digitM + carry;
+                builder.append(product % 10);
+                carry = product / 10;
+            }
+            if (carry != 0) {
+                builder.append(carry);
+            }
+            data = new BigInteger(data).add(new BigInteger(builder.reverse().toString())).toString();
+        }
+        
+        return data;
+    }
+}
+```
 
 45. 实现一个大数相减算法
 

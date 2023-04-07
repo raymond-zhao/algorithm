@@ -12,6 +12,16 @@ public class AlgoUtils {
 
     }
 
+    public static <T> void printMatrix(T[][] matrix) {
+        for (T[] t : matrix) {
+            printRow(t);
+        }
+    }
+
+    public static <T> void printRow(T[] row) {
+        System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
+    }
+
     public static void printMatrix(int[][] matrix) {
         for (int[] row : matrix) {
             printRow(row);

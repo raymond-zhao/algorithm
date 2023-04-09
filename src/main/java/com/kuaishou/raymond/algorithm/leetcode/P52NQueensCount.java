@@ -9,14 +9,14 @@ import java.util.Arrays;
 public class P52NQueensCount {
 
     public static void main(String[] args) {
-        System.out.println("solveNQueens(8) = " + solveNQueens(8));
+        System.out.println("solveNQueens(8) = " + totalNQueens(8));
     }
 
     private static int rowNum;
 
     private static int count;
 
-    public static int solveNQueens(int n) {
+    public static int totalNQueens(int n) {
         rowNum = n;
 
         // 生成棋盘

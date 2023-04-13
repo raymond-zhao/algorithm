@@ -10,11 +10,11 @@ import java.util.List;
  * 给定一个数组 nums，数组中可能包含重复元素，返回这个数组的所有子集。
  * 子集不能重复
  */
-public class P90Subset2 {
+public class P90SubsetsV2 {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 2};
-        P90Subset2 p90 = new P90Subset2();
+        P90SubsetsV2 p90 = new P90SubsetsV2();
         System.out.println("p90.subsetsWithDup(nums) = " + p90.subsetsWithDup(nums));
     }
 

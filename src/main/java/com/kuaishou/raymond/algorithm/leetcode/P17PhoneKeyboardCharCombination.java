@@ -38,6 +38,9 @@ public class P17PhoneKeyboardCharCombination {
     private StringBuilder builder;
 
     public List<String> combination(String digits) {
+        if (digits == null || digits.length() == 0) {
+            return new ArrayList<>();
+        }
         data = new ArrayList<>();
         builder = new StringBuilder();
 

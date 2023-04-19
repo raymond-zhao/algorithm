@@ -1,5 +1,7 @@
 package com.kuaishou.raymond.algorithm.utils;
 
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+
 import java.util.Arrays;
 
 /**
@@ -9,13 +11,23 @@ import java.util.Arrays;
 public class AlgoUtils {
 
     private AlgoUtils() {
-
+        throw new UnsupportedOperationException("This class cannot be instantiated.");
     }
 
     public static <T> void printMatrix(T[][] matrix) {
         for (T[] t : matrix) {
             printRow(t);
         }
+    }
+
+    public static ListNode buildLinkedList(int[] nums) {
+        ListNode head = new ListNode(-1);
+        ListNode node = head;
+        for (int num : nums) {
+            node.next = new ListNode(num);
+            node = node.next;
+        }
+        return head.next;
     }
 
     public static <T> void printRow(T[] row) {

@@ -1,7 +1,7 @@
 package com.kuaishou.raymond.algorithm.leetcode.binary.pointer.window;
 
 /**
- * https://leetcode.cn/problems/minimum-size-subarray-sum/
+ * <a href="https://leetcode.cn/problems/minimum-size-subarray-sum/">...</a>
  */
 public class P207MinSubArray {
 

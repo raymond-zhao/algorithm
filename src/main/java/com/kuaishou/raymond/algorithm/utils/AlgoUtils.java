@@ -53,4 +53,10 @@ public class AlgoUtils {
     public static void printRow(boolean[] row) {
         System.out.println("Arrays.toString(row) = " + Arrays.toString(row));
     }
+
+    public static void swap(int[] nums, int left, int right) {
+        int temp = nums[left];
+        nums[left] = nums[right];
+        nums[right] = temp;
+    }
 }

@@ -41,6 +41,7 @@ public class P36ValidSudoKu {
                 char c = board[i][j];
                 if (c != '.') {
                     int idx = c - '0' - 1; // 用棋盘中的数字 -1 后做索引
+                    // 同时更新行、列、方格。
                     rows[i][idx]++;
                     cols[j][idx]++;
                     subBoards[i / 3][j / 3][idx]++;

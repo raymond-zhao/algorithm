@@ -36,7 +36,8 @@ public class P4FindMedianSortedArrays {
     public double findKthElement(int[] nums1, int[] nums2, int k) {
         int len1 = nums1.length, len2 = nums2.length;
         // 从数组起始位置开始搜索
-        int index1 = 0, index2 = 0;
+        int index1 = 0;
+        int index2 = 0;
 
         while (true) {
             // 边界条件

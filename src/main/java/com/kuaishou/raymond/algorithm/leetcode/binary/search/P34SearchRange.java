@@ -43,7 +43,7 @@ public class P34SearchRange {
         int right = nums.length - 1;
         while (left <= right) {
             int middle = (left + right) >>> 1;
-            if (nums[middle] >= target) {
+            if (nums[middle] == target) {
                 right = middle - 1;
             } else if (nums[middle] > target) {
                 right = middle - 1;
@@ -79,11 +79,12 @@ public class P34SearchRange {
             } else if (nums[middle] > target) {
                 // 如果当前值处于 target 右侧，则大于 target，向左寻找看看。
                 right = middle - 1;
-            } else {
+            } else if (nums[middle] < target) {
                 // 如果当前值处于 target 左侧，则小于 target，向右寻找看看。
                 left = middle + 1;
             }
         }
+        // right 是一直向左的，如果最后越界了，或者未找到 target，返回 -1。
         if (right == -1 || nums[right] != target) {
             return -1;
         }

@@ -9,7 +9,7 @@ import java.util.List;
  * P46：全排列
  * 给定一个不含重复字符的数组 nums，输出这个数组中的数字的全排列，不限顺序。
  */
-public class P46Permute {
+public class P46Permutation {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};

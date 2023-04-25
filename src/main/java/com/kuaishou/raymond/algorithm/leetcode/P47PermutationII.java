@@ -1,21 +1,18 @@
 package com.kuaishou.raymond.algorithm.leetcode;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
- * created on 2023-04-13 10:49
+ * created on 2023-04-13 10:42
+ * 给定一个整数数组 nums，返回它的全排列。
  */
-public class P48PermutationV2 {
+public class P47PermutationII {
 
     public static void main(String[] args) {
-        int[] nums = {1, 2, 1};
-        P48PermutationV2 p48 = new P48PermutationV2();
-        System.out.println("p48.permute(nums) = " + p48.permute(nums));
+        int[] nums = {1, 1, 2};
+        P47PermutationII p47 = new P47PermutationII();
+        System.out.println("p47.permute(nums) = " + p47.permute(nums));
     }
 
     private List<List<Integer>> data;

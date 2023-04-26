@@ -86,7 +86,7 @@ public class P32LongestValidParentheses {
             }
             if (left == right) {
                 maxLength = Math.max(maxLength, 2 * left);
-            } else if (right > left) {
+            } else if (left < right) {
                 left = right = 0;
             }
         }
@@ -100,7 +100,7 @@ public class P32LongestValidParentheses {
             }
             if (left == right) {
                 maxLength = Math.max(maxLength, 2 * left);
-            } else {
+            } else if (left > right) {
                 left = right = 0;
             }
         }

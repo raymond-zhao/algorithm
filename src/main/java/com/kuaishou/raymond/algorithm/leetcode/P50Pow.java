@@ -14,7 +14,8 @@ public class P50Pow {
         if (x == 0) {
             return 0;
         }
-        int pow = n;
+        // 测试用例中有 Integer.MIN_VALUE，取相反数后会溢出。
+        long pow = n;
         if (pow < 0) {
             pow = -pow;
             x = 1 / x;

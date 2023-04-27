@@ -1,5 +1,7 @@
 package com.kuaishou.raymond.algorithm.tree;
 
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 

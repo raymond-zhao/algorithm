@@ -35,6 +35,10 @@ public class AlgoUtils {
         return res;
     }
 
+    public static ListNode toLinkedList(String str) {
+        return buildLinkedList(toArray(str));
+    }
+
     public static ListNode buildLinkedList(int[] nums) {
         ListNode head = new ListNode(-1);
         ListNode node = head;

@@ -28,4 +28,22 @@ public class Hot141LinkedListCycle {
         return false;
     }
 
+    public boolean hasCycleII(ListNode head) {
+        if (head == null) {
+            return false;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        while (true) {
+            if (fast == null || fast.next == null) {
+                // 如果可以走到头，说明无环。
+                return false;
+            }
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+    }
 }

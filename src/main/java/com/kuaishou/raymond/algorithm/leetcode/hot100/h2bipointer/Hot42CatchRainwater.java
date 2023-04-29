@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.bipointer;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

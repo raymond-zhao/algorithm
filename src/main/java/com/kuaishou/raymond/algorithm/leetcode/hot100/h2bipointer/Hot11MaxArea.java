@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.bipointer;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
@@ -9,7 +9,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot11MaxArea {
 
     public static void main(String[] args) {
-        int[] height = AlgoUtils.convertToArray("[1,8,6,2,5,4,8,3,7]");
+        int[] height = AlgoUtils.toArray("[1,8,6,2,5,4,8,3,7]");
         System.out.println("maxArea(height) = " + maxArea(height));
     }
 

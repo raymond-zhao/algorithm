@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.slidewindow;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h3slidewindow;
 
 import java.util.*;
 
@@ -50,7 +50,7 @@ public class Hot438FindAnagrams {
             }
         }
         return data;
-    }}
+    }
 
     /**
      * m=s.length, n=p.length

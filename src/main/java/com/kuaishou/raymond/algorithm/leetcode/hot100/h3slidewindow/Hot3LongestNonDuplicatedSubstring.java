@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.slidewindow;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h3slidewindow;
 
 import java.util.HashMap;
 import java.util.Map;

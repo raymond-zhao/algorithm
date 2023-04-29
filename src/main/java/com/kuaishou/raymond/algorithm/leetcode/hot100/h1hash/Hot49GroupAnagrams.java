@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.hash;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h1hash;
 
 import java.util.*;
 

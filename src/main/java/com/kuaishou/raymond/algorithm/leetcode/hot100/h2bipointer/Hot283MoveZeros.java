@@ -1,6 +1,6 @@
-package com.kuaishou.raymond.algorithm.leetcode.hot100.bipointer;
+package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
-import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.convertToArray;
+import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.toArray;
 
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
@@ -12,7 +12,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot283MoveZeros {
 
     public static void main(String[] args) {
-        int[] nums = convertToArray("[1,0,1,12,0]");
+        int[] nums = toArray("[1,0,1,12,0]");
         AlgoUtils.printRow(nums);
 //        moveZeroes(nums);
         moveZeroesII(nums);

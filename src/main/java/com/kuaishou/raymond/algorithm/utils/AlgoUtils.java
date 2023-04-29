@@ -1,11 +1,11 @@
 package com.kuaishou.raymond.algorithm.utils;
 
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -23,7 +23,7 @@ public class AlgoUtils {
         }
     }
 
-    public static int[] convertToArray(String str) {
+    public static int[] toArray(String str) {
         String replaced = str.replace("[", "").replace("]", "");
         String[] splited = replaced.split(",");
         List<Integer> data =

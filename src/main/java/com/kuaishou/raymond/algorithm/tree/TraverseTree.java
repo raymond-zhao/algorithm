@@ -66,7 +66,7 @@ public class TraverseTree {
 
         while (!queue.isEmpty()) {
             TreeNode node = queue.poll();
-            System.out.println(node.getKey() + " ");
+            System.out.println(node.val + " ");
             if (node.left != null) {
                 queue.offer(node.left);
             }
@@ -94,7 +94,7 @@ public class TraverseTree {
             if (node.right == null || node.right == lastVisited) {
                 // 如果右子树为空或者右子结点刚被访问过，则可输出该结点。
                 node = stack.pop();
-                System.out.println(node.getKey() + " ");
+                System.out.println(node.val + " ");
                 lastVisited = node;
                 node = null;
             } else {
@@ -118,7 +118,7 @@ public class TraverseTree {
 
             if (!stack.isEmpty()) {
                 node = stack.pop();
-                System.out.println(node.getKey() + " ");
+                System.out.println(node.val + " ");
                 node = node.right;
             }
         }
@@ -132,7 +132,7 @@ public class TraverseTree {
             // 如果某个结点不为空，说明它还未被访问；
             // 如果栈不为空，说明它还有左孩子未被访问。
             while (node != null) {
-                System.out.println(node.getKey() + " ");
+                System.out.println(node.val + " ");
                 stack.push(node);
                 node = node.left;
             }
@@ -150,7 +150,7 @@ public class TraverseTree {
         }
         postOrderRecursive(root.left);
         postOrderRecursive(root.right);
-        System.out.println(root.getKey() + " ");
+        System.out.println(root.val + " ");
     }
 
     private static void middleOrderRecursive(TreeNode root) {
@@ -158,7 +158,7 @@ public class TraverseTree {
             return;
         }
         middleOrderRecursive(root.left);
-        System.out.println(root.getKey() + " ");
+        System.out.println(root.val + " ");
         middleOrderRecursive(root.right);
     }
 
@@ -166,7 +166,7 @@ public class TraverseTree {
         if (root == null) {
             return;
         }
-        System.out.println(root.getKey() + " ");
+        System.out.println(root.val + " ");
         preorderRecursive(root.left);
         preorderRecursive(root.right);
     }

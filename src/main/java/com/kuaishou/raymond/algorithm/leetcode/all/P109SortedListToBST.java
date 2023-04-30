@@ -22,6 +22,7 @@ public class P109SortedListToBST {
         }
         ListNode middleNode = getMiddleNode(left, right);
         TreeNode root = new TreeNode(middleNode.val);
+        // 区间左开右闭：[left, right)
         root.left = buildBST(left, middleNode);
         root.right = buildBST(middleNode.next, right);
         return root;

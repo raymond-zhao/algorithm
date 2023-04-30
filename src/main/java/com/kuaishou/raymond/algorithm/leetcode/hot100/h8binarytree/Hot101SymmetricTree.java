@@ -56,5 +56,4 @@ public class Hot101SymmetricTree {
         }
         return true;
     }
-    }
 }

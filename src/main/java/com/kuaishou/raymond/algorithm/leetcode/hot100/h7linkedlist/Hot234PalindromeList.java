@@ -58,7 +58,7 @@ public class Hot234PalindromeList {
         return previous;
     }
 
-    private ListNode getMiddleNode(ListNode head) {
+    public static ListNode getMiddleNode(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }

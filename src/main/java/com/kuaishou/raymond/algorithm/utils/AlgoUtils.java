@@ -2,6 +2,7 @@ package com.kuaishou.raymond.algorithm.utils;
 
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -77,5 +78,14 @@ public class AlgoUtils {
         int temp = nums[left];
         nums[left] = nums[right];
         nums[right] = temp;
+    }
+
+    public static void printLinkedList(ListNode head) {
+        List<Integer> data = new ArrayList<>();
+        while (head != null) {
+            data.add(head.val);
+            head = head.next;
+        }
+        System.out.println("data = " + data);
     }
 }

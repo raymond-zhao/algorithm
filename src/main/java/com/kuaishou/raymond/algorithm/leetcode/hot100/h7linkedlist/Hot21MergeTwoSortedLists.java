@@ -8,7 +8,7 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
  */
 public class Hot21MergeTwoSortedLists {
 
-    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+    public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         if (list2 == null) {
             return list1;
         }
@@ -27,16 +27,8 @@ public class Hot21MergeTwoSortedLists {
             }
             node = node.next;
         }
-
         // 跳出循环时，list1 == null || list2 == null，说明链表之一可能还不为空，可以直接拼接起来。
-        if (list1 != null) {
-            node.next = list1;
-        }
-
-        if (list2 != null) {
-            node.next = list2;
-        }
-
+        node.next = list1 != null ? list1 : list2;
         return dummyHead.next;
     }
 }

@@ -78,8 +78,9 @@ public class P23MergeKSortedLists {
         Queue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
         for (ListNode listNode : lists) {
             // 1. 先把每个链表的头结点加入小根堆
-            if (listNode != null)
+            if (listNode != null) {
                 queue.offer(listNode);
+            }
         }
         // 2. 逐个迭代 并链接
         ListNode dummy = new ListNode(-1);

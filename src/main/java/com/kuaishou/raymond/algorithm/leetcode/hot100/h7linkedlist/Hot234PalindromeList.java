@@ -13,7 +13,7 @@ import java.util.List;
 public class Hot234PalindromeList {
 
     public static void main(String[] args) {
-        ListNode head = AlgoUtils.buildLinkedList(AlgoUtils.toArray("[1,2,2,1]"));
+        ListNode head = AlgoUtils.buildLinkedList(AlgoUtils.toIntArray("[1,2,2,1]"));
         Hot234PalindromeList hot = new Hot234PalindromeList();
         hot.isPalindrome(head);
     }

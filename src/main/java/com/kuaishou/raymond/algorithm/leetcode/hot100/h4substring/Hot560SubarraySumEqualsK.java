@@ -17,7 +17,7 @@ import java.util.Map;
 public class Hot560SubarraySumEqualsK {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[1,1,1]");
+        int[] nums = AlgoUtils.toIntArray("[1,1,1]");
         int k = 2;
         // System.out.println("subarraySum(nums, k) = " + subarraySumBrutalForce(nums, k));
         System.out.println("subarraySum(nums, k) = " + subarraySum(nums, k));

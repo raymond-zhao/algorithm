@@ -9,6 +9,7 @@ import java.util.Map;
  * Author: raymond
  * CreateTime: 2023/4/30 23:22
  * 题目：<a href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/?envType=study-plan-v2&id=top-100-liked">105. 从前序与中序遍历序列构造二叉树</a>
+ * 相似题目：<a href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">106. 从中序与后序遍历序列构造二叉树</a>
  */
 public class Hot105ConstructBinaryTreeFromPreorderAndInOrderTraversal {
 

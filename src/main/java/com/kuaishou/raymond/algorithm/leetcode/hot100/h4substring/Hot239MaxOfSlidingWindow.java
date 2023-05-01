@@ -17,7 +17,7 @@ import java.util.PriorityQueue;
 public class Hot239MaxOfSlidingWindow {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[1,3,-1,-3,5,3,6,7]");
+        int[] nums = AlgoUtils.toIntArray("[1,3,-1,-3,5,3,6,7]");
         int[] nums2 = {7, 6, 5, 4, 3};
         int k = 3;
         int[] data = maxSlidingWindowMaxHeapII(nums2, k);

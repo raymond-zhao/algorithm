@@ -9,7 +9,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot238ProductExceptSelf {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[1,2,3,4]");
+        int[] nums = AlgoUtils.toIntArray("[1,2,3,4]");
         AlgoUtils.printRow(productExceptSelf(nums));
     }
 

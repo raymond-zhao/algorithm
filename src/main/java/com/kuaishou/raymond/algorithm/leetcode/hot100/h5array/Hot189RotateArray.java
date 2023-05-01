@@ -9,7 +9,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot189RotateArray {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[1,2]");
+        int[] nums = AlgoUtils.toIntArray("[1,2]");
         int k = 3;
         rotate(nums, k);
     }

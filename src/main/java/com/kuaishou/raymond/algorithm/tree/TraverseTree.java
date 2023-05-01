@@ -53,14 +53,14 @@ public class TraverseTree {
         System.out.println();
     }
 
-    private static void zTravelIterative(TreeNode root) {
+    public static void zTravelIterative(TreeNode root) {
 
     }
 
     /**
      * 从上到下层次遍历
      */
-    private static void levelTravelIterative(TreeNode root) {
+    public static void levelTravelIterative(TreeNode root) {
         Deque<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
 
@@ -79,7 +79,7 @@ public class TraverseTree {
     /**
      * 左右根
      */
-    private static void postOrderIterative(TreeNode root) {
+    public static void postOrderIterative(TreeNode root) {
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode node = root;
         TreeNode lastVisited = null;
@@ -106,7 +106,7 @@ public class TraverseTree {
     /**
      * 左根右
      */
-    private static void middleOrderIterative(TreeNode root) {
+    public static void middleOrderIterative(TreeNode root) {
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode node = root;
 
@@ -124,7 +124,7 @@ public class TraverseTree {
         }
     }
 
-    private static void preorderIterative(TreeNode root) {
+    public static void preorderIterative(TreeNode root) {
         Deque<TreeNode> stack = new ArrayDeque<>();
         TreeNode node = root;
 
@@ -144,7 +144,7 @@ public class TraverseTree {
        }
     }
 
-    private static void postOrderRecursive(TreeNode root) {
+    public static void postOrderRecursive(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -153,7 +153,7 @@ public class TraverseTree {
         System.out.println(root.val + " ");
     }
 
-    private static void middleOrderRecursive(TreeNode root) {
+    public static void middleOrderRecursive(TreeNode root) {
         if (root == null) {
             return;
         }
@@ -162,16 +162,16 @@ public class TraverseTree {
         middleOrderRecursive(root.right);
     }
 
-    private static void preorderRecursive(TreeNode root) {
+    public static void preorderRecursive(TreeNode root) {
         if (root == null) {
             return;
         }
-        System.out.println(root.val + " ");
+        System.out.print(root.val + " ");
         preorderRecursive(root.left);
         preorderRecursive(root.right);
     }
 
-    private static TreeNode constructTree() {
+    public static TreeNode constructTree() {
         TreeNode root = new TreeNode(18);
 
         TreeNode node1 = new TreeNode(12);

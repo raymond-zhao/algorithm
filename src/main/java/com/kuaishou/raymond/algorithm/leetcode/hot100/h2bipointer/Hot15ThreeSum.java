@@ -15,7 +15,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot15ThreeSum {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[-1,0,1,2,-1,-4]");
+        int[] nums = AlgoUtils.toIntArray("[-1,0,1,2,-1,-4]");
         System.out.println("threeSum(nums) = " + threeSum(nums));
     }
 

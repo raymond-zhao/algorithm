@@ -9,7 +9,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot53SubarrayMaxSum {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[-2,1,-3,4,-1,2,1,-5,4]");
+        int[] nums = AlgoUtils.toIntArray("[-2,1,-3,4,-1,2,1,-5,4]");
         System.out.println("maxSubArray(nums) = " + maxSubArray(nums));
     }
 

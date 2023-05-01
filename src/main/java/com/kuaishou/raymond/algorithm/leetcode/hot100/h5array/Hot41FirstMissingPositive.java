@@ -9,7 +9,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 public class Hot41FirstMissingPositive {
 
     public static void main(String[] args) {
-        int[] nums = AlgoUtils.toArray("[7,8,9,11,12]");
+        int[] nums = AlgoUtils.toIntArray("[7,8,9,11,12]");
         System.out.println("firstMissingPositive(nums) = " + firstMissingPositive(nums));
     }
 

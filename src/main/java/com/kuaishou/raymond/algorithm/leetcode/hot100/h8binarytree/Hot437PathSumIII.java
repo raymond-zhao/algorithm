@@ -12,6 +12,7 @@ import java.util.Map;
  * 相似题目：
  * - <a href="https://leetcode.cn/problems/path-sum/">112. 路径总和</a>
  * - <a href="https://leetcode.cn/problems/path-sum-ii/">113. 路径总和 II</a>
+ * - <a href="https://leetcode.cn/problems/binary-tree-maximum-path-sum/?envType=study-plan-v2&id=top-100-liked">124. 二叉树中的最大路径和</a>
  */
 public class Hot437PathSumIII {
 
@@ -35,11 +36,10 @@ public class Hot437PathSumIII {
             return 0;
         }
         currentSum += root.val;
-
-        int counter = prefix.getOrDefault(currentSum - targetSum, 0);
         // 维护前缀和
         prefix.put(currentSum, prefix.getOrDefault(currentSum, 0) + 1);
 
+        int counter = prefix.getOrDefault(currentSum - targetSum, 0);
         counter += dfs(root.left, currentSum, targetSum);
         counter += dfs(root.right, currentSum, targetSum);
 

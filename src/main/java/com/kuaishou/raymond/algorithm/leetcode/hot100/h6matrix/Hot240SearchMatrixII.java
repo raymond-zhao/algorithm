@@ -5,6 +5,7 @@ import java.util.Arrays;
 /**
  * <a href="https://leetcode.cn/problems/search-a-2d-matrix-ii/?envType=study-plan-v2&id=top-100-liked">...</a>
  * 240. 搜索二维矩阵 II
+ * 相似题目：{@link com.kuaishou.raymond.algorithm.leetcode.hot100.h11binarysearch.Hot74Search2DMatrix}
  */
 public class Hot240SearchMatrixII {
 

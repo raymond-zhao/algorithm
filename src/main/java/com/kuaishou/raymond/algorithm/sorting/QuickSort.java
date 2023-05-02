@@ -1,5 +1,6 @@
 package com.kuaishou.raymond.algorithm.sorting;
 
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import static com.kuaishou.raymond.algorithm.sorting.HeapSort.swap;
@@ -13,8 +14,9 @@ public class QuickSort {
 
     public static void main(String[] args) {
         int[] nums1 = {2, 8, 7, 1, 3, 5, 6, 4, 4};
+        int[] nums2 = AlgoUtils.toIntArray("[3,2,3,1,2,4,5,5,6]");
         int[] array = nums1;
-        log.info("快速排序 = {}", quickSort(array, 0, array.length - 1));
+        log.info("快速排序 = {}", quickSort(nums2, 0, array.length - 1));
     }
 
     /**
@@ -61,12 +63,12 @@ public class QuickSort {
         int i = left;
         int j = right - 1;
 
-        while (i < j) {
-            while (i < j && array[i] < key) {
+        while (i <= j) {
+            while (i <= j && array[i] <= key) {
                 // 寻找大于等于 key 的值
                 i++;
             }
-            while (i < j && array[j] >= key) {
+            while (i <= j && array[j] > key) {
                 // 寻找小于 key 的值
                 j--;
             }
@@ -75,27 +77,6 @@ public class QuickSort {
 
         swap(array, i, right);
 
-        return i;
-    }
-
-    public static int hoarePartition2(int[] array, int left, int right) {
-        int key = array[right];
-        int i = left - 1;
-        int j = right + 1;
-
-        while (true) {
-            while (array[j] <= key) {
-                j--;
-            }
-            while (array[i] >= key) {
-                i++;
-            }
-
-            if (i < j) {
-                swap(array, i, j);
-            } else {
-                return j;
-            }
-        }
+        return j;
     }
 }

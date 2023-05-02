@@ -75,7 +75,7 @@ public class BinarySearch {
         int right = nums.length - 1;
         while (left <= right) {
             int middle = (left + right) >>> 1;
-            if (nums[middle] >= target) {
+            if (nums[middle] == target) {
                 right = middle - 1;
             } else if (nums[middle] > target) {
                 right = middle - 1;

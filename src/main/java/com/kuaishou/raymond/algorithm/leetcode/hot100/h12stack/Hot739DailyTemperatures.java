@@ -29,7 +29,7 @@ public class Hot739DailyTemperatures {
         Deque<Integer> stack = new ArrayDeque<>();
         for (int i = 0; i < temperatures.length; i++) {
             int currentTemperature = temperatures[i];
-            while (!stack.isEmpty() && currentTemperature > temperatures[stack.peek()]) {
+            while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemperature) {
                 // 如果栈非空，并且当前温度大于栈顶温度，则表示出现更高温度，更新栈中元素。
                 Integer lowerTemperatureIdx = stack.pop();
                 answer[lowerTemperatureIdx] = i - lowerTemperatureIdx;

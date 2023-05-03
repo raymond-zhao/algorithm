@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h14greedy;
  * Author: raymond
  * CreateTime: 2023/5/2 23:47
  * 题目：<a href="https://leetcode.cn/problems/jump-game-ii/?envType=study-plan-v2&id=top-100-liked">45. 跳跃游戏 II</a>
+ * 相似题目：{@link Hot55JumpGame}
  */
 public class Hot45JumpGameII {
 

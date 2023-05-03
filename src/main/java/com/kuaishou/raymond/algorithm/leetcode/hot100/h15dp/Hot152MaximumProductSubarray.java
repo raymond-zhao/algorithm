@@ -27,6 +27,9 @@ public class Hot152MaximumProductSubarray {
         return maxProduct;
     }
 
+    /**
+     * 空间压缩版本
+     */
     public int maxProductCompressed(int[] nums) {
         int maxDP = nums[0];
         int minDP = nums[0];

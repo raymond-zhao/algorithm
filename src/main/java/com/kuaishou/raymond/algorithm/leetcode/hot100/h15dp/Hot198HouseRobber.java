@@ -8,6 +8,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp;
  * - {@link com.kuaishou.raymond.algorithm.leetcode.all.P198HouseRobbing}
  * - 环形DP：<a href="https://leetcode.cn/problems/house-robber-ii/">213. 打家劫舍 II</a>
  * - 树形DP：<a href="https://leetcode.cn/problems/house-robber-iii/">337. 打家劫舍 III</a>
+ * - 二分：<a href="https://leetcode.cn/problems/house-robber-iv/">2560. 打家劫舍 IV</a>
  */
 public class Hot198HouseRobber {
 

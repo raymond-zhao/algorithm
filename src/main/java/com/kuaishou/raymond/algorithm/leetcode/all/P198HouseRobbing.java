@@ -7,6 +7,7 @@ import java.util.Arrays;
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-03-08 13:15
+ * {@link com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp.Hot198HouseRobber}
  */
 public class P198HouseRobbing {
 

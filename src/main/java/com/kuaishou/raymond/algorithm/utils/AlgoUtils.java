@@ -28,7 +28,7 @@ public class AlgoUtils {
     public static int[] toIntArray(String str) {
         String[] splited = toStringArray(str);
         List<Integer> data =
-                Arrays.stream(splited).filter(Objects::nonNull).map(Integer::parseInt).collect(Collectors.toList());
+                Arrays.stream(splited).filter(Objects::nonNull).map(String::trim).map(Integer::parseInt).collect(Collectors.toList());
         int[] res = new int[data.size()];
         for (int i = 0; i < data.size(); i++) {
             res[i] = data.get(i);

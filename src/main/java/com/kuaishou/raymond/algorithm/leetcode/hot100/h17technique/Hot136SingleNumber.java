@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h17technique;
  * Author: raymond
  * CreateTime: 2023/5/4 14:36
  * 题目：<a href="https://leetcode.cn/problems/single-number/?envType=study-plan-v2&id=top-100-liked">136. 只出现一次的数字</a>
+ * - 位运算，异或运算。
  */
 public class Hot136SingleNumber {
 

@@ -130,6 +130,12 @@ public class AlgoUtils {
         nums[right] = temp;
     }
 
+    public static void reverse(int[] nums, int left, int right) {
+        while (left < right) {
+            swap(nums, left++, right--);
+        }
+    }
+
     public static void printLinkedList(ListNode head) {
         List<Integer> data = new ArrayList<>();
         while (head != null) {

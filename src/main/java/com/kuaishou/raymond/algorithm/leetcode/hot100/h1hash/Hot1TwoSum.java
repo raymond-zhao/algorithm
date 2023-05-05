@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * <a href="https://leetcode.cn/problems/two-sum/submissions/">...</a>
+ * - 哈希
  */
 public class Hot1TwoSum {
 

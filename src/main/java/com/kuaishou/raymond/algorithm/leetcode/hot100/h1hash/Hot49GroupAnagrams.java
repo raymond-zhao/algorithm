@@ -5,9 +5,16 @@ import java.util.*;
 /**
  * <a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&id=top-100-liked">...</a>
  * 字母异或词分组
+ * - 哈希
  */
 public class Hot49GroupAnagrams {
 
+    /**
+     * 0. 设置 HashMap，Key 为排序后的异或词，Value 为包含相同异或词的原字符串。
+     * 1. 遍历所有字符串，将字符串转换成 char 数组后排序；
+     * 2. 以排序后的 char 作为 HashMap 的 key，这样就可以让所有异或词的 key 相同；
+     * 3. HashMap 的 values 即为所求。
+     */
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> data = new HashMap<>();
         for (String str : strs) {

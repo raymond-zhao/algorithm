@@ -1,16 +1,16 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-27 21:06
- * <a href="https://leetcode.cn/problems/3sum/">...</a>
- * 15. 三数之和
+ * <a href="https://leetcode.cn/problems/3sum/">15. 三数之和</a>
+ * - 双指针
  */
 public class Hot15ThreeSum {
 

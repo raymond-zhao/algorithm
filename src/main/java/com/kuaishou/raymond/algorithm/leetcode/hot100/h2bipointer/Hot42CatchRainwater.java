@@ -4,19 +4,17 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 
 /**
- * <a href="https://leetcode.cn/problems/trapping-rain-water/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 42. 接雨水
+ * <a href="https://leetcode.cn/problems/trapping-rain-water/?envType=study-plan-v2&id=top-100-liked">42. 接雨水</a>
+ * - 双指针
+ * - 动态规划
+ * - 单调栈
  */
 public class Hot42CatchRainwater {
 
     /**
      * 三次扫描
-     * 1.
      */
     public static int trap(int[] height) {
-        if (height == null || height.length == 0) {
-            return 0;
-        }
         int len = height.length;
         int[] leftMax = new int[len];
         leftMax[0] = height[0];
@@ -41,9 +39,6 @@ public class Hot42CatchRainwater {
      * 双指针 + 空间压缩
      */
     public int trapII(int[] height) {
-        if (height == null || height.length == 0) {
-            return 0;
-        }
         int leftMax = height[0];
         int rightMax = height[height.length - 1];
         int leftIdx = 0;
@@ -63,7 +58,9 @@ public class Hot42CatchRainwater {
     }
 
     /**
-     * 使用单调栈，存储元素索引，从栈底到栈顶递减。
+     * 使用单调递减栈，存储元素索引，从栈底到栈顶递减。
+     * 思路：计税只能在低洼处形成，当后面的柱子比前面的柱子低时，是接不到雨水的。
+     * 所以使用单调递减栈，储存肯能储水的柱子，当找到一个比前面高的柱子，也就是其后边第一个比它高的柱子时，就计算储水的高度。
      */
     public int trapIII(int[] height) {
         Deque<Integer> stack = new ArrayDeque<>();

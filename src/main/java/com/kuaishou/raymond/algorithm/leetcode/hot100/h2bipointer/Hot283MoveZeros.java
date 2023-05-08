@@ -1,13 +1,15 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
-import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.toIntArray;
-
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+
+import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.toIntArray;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-27 11:36
- * <a href="https://leetcode.cn/problems/move-zeroes/">...</a>
+ * <a href="https://leetcode.cn/problems/move-zeroes/">283. 移动零</a>
+ * - 要求：请注意 ，必须在不复制数组的情况下原地对数组进行操作。
+ * - 双指针
  */
 public class Hot283MoveZeros {
 

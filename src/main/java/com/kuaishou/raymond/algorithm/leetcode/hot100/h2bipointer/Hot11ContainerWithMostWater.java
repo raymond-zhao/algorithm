@@ -5,8 +5,11 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-27 13:03
+ * <a href="https://leetcode.cn/problems/container-with-most-water/">11. 盛最多水的容器</a>
+ * - 双指针
+ * - 相似题目: {@link Hot42CatchRainwater}
  */
-public class Hot11MaxArea {
+public class Hot11ContainerWithMostWater {
 
     public static void main(String[] args) {
         int[] height = AlgoUtils.toIntArray("[1,8,6,2,5,4,8,3,7]");

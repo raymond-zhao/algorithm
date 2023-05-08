@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <a href="https://leetcode.cn/problems/two-sum/submissions/">...</a>
+ * <a href="https://leetcode.cn/problems/two-sum/submissions/">1. 两数之和</a>
  * - 哈希
  */
 public class Hot1TwoSum {

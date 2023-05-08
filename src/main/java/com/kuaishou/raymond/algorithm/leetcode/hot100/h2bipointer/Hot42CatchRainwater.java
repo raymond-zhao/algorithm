@@ -9,10 +9,10 @@ import java.util.Deque;
  */
 public class Hot42CatchRainwater {
 
-    public static void main(String[] args) {
-
-    }
-
+    /**
+     * 三次扫描
+     * 1.
+     */
     public static int trap(int[] height) {
         if (height == null || height.length == 0) {
             return 0;

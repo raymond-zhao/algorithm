@@ -3,8 +3,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h1hash;
 import java.util.*;
 
 /**
- * <a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 字母异或词分组
+ * <a href="https://leetcode.cn/problems/group-anagrams/?envType=study-plan-v2&id=top-100-liked">49. 字母异位词分组</a>
  * - 哈希
  */
 public class Hot49GroupAnagrams {

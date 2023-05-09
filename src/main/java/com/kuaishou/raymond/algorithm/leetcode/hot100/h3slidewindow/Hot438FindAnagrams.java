@@ -5,8 +5,8 @@ import java.util.*;
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-28 15:01
- * <a href="https://leetcode.cn/problems/find-all-anagrams-in-a-string/">...</a>
- * 找到一个字符串中的所有字母异或词的开始位置
+ * <a href="https://leetcode.cn/problems/find-all-anagrams-in-a-string/">438. 找到字符串中所有字母异位词</a>
+ * - 滑动窗口
  */
 public class Hot438FindAnagrams {
 
@@ -21,10 +21,12 @@ public class Hot438FindAnagrams {
      * 滑动窗口
      */
     public static List<Integer> findAnagrams(String s, String p) {
-        if (s == null || p == null || s.length() == 0 || p.length() == 0 || p.length() > s.length()) {
+        if (p.length() > s.length()) {
             return new ArrayList<>();
         }
         // 手动哈希表
+        // Key：将每个字符映射为以其 ASCII 值作为索引
+        // Value：字符出现的次数
         int[] sCount = new int[26];
         int[] pCount = new int[26];
         // 遍历 p 串，初始化 p 串的哈希结果，以及 s 中第一个窗口的结果。
@@ -34,6 +36,7 @@ public class Hot438FindAnagrams {
         }
         List<Integer> data = new ArrayList<>();
         // 判断第一个窗口是否满足条件
+        // 相等条件：出现的字符相同，并且每个字符出现的数量也相同。
         if (Arrays.equals(pCount, sCount)) {
             data.add(0);
         }

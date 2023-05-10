@@ -8,8 +8,7 @@ import java.util.Deque;
 import java.util.PriorityQueue;
 
 /**
- * <a href="https://leetcode.cn/problems/sliding-window-maximum/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 239. 滑动窗口最大值
+ * <a href="https://leetcode.cn/problems/sliding-window-maximum/?envType=study-plan-v2&id=top-100-liked">239. 滑动窗口最大值</a>
  * - 滑动窗口
  * - 大根堆/优先队列
  * - 单调队列
@@ -24,12 +23,21 @@ public class Hot239MaxOfSlidingWindow {
         AlgoUtils.printRow(data);
     }
 
+    /**
+     * 单调递减队列
+     * 1. 针对前 k 个元素初始化单调队列，单调队列内按元素索引递增，值递减。
+     * 2. 初始化结果集，将初始化的单调队列中的头元素加入结果集。
+     * 3. 处理 [k, n-1] 元素，依然维持队列的单调性。
+     * 4. 移除单调队列中已经滑出窗口左区间的元素索引。
+     * 5. 添加结果集
+     */
     public static int[] maxSlidingWindowMonoQueue(int[] nums, int k) {
         // 作为单调递减队列使用，队列中元素索引递增，元素索引对应的元素递减。
         Deque<Integer> monoQueue = new ArrayDeque<>();
-        // 构造单调队列
+        // 利用前 k 个元素构造初始的单调队列
         for (int i = 0; i < k; i++) {
             while (!monoQueue.isEmpty() && nums[monoQueue.peekLast()] <= nums[i]) {
+                // 出队队列中所有小于等于 nums[i] 的元素，使队列中第 0 个元素到 nums[i] 按元素值递减。
                 // 如果队列尾部元素小于等于要入队的元素，则出队。
                 monoQueue.pollLast();
             }

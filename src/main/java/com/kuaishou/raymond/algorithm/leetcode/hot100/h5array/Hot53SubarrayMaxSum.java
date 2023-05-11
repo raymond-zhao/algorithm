@@ -3,8 +3,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h5array;
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
- * <a href="https://leetcode.cn/problems/maximum-subarray/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 53. 最大子数组和
+ * <a href="https://leetcode.cn/problems/maximum-subarray/?envType=study-plan-v2&id=top-100-liked">53. 最大子数组和</a>
+ * - 动态规划
  */
 public class Hot53SubarrayMaxSum {
 

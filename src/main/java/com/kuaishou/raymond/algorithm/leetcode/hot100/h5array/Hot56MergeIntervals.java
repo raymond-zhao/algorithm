@@ -3,8 +3,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h5array;
 import java.util.*;
 
 /**
- * <a href="https://leetcode.cn/problems/merge-intervals/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 56. 合并区间
+ * <a href="https://leetcode.cn/problems/merge-intervals/?envType=study-plan-v2&id=top-100-liked">56. 合并区间</a>
+ * -
  */
 public class Hot56MergeIntervals {
 

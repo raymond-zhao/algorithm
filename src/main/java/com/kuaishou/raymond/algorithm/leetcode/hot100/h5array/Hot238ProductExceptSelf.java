@@ -3,8 +3,9 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h5array;
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
- * <a href="https://leetcode.cn/problems/product-of-array-except-self/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 238. 除自身以外数组的乘积
+ * <a href="https://leetcode.cn/problems/product-of-array-except-self/?envType=study-plan-v2&id=top-100-liked">238. 除自身以外数组的乘积</a>
+ * - 前缀积
+ * - 后缀积
  */
 public class Hot238ProductExceptSelf {
 

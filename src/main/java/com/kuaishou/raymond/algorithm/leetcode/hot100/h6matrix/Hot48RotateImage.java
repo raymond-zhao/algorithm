@@ -1,8 +1,8 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h6matrix;
 
 /**
- * <a href="https://leetcode.cn/problems/rotate-image/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 48. 旋转图像
+ * <a href="https://leetcode.cn/problems/rotate-image/?envType=study-plan-v2&id=top-100-liked">48. 旋转图像</a>
+ * - 找规律
  */
 public class Hot48RotateImage {
 

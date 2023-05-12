@@ -3,8 +3,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h5array;
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
- * <a href="https://leetcode.cn/problems/rotate-array/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 189. 轮转数组
+ * <a href="https://leetcode.cn/problems/rotate-array/?envType=study-plan-v2&id=top-100-liked">189. 轮转数组</a>
+ * - 翻转
  */
 public class Hot189RotateArray {
 

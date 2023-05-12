@@ -29,13 +29,38 @@
   - 刷新方式：手动刷新、自动刷新
   - 预加载
   - RemovalNotification
-  - 
 - Caffeine
 - Ehcache
 ## 分布式事务原理
+[分布式事务原理](https://draveness.me/distributed-transaction-principle/)
+- 分布式事务的实现原理包括事务管理器、事务协议、分布式锁、日志记录和数据同步等多个方面。
+名词解释：系统之间的通信可靠性从单一系统中的可靠变成了微服务架构之间的不可靠，分布式事务其实就是在**不可靠的通信下**实现事务的特性。
+实现原理：事务日志，无论是需要回滚还是补偿都可以通过日志追溯，而分布式事务也会依赖数据库、Zookeeper 或者 ETCD 等服务追踪事务的执行过程，总而言之，各种形式的日志是保证事务几大特性的重要手段。
+直接原因：模块（或服务）之间通信方式的改变
+常见类型：2PC、3PC、MySQL 的 XA、SAGA（柔性事务）
+- XA
+  - XA 实现了 2PC，事务管理器与资源管理器分别充当 2PC 中的事务协调者与事务参与者的身份。
+  - MySQL 提供的 XA 接口实现了"投票"与"提交"阶段，当前事务会加锁占用资源，阻塞其他事务对资源的访问，可能会对数据库性能产生影响。
+- SAGA
+  - 背景：多数场景下只需要最终一致性，而不是强一致性。
+  - 流程：Saga 其实就一种简化的分布式事务解决方案，它将一系列的分布式操作转化成了一系列的本地事务，在每一个本地事务中我们都会更新数据库并且向集群中的其他服务发送一条的新的消息来触发下一个本地的事务；一旦本地的事务因为违反了业务逻辑而失败，那么就会立刻触发一系列的回滚操作来撤回之前本地事务造成的副作用。
+  - 解释：如果一个 LLT(Long Lived Transaction) 能够被改写成一系列的相互交错重叠的多个数据库事务，那么这个 LLT 就是一个 Saga，数据库系统能够保证 Saga 中一系列的事务要么全部成功执行、要么它们的补偿事务能够回滚全部的副作用，保证整个分布式事务的最终一致性。
+  - 类型：协同式Saga(去中心化)、编排式Sage(中心化)。
+  - 核心：每一个分布式事务的参与者都需要保证两点，一是提供正常接口与补偿接口，二是接口要允许重入并保证幂等。
+  - 特点：放弃了标准的 ACID 事务，选择实现 BASE(Basic Availability, Soft, Eventual consistency) 事务，达到业务上的基本可用性与最终一致性。
+  - SAGA 可以满足大多数的业务场景，如果需要强一致性事务，可以选择单机数据源，实现 ACID 事务。
+  - 而为了实现 SAGA，我们又经常会用到消息队列，来保证消息的可靠投递。
+- 使用消息队列实现分布式事务与使用其他工具实现分布式事务在思想上并没有本质的区别，但是消息队列可以帮我们保证可靠投递、消息持久化、重试等功能。
+- 总结：从实现 ACID 事务的 2PC 与 3PC 到实现 BASE 补偿式事务的 Saga，再到最后通过事务消息的方式异步地保证消息最终一定会被消费成功，我们为了增加系统的吞吐量以及可用性逐渐降低了系统对一致性的要求。
 ## 2PC和3PC区别？
-## 要你设计一个3PC你要考虑什么问题。
-## 慢 SQL 排查过程，表 (a,b,c,d)，索引（c,a,d），where c=1 and a > 1 and d = 1，where c=1 and a > 1 and d = 1 and d = 2
+- 2PC（两阶段提交）: 分为 Voting 和 Commit 两个阶段
+  - Voting: 协调者（Coordinator）会向事务的参与者（Cohort）询问是否可以执行操作的请求，并等待其他参与者的响应，参与者会执行相对应的事务操作并记录重做和回滚日志，所有执行成功的参与者会向协调者发送 AGREEMENT 或者 ABORT 表示执行操作的结果。
+  - Commit: 当所有的参与者都返回了确定的结果（同意或者终止）时，两阶段提交就进入了提交阶段，协调者会根据投票阶段的返回情况向所有的参与者发送提交或者回滚的指令。当事务的所有参与者都决定提交事务时，协调者会向参与者发送 COMMIT 请求，参与者在完成操作并释放资源之后向协调者返回完成消息，协调者在收到所有参与者的完成消息时会结束整个事务；与之相反，当有参与者决定 ABORT 当前事务时，协调者会向事务的参与者发送回滚请求，参与者会根据之前执行操作时的回滚日志对操作进行回滚并向协调者发送完成的消息，在提交阶段，无论当前事务被提交还是回滚，所有的资源都会被释放并且事务也一定会结束。
+  - 两阶段提交协议是一个阻塞协议
+- 3PC（三阶段提交）: 在 2PC 的基础上引入了**超时机制和准备阶段**，准备阶段的引入其实让事务的参与者有了除回滚之外的其他选择。
+## 要你设计一个3PC你要考虑什么问题
+- 超时回滚、事务补偿、保证事务最终一致性。
+## 慢 SQL 排查过程，表 (a,b,c,d)，索引(c,a,d)，where c=1 and a > 1 and d = 1，where c=1 and a > 1 and d = 1 and d = 2
 ## 查询优化器的原理
 ## 算法：手写LRU
 # 滴滴网约车二面
@@ -44,158 +69,14 @@
 
 使用数据库
 可以使用一些流行的关系型数据库，如 MySQL、PostgreSQL 等来处理这个问题。将文件中的每一行作为数据库中的一条记录，其中地点作为一个字段，打车人数作为另一个字段。
-
 对于查询，可以使用 SQL 语句来快速找出指定地点对应的打车人数。由于关系型数据库通常具有优秀的索引和查询优化技术，因此可以快速地处理大量数据，并在较短时间内返回结果。
 
 使用外部排序算法
 外部排序算法是一种用于排序和处理大量数据的算法，其基本思想是将大文件分成若干个小文件，然后对这些小文件进行排序，并将它们合并成一个有序的文件。
-
 在这个问题中，可以将原始文件分成若干个小文件，每个小文件包含一定数量的记录。然后，对于每个小文件，可以使用快速排序或归并排序等算法进行排序。
-
 当所有小文件都排序完成后，可以使用归并排序等算法将它们合并成一个有序的文件。在这个过程中，可以将同一地点的记录合并到一起，以便查询时更加高效。
-
 最后，对于查询，可以使用二分查找等算法在有序的文件中快速找出指定地点对应的打车人数。
 ```java
-import java.io.*;
-import java.util.*;
-
-public class TaxiDataProcessor {
-
-    // 定义一个结构体用于保存地点和打车人数
-    static class LocationData {
-        String location;
-        int count;
-
-        public LocationData(String location, int count) {
-            this.location = location;
-            this.count = count;
-        }
-    }
-
-    // 外部排序算法的实现
-    public static void externalSort(File inputFile, File outputFile, int chunkSize) throws IOException {
-        List<File> chunkFiles = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(inputFile));
-        String line = null;
-
-        // 逐行读取输入文件，并将记录写入一个临时文件中
-        while ((line = reader.readLine()) != null) {
-            String[] fields = line.split(" ");
-            String location = fields[0];
-            int count = Integer.parseInt(fields[1]);
-
-            // 将地点和打车人数保存到结构体中
-            LocationData data = new LocationData(location, count);
-
-            // 将结构体写入一个临时文件中
-            File chunkFile = writeChunk(data, chunkSize);
-            chunkFiles.add(chunkFile);
-        }
-
-        // 关闭输入文件
-        reader.close();
-
-        // 将所有临时文件进行归并排序，并将结果写入输出文件中
-        mergeSort(chunkFiles, outputFile);
-    }
-
-    // 将一个结构体写入一个临时文件中
-    private static File writeChunk(LocationData data, int chunkSize) throws IOException {
-        File chunkFile = File.createTempFile("chunk_", ".txt");
-        chunkFile.deleteOnExit();
-        PrintWriter writer = new PrintWriter(chunkFile);
-
-        // 将结构体转换为字符串，并写入临时文件中
-        writer.println(data.location + " " + data.count);
-
-        // 关闭临时文件
-        writer.close();
-
-        return chunkFile;
-    }
-
-    // 对一组临时文件进行归并排序，并将结果写入输出文件中
-    private static void mergeSort(List<File> chunkFiles, File outputFile) throws IOException {
-        List<BufferedReader> readers = new ArrayList<>();
-        PriorityQueue<LocationData> queue = new PriorityQueue<>((a, b) -> a.location.compareTo(b.location));
-
-        // 打开所有临时文件的读取器，并将它们添加到一个列表中
-        for (File chunkFile : chunkFiles) {
-            BufferedReader reader = new BufferedReader(new FileReader(chunkFile));
-            readers.add(reader);
-        }
-
-        // 创建一个写入器，用于将结果写入输出文件中
-        PrintWriter writer = new PrintWriter(new FileWriter(outputFile));
-
-        // 从每个临时文件中读取一行，并将它们添加到一个优先队列中
-        for (BufferedReader reader : readers) {
-            String line = reader.readLine();
-            if (line != null) {
-                String[] fields = line.split(" ");
-                String location = fields[0];
-                int count = Integer.parseInt(fields[1]);
-                queue.add(new LocationData(location, count));
-            }
-        }
-
-        // 取出队列中最小的元素，并将它写入输出文件中
-        while (!queue.isEmpty()) {
-            LocationData data = queue.poll();
-            writer.println(data.location + " " + data.count);
-
-            // 从对应的临时文件中读取下一行，并将它加入队列中
-            for (int i = 0; i < readers.size(); i++) {
-                BufferedReader reader = readers.get(i);
-                if (data.location.equals(chunkFiles.get(i).getName())) {
-                    String line = reader.readLine();
-                    if (line != null) {
-                        String[] fields = line.split(" ");
-                        String location = fields[0];
-                        int count = Integer.parseInt(fields[1]);
-                        queue.add(new LocationData(location, count));
-                    }
-                }
-            }
-        }
-
-        // 关闭所有临时文件的读取器
-        for (BufferedReader reader : readers) {
-            reader.close();
-        }
-
-        // 关闭输出文件的写入器
-        writer.close();
-    }
-
-    // 从输出文件中查找指定地点的打车人数
-    public static int findCount(File outputFile, String location) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(outputFile));
-        String line = null;
-
-        // 逐行读取输出文件，并查找指定地点的打车人数
-        while ((line = reader.readLine()) != null) {
-            String[] fields = line.split(" ");
-            if (fields[0].equals(location)) {
-                reader.close();
-                return Integer.parseInt(fields[1]);
-            }
-        }
-
-        // 如果没有找到指定地点，则返回0
-        reader.close();
-        return 0;
-    }
-
-    // 测试代码
-    public static void main(String[] args) throws IOException {
-        File inputFile = new File("taxi_data.txt");
-        File outputFile = new File("taxi_data_sorted.txt");
-        externalSort(inputFile, outputFile, 1000000);
-        int count = findCount(outputFile, "快手");
-        System.out.println("快手的打车人数为：" + count);
-    }
-}
 ```
 
 

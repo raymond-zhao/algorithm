@@ -4,15 +4,13 @@ import java.util.*;
 
 /**
  * <a href="https://leetcode.cn/problems/merge-intervals/?envType=study-plan-v2&id=top-100-liked">56. 合并区间</a>
- * -
+ * - 排序
  */
 public class Hot56MergeIntervals {
 
     /**
-     * 1.
+     * 1. 将区间按照左端点排序
      * 2. 遍历排序后的区间
-     * -
-     * -
      */
     public int[][] merge(int[][] intervals) {
         Deque<int[]> data = new ArrayDeque<>();

@@ -6,8 +6,10 @@ import java.util.Map;
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 15:55
- * 题目名称：146. LRU 缓存
- * 题目链接：<a href="https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&id=top-100-liked">146. LRU 缓存</a>
+ * - 链表
+ * - 哈希表
+ * - LRU
  */
 public class Hot146LRUCache {
 

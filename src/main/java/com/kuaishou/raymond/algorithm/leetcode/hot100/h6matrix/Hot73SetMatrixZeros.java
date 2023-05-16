@@ -3,8 +3,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h6matrix;
 import java.util.Arrays;
 
 /**
- * <a href="https://leetcode.cn/problems/set-matrix-zeroes/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 73. 矩阵置零
+ * <a href="https://leetcode.cn/problems/set-matrix-zeroes/?envType=study-plan-v2&id=top-100-liked">73. 矩阵置零</a>
  * - 必须使用原地算法，也就是说不能够使用额外的空间。
  */
 public class Hot73SetMatrixZeros {

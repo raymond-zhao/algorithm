@@ -1,19 +1,19 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
-import com.kuaishou.raymond.algorithm.leetcode.ListNode;
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 12:58
- * 题目名称：148. 排序链表
- * 题目链接：<a href="https://leetcode.cn/problems/sort-list/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/sort-list/?envType=study-plan-v2&id=top-100-liked">148. 排序链表</a>
+ * - 链表
  */
 public class Hot148SortList {
 

@@ -3,8 +3,10 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
- * <a href="https://leetcode.cn/problems/reverse-nodes-in-k-group/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 25. K 个一组翻转链表
+ * <a href="https://leetcode.cn/problems/reverse-nodes-in-k-group/?envType=study-plan-v2&id=top-100-liked">25. K 个一组翻转链表</a>
+ * - 链表
+ * - 反转链表
+ * - 双指针
  */
 public class Hot25SwapNodesInKGroup {
 

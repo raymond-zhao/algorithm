@@ -1,18 +1,25 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
-import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 import java.util.PriorityQueue;
 
-import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 15:30
- * 题目名称：23. 合并 K 个升序链表
- * 题目链接：<a href="https://leetcode.cn/problems/merge-k-sorted-lists/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/merge-k-sorted-lists/?envType=study-plan-v2&id=top-100-liked">23. 合并 K 个升序链表</a>
+ * - 链表
+ * - 分治+递归
+ * - 小根堆
+ * - 迭代
  */
 public class Hot23MergeKSortedLists {
+
+    public static void main(String[] args) {
+
+    }
 
     /**
      * 分治：比较高效的算法
@@ -28,6 +35,7 @@ public class Hot23MergeKSortedLists {
         if (left == right) {
             return lists[left];
         }
+        // 计算中间链表的下标
         int middle = (left + right) >>> 1;
         ListNode l1 = divideAndConquer(lists, left, middle);
         ListNode l2 = divideAndConquer(lists, middle + 1, right);
@@ -68,17 +76,17 @@ public class Hot23MergeKSortedLists {
      * 以第一个链表为基准，每次与链表数组中的下一个链表合并。
      * 即：两两合并
      */
-    public static ListNode mergeKListsIII(ListNode[] lists) {
+    public static ListNode mergeKListsIteratively(ListNode[] lists) {
         if (lists == null || lists.length == 0) {
             return null;
         }
-        ListNode l0 = lists[0];
+        ListNode base = lists[0];
 
         for (int i = 1; i < lists.length; i++) {
-            l0 = mergeTwoLists(l0, lists[i]);
+            base = mergeTwoLists(base, lists[i]);
         }
 
-        return l0;
+        return base;
     }
 
 

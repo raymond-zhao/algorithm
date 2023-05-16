@@ -3,8 +3,10 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
- * <a href="https://leetcode.cn/problems/merge-two-sorted-lists/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 21. 合并两个有序链表
+ * 题目链接：<a href="https://leetcode.cn/problems/merge-two-sorted-lists/?envType=study-plan-v2&id=top-100-liked">21. 合并两个有序链表</a>
+ * - 链表
+ * - 双指针
+ * - 递归
  */
 public class Hot21MergeTwoSortedLists {
 

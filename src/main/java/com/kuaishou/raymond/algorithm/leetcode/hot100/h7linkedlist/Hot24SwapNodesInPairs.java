@@ -3,8 +3,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
- * <a href="https://leetcode.cn/problems/swap-nodes-in-pairs/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 24. 两两交换链表中的节点
+ * <a href="https://leetcode.cn/problems/swap-nodes-in-pairs/?envType=study-plan-v2&id=top-100-liked">24. 两两交换链表中的节点</a>
  */
 public class Hot24SwapNodesInPairs {
 

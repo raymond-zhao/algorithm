@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.interview.bytedance;
+package com.kuaishou.raymond.algorithm.interview.bytedance;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

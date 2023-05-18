@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.interview.didi;
+package com.kuaishou.raymond.algorithm.interview.didi;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

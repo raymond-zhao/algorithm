@@ -5,17 +5,22 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
- * <a href="https://leetcode.cn/problems/palindrome-linked-list/?envType=study-plan-v2&id=top-100-liked">...</a>
- * 234. 回文链表
+ * <a href="https://leetcode.cn/problems/palindrome-linked-list/?envType=study-plan-v2&id=top-100-liked">234. 回文链表</a>
+ * - 链表
+ * - 链表中点
+ * - 翻转链表
  */
 public class Hot234PalindromeList {
 
     public static void main(String[] args) {
         ListNode head = AlgoUtils.buildLinkedList(AlgoUtils.toIntArray("[1,2,2,1]"));
         Hot234PalindromeList hot = new Hot234PalindromeList();
-        hot.isPalindrome(head);
+        System.out.println("hot.isPalindrome(head) = " + hot.isPalindrome(head));
+        ListNode head2 = AlgoUtils.buildLinkedList(AlgoUtils.toIntArray("[1,2,2,1]"));
+        System.out.println("hot.isPalindromeII(head) = " + hot.isPalindromeUsingList(head2));
     }
 
     /**
@@ -31,7 +36,6 @@ public class Hot234PalindromeList {
         ListNode middleNode = getMiddleNode(head);
         // 翻转后半段链表
         ListNode latterNode = reverseList(middleNode);
-        // 断开链表
 
         // 开始比较
         while (head != null && latterNode != null) {
@@ -71,7 +75,7 @@ public class Hot234PalindromeList {
         return slow;
     }
 
-    public boolean isPalindromeII(ListNode head) {
+    public boolean isPalindromeUsingList(ListNode head) {
         if (head == null) {
             return false;
         }
@@ -88,7 +92,7 @@ public class Hot234PalindromeList {
         int left = 0;
         int right = data.size() - 1;
         while (left < right) {
-            if (data.get(left) != data.get(right)) {
+            if (!Objects.equals(data.get(left), data.get(right))) {
                 return false;
             }
             left++;

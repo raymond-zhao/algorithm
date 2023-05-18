@@ -1,19 +1,22 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
-import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.kuaishou.raymond.algorithm.leetcode.ListNode;
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 12:58
  * 题目链接：<a href="https://leetcode.cn/problems/sort-list/?envType=study-plan-v2&id=top-100-liked">148. 排序链表</a>
  * - 链表
+ * - 分治
+ * - 归并排序
+ * - 合并两个有序链表
  */
 public class Hot148SortList {
 
@@ -25,7 +28,7 @@ public class Hot148SortList {
     }
 
     /**
-     * 自行而上地进行迭代合并
+     * 自下而上进行迭代合并
      * 时间复杂度：O(nlogn)
      * 空间复杂度：O(1)
      */
@@ -79,6 +82,7 @@ public class Hot148SortList {
 
     /**
      * 自上而下使用递归进行归并排序
+     * - 分而治之
      * 时间复杂度：O(nlogn)
      * 空间复杂度：O(logn)
      */
@@ -96,7 +100,8 @@ public class Hot148SortList {
             return null;
         }
         if (head.next == tail) {
-            head.next = null; // 为什么要置空？因为要将链表断开为前后两段
+            // 为什么要置空？因为要将链表断开为前后两段
+            head.next = null;
             return head;
         }
         // 2. 寻找链表中点

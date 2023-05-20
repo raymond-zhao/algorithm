@@ -36,6 +36,9 @@ public class Hot25SwapNodesInKGroup {
             // 3. previous.next 为本轮要反转的 K 个结点的头结点，在反转后将会成为本轮 K 个链表的尾结点，
             // 需要保存下来，与下一个 K 组的头结点相连接，即 1. 保存的结点。
             ListNode tailNode = previous.next;
+            if (tailNode == null) {
+                break;
+            }
             // 4. 从本轮 K 个结点中的头结点开始反转
             previous.next = reverse(tailNode);
 

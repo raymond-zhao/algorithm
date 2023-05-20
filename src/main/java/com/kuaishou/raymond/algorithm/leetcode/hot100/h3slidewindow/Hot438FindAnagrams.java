@@ -7,7 +7,9 @@ import java.util.*;
  * created on 2023-04-28 15:01
  * <a href="https://leetcode.cn/problems/find-all-anagrams-in-a-string/">438. 找到字符串中所有字母异位词</a>
  * - 滑动窗口
- * 相似题目：{@link com.kuaishou.raymond.algorithm.leetcode.hot100.h1hash.Hot49GroupAnagrams}
+ * 相似题目：
+ *  - {@link com.kuaishou.raymond.algorithm.leetcode.hot100.h1hash.Hot49GroupAnagrams}
+ *  - {@link com.kuaishou.raymond.algorithm.leetcode.hot100.h4substring.Hot76MinWindowSubstring}
  */
 public class Hot438FindAnagrams {
 

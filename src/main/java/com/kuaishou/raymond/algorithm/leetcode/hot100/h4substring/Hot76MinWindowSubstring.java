@@ -7,6 +7,9 @@ import java.util.Map;
  * 题目：<a href="https://leetcode.cn/problems/minimum-window-substring/?envType=study-plan-v2&id=top-100-liked">76. 最小覆盖子串</a>
  * 题解：<a href="https://leetcode.cn/problems/minimum-window-substring/solution/leetcode-76-zui-xiao-fu-gai-zi-chuan-cja-lmqz/">...</a>
  * - 滑动窗口
+ * - 相似题目：本题与字母异或词不同的是所需字符的类型可以大于 t 串所需的字符
+ *  - {@link com.kuaishou.raymond.algorithm.leetcode.hot100.h3slidewindow.Hot438FindAnagrams}
+ *
  */
 public class Hot76MinWindowSubstring {
 
@@ -20,6 +23,15 @@ public class Hot76MinWindowSubstring {
         minWindowII(s1, t1);
     }
 
+    /**
+     * 哈希表实现
+     * 1. 统计 t 串词频
+     * 2. 遍历 s 串
+     *  2.1 维护右边界：维护 s 词频
+     *  2.2 如果当前字符是 t 串所需的，更新匹配字符个数。
+     *  2.3 维护左边界：如果左边界的字符是 t 不需要的，或者出现的次数已经超过了 t 所需要的，收缩左窗口。
+     *  2.4 检查是否寻找到了长度更小的子串，如果是，则更新最小覆盖子串。
+     */
     public static String minWindow(String s, String t) {
         if (t.length() > s.length()) {
             return "";

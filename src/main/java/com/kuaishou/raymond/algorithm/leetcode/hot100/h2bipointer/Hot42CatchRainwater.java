@@ -3,6 +3,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+
 /**
  * <a href="https://leetcode.cn/problems/trapping-rain-water/?envType=study-plan-v2&id=top-100-liked">42. 接雨水</a>
  * - 双指针
@@ -10,6 +12,11 @@ import java.util.Deque;
  * - 单调栈
  */
 public class Hot42CatchRainwater {
+
+    public static void main(String[] args) {
+        int[] height = AlgoUtils.toIntArray("[0,1,0,2,1,0,1,3,2,1,2,1]");
+        System.out.println("trapMonoStack(height) = " + trapMonoStack(height));
+    }
 
     /**
      * 三次扫描
@@ -59,15 +66,15 @@ public class Hot42CatchRainwater {
 
     /**
      * 使用单调递减栈，存储元素索引，从栈底到栈顶递减。
-     * 思路：计税只能在低洼处形成，当后面的柱子比前面的柱子低时，是接不到雨水的。
-     * 所以使用单调递减栈，储存肯能储水的柱子，当找到一个比前面高的柱子，也就是其后边第一个比它高的柱子时，就计算储水的高度。
+     * 思路：积水只能在低洼处形成，当后面的柱子比前面的柱子低时，是接不到雨水的。
+     * 所以使用单调递减栈，储存可能储水的柱子，当找到一个比前面高的柱子，也就是其后边第一个比它高的柱子时，就计算储水的高度。
      */
-    public int trapIII(int[] height) {
+    public static int trapMonoStack(int[] height) {
         Deque<Integer> stack = new ArrayDeque<>();
         int data = 0;
         for (int i = 0; i < height.length; i++) {
             while (!stack.isEmpty() && height[i] > stack.peek()) {
-                // 如果当前元素比栈顶元素大，则出栈。
+                // 如果当前柱子比之前的某个柱子更高
                 Integer poppedIdx = stack.pop();
                 if (stack.isEmpty()) {
                     break;

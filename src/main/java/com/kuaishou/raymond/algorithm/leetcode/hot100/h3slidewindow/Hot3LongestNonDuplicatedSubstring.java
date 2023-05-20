@@ -9,6 +9,7 @@ import java.util.Objects;
  * created on 2023-04-28 11:34
  * <a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">3. 无重复字符的最长子串</a>
  * - 滑动窗口
+ * - 哈希
  */
 public class Hot3LongestNonDuplicatedSubstring {
 

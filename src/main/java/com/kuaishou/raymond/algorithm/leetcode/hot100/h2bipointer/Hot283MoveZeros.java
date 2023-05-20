@@ -1,14 +1,14 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h2bipointer;
 
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-
 import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.toIntArray;
+
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-27 11:36
  * <a href="https://leetcode.cn/problems/move-zeroes/">283. 移动零</a>
- * - 要求：请注意 ，必须在不复制数组的情况下原地对数组进行操作。
+ * - 要求：必须在不复制数组的情况下原地对数组进行操作
  * - 双指针
  */
 public class Hot283MoveZeros {
@@ -16,29 +16,8 @@ public class Hot283MoveZeros {
     public static void main(String[] args) {
         int[] nums = toIntArray("[1,0,1,12,0]");
         AlgoUtils.printRow(nums);
-//        moveZeroes(nums);
         moveZeroesII(nums);
         AlgoUtils.printRow(nums);
-    }
-
-    /**
-     * 双指针：会改变顺序
-     */
-    public static void moveZerosV2(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            return;
-        }
-        int left = 0;
-        int right = nums.length - 1;
-        while (left < right) {
-            while (left < right && nums[left] != 0) {
-                left++;
-            }
-            while (left < right && nums[right] == 0) {
-                right--;
-            }
-            swap(nums, left, right);
-        }
     }
 
     public static void moveZeroesII(int[] nums) {

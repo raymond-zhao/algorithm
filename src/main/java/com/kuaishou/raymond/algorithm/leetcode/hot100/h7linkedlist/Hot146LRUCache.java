@@ -13,15 +13,15 @@ import java.util.Map;
  */
 public class Hot146LRUCache {
 
-    private Map<Integer, Node> cache;
+    private final Map<Integer, Node> cache;
 
-    private int capacity;
+    private final int capacity;
 
     private int size;
 
-    private Node head;
+    private final Node head;
 
-    private Node tail;
+    private final Node tail;
 
     public Hot146LRUCache(int capacity) {
         this.capacity = capacity;

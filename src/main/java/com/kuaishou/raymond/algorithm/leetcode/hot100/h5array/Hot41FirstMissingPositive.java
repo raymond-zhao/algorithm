@@ -13,14 +13,16 @@ public class Hot41FirstMissingPositive {
 
     public static void main(String[] args) {
         int[] nums = AlgoUtils.toIntArray("[7,8,9,11,12]");
+        int[] nums2 = AlgoUtils.toIntArray("[3,4,-1,1]");
         System.out.println("firstMissingPositive(nums) = " + firstMissingPositive(nums));
+        System.out.println("firstMissingPositive(nums2) = " + firstMissingPositive(nums2));
     }
 
     /**
      * 手动实现哈希
      * 哈希效果：如果 nums[i] \in [1, len]，将 nums[i] 放置到索引为 i+1 的位置。
      * 因为数组不能越界，所以只能针对 nums[i] \in [1, len] 中的数字进行交换。
-     * 如果某个数字不在数组长度范围之内，也就是说 nums[i] < 0 或者 nums[i] > len，则不会交换。
+     * 如果某个数字不在数组长度范围之内，也就是说 nums[i] < 1 或者 nums[i] > len，则不会交换。
      * 数组的下标范围为：[0, len-1]，所以 nums[i] 的取值范围为 [1, len]，
      * 当我们第二次遍历数组的时候，检查 nums[i] - 1 == i 这个条件是否满足，
      * 如果不满足，说明这个「索引 + 1」表示的正数并未出现过，直接返回。

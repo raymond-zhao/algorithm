@@ -15,7 +15,9 @@ public class Hot73SetMatrixZeros {
     public void setZeroes(int[][] matrix) {
         int m = matrix.length;
         int n = matrix[0].length;
+        // 行数组，记录每一行是否出现了 0。
         boolean[] row = new boolean[m];
+        // 列数组，记录每一列是否出现了 0。
         boolean[] col = new boolean[n];
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {

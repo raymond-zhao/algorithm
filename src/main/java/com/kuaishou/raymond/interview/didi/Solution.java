@@ -3,7 +3,6 @@ package com.kuaishou.raymond.interview.didi;
 /**
  * Author: raymond
  * CreateTime: 2023/5/18 19:36
- * Select e from a where b = 1 and c > 2 order by d
  * 题目：k个一组，翻转链表； 比如1-2-3-4-5，k=2，翻转后未2-1-4-3-5
  */
 public class Solution {

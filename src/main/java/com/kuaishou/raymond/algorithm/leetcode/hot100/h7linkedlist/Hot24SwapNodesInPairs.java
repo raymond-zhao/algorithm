@@ -4,6 +4,10 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * <a href="https://leetcode.cn/problems/swap-nodes-in-pairs/?envType=study-plan-v2&id=top-100-liked">24. 两两交换链表中的节点</a>
+ * - 链表
+ * - 相似题目
+ *  - {@link Hot206ReverseList}
+ *  - {@link Hot25SwapNodesInKGroup}
  */
 public class Hot24SwapNodesInPairs {
 

@@ -46,4 +46,22 @@ public class Hot347TopKFrequentElements {
         return data;
     }
 
+    public int[] topKFrequentII(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+
+        List<Integer> list = new ArrayList<>(map.keySet());
+        // 使用 map 的 value 对 list 排序
+        list.sort((a, b) -> map.get(b) - map.get(a));
+
+        int[] data = new int[k];
+
+        for (int idx = 0; idx < k; idx++) {
+            data[idx] = list.get(idx);
+        }
+        return data;
+    }
+
 }

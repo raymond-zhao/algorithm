@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.interview.boss;
+package com.kuaishou.raymond.algorithm.interview.boss;
 
 import java.util.NoSuchElementException;
 

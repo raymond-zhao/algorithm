@@ -1,4 +1,4 @@
-package com.kuaishou.raymond.interview.ali.amap;
+package com.kuaishou.raymond.algorithm.interview.amap;
 
 /**
  * Author: raymond

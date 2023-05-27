@@ -1,25 +1,22 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
-import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
+import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 import java.util.PriorityQueue;
 
-import com.kuaishou.raymond.algorithm.leetcode.ListNode;
+import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 15:30
  * 题目链接：<a href="https://leetcode.cn/problems/merge-k-sorted-lists/?envType=study-plan-v2&id=top-100-liked">23. 合并 K 个升序链表</a>
+ * Hard
  * - 链表
  * - 分治+递归
  * - 小根堆
  * - 迭代
  */
 public class Hot23MergeKSortedLists {
-
-    public static void main(String[] args) {
-
-    }
 
     /**
      * 分治：比较高效的算法

@@ -4,6 +4,7 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * <a href="https://leetcode.cn/problems/intersection-of-two-linked-lists/?envType=study-plan-v2&id=top-100-liked">160. 相交链表</a>
+ * - Easy
  * - 链表
  * - 相交链表
  */

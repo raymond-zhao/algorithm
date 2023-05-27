@@ -4,6 +4,7 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * 题目链接：<a href="https://leetcode.cn/problems/add-two-numbers/?envType=study-plan-v2&id=top-100-liked">2. 两数相加</a>
+ * - Medium
  * - 链表
  * - 链表逆序存储刚好满足了数字相加时从个位相加这个规律
  */

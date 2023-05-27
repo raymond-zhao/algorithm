@@ -9,6 +9,7 @@ import java.util.Objects;
 
 /**
  * <a href="https://leetcode.cn/problems/palindrome-linked-list/?envType=study-plan-v2&id=top-100-liked">234. 回文链表</a>
+ * - Easy
  * - 链表
  * - 链表中点
  * - 翻转链表

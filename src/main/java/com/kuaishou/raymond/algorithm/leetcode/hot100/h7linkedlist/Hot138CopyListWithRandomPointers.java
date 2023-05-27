@@ -1,12 +1,13 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
+import com.kuaishou.raymond.algorithm.leetcode.Node;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.kuaishou.raymond.algorithm.leetcode.Node;
-
 /**
  * <a href="https://leetcode.cn/problems/copy-list-with-random-pointer/?envType=study-plan-v2&id=top-100-liked">138. 复制带随机指针的链表</a>
+ * - Medium
  * - 链表
  * - 哈希表
  */

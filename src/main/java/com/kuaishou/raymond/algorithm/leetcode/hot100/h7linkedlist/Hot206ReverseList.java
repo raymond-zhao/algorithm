@@ -4,6 +4,7 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * <a href="https://leetcode.cn/problems/reverse-linked-list/?envType=study-plan-v2&id=top-100-liked">206. 反转链表</a>
+ * - Easy
  * - 链表
  * - 反转链表
  * - 双指针

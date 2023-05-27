@@ -4,6 +4,7 @@ import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 
 /**
  * <a href="https://leetcode.cn/problems/reverse-nodes-in-k-group/?envType=study-plan-v2&id=top-100-liked">25. K 个一组翻转链表</a>
+ * - Hard
  * - 链表
  * - 反转链表
  * - 双指针

@@ -5,6 +5,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * 题目链接：<a href="https://leetcode.cn/problems/remove-nth-node-from-end-of-list/?envType=study-plan-v2&id=top-100-liked">19. 删除链表的倒数第 N 个结点</a>
+ * - Medium
  * - 链表
  * - 快慢指针
  */

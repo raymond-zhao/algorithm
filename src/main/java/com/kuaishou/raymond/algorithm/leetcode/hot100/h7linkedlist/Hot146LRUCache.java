@@ -7,6 +7,8 @@ import java.util.Map;
  * Author: raymond
  * CreateTime: 2023/4/30 15:55
  * 题目链接：<a href="https://leetcode.cn/problems/lru-cache/?envType=study-plan-v2&id=top-100-liked">146. LRU 缓存</a>
+ * 相似题目：<a href="https://leetcode.cn/problems/lfu-cache/">460. LFU 缓存</a>
+ * - Medium
  * - 链表
  * - 哈希表
  * - LRU

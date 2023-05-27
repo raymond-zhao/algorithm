@@ -13,9 +13,11 @@ import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21M
  * Author: raymond
  * CreateTime: 2023/4/30 12:58
  * 题目链接：<a href="https://leetcode.cn/problems/sort-list/?envType=study-plan-v2&id=top-100-liked">148. 排序链表</a>
+ * - Medium
  * - 链表
  * - 分治
  * - 归并排序
+ * - 寻找链表中点
  * - 合并两个有序链表
  */
 public class Hot148SortList {
@@ -86,7 +88,7 @@ public class Hot148SortList {
      * 时间复杂度：O(nlogn)
      * 空间复杂度：O(logn)
      */
-    public static ListNode sortListII(ListNode head) {
+    public static ListNode sortListMergeSort(ListNode head) {
         return sortList(head, null);
     }
 
@@ -128,9 +130,9 @@ public class Hot148SortList {
     /**
      * 时间复杂度：O(nlogn)
      * 空间复杂度：O(n)
-     * 使用列表存储所有值，然后再根据值新建链表。。
+     * 使用列表存储所有值，然后再根据值新建链表。
      */
-    public ListNode sortListIII(ListNode head) {
+    public ListNode sortListBrutalForce(ListNode head) {
         if (head == null) {
             return null;
         }

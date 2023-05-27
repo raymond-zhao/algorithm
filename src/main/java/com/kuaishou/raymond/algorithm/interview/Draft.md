@@ -1,5 +1,23 @@
 boss一面
-介绍项目。钱包热点数据，查询账户qps（db硬抗）。事务消息，broker挂了怎么办。redis锁，事务没执行完锁过期了怎么办，执行事务时full GC了怎么办。rpc超时有哪些原因。更新缓存怎么保证一致性。mysql主键索引非主键索引区别，覆盖索引，索引下推，select * / select 1 / select id 的区别，哪个效率高。索引失效的情况。为什么推荐用自增id，自增id事务回滚了，id会减少吗。where id in (1,2,3,4,5) 和 where id > 1 and id < 5的区别
+1. 介绍项目
+2. 钱包热点数据
+3. 查询账户qps（db硬抗）
+4. 事务消息
+5. broker挂了怎么办
+6. redis锁
+7. 事务没执行完锁过期了怎么办
+8. 执行事务时full GC了怎么办
+9. rpc超时有哪些原因
+10. 更新缓存怎么保证一致性
+11. mysql主键索引非主键索引区别
+12. 覆盖索引
+13. 索引下推
+14. select count(*), select count(1) / select count(id) 的区别，哪个效率高？
+15. 索引失效的情况
+16. 为什么推荐用自增id
+17. 自增id事务回滚了，id会减少吗。
+18. where id in (1,2,3,4,5) 和 where id > 1 and id < 5的区别
+
 滴滴网约车一面
 介绍项目，redis怎么用的，场景题：通过redis存一个配置信息，每日提现金额上限，现在有一亿qps提现请求，怎么解决（本地缓存），更新后怎么刷新本地缓存。本地缓存的工具类有哪些。分布式事务原理，2PC和3PC区别，要你设计一个3PC你要考虑什么问题。慢sql排查过程，表（a,b,c,d），索引（c,a,d），where c=1 and a > 1 and d = 1，where c=1 and a > 1 and d = 1 and d = 2，查询优化器的原理。算法：手写LRU
 滴滴网约车二面
@@ -7,10 +25,9 @@ boss一面
 字节二面
 项目。spring用到的设计模式，IOC，AOP，mysql索引要注意哪些问题。你在项目中做过哪些优化。算法：中文转数字
 pdd二面
-算法 
-剑指OfferII036后缀表达式，力扣150逆波兰表达式 https://leetcode.cn/problems/evaluate-reverse-polish-notation/
-454两数相加，
+算法：剑指OfferII036后缀表达式，力扣150逆波兰表达式 https://leetcode.cn/problems/evaluate-reverse-polish-notation/, 454两数相加，
 项目，mysql主键索引非主键索引区别，varchar和TEXT区别，最左前缀匹配原则，redolog、undolog作用，redis有没有过耗时长的情况，redis混合持久化，pipeline
+
 飞猪二面
 讲讲项目中遇到的挑战，介绍项目，业务流程，广告投放流程，
 华为机试

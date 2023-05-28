@@ -3,10 +3,6 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 /**
@@ -19,14 +15,57 @@ import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21M
  * - 归并排序
  * - 寻找链表中点
  * - 合并两个有序链表
+ * - 获取结点数字再重建
  */
 public class Hot148SortList {
 
     public static void main(String[] args) {
         ListNode headB = AlgoUtils.toLinkedList("[-3,1,4,5,5,8,11,14,15,19]");
         ListNode head = AlgoUtils.toLinkedList("[4,2,1,3]");
-        ListNode newHead = sortList(head);
+        ListNode newHead = sortListIterative(head);
         AlgoUtils.printLinkedList(newHead);
+        ListNode listNode = sortListRecursive(headB);
+        AlgoUtils.printLinkedList(listNode);
+    }
+
+    /**
+     * 自上而下使用递归进行归并排序
+     * 时间复杂度：O(nlogn)
+     * 空间复杂度：O(logn)
+     */
+    public static ListNode sortListRecursive(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode middleNode = getMiddleNode(head);
+        // slow 为中间节点
+        ListNode middleNext = middleNode.next;
+        // 将链表断开为前后两段
+        middleNode.next = null;
+
+        // 继续切割左半段链表
+        ListNode left = sortListRecursive(head);
+        // 继续切割右半段链表
+        ListNode right = sortListRecursive(middleNext);
+
+        // 合并两个有序链表
+        return mergeTwoLists(left, right);
+    }
+
+    private static ListNode getMiddleNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode slow = head;
+        ListNode fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow;
     }
 
     /**
@@ -34,7 +73,7 @@ public class Hot148SortList {
      * 时间复杂度：O(nlogn)
      * 空间复杂度：O(1)
      */
-    public static ListNode sortList(ListNode head) {
+    public static ListNode sortListIterative(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -81,77 +120,4 @@ public class Hot148SortList {
         }
         return dummyHead.next;
     }
-
-    /**
-     * 自上而下使用递归进行归并排序
-     * - 分而治之
-     * 时间复杂度：O(nlogn)
-     * 空间复杂度：O(logn)
-     */
-    public static ListNode sortListMergeSort(ListNode head) {
-        return sortList(head, null);
-    }
-
-    /**
-     * 归并排序
-     * 1. 递归终止条件
-     */
-    private static ListNode sortList(ListNode head, ListNode tail) {
-        // 1. 递归终止条件: 链表之间没有结点，或者只有一个结点。
-        if (head == null) {
-            return null;
-        }
-        if (head.next == tail) {
-            // 为什么要置空？因为要将链表断开为前后两段
-            head.next = null;
-            return head;
-        }
-        // 2. 寻找链表中点
-        ListNode middleNode = getMiddleNode(head, tail);
-
-        // 3. 递归前后两段链表
-        ListNode l1 = sortList(head, middleNode);
-        ListNode l2 = sortList(middleNode, tail);
-
-        // 4. 合并两个有序链表
-        return mergeTwoLists(l1, l2);
-    }
-
-    public static ListNode getMiddleNode(ListNode head, ListNode tail) {
-        ListNode slow = head;
-        ListNode fast = head;
-        while (fast != tail && fast.next != tail) {
-            slow = slow.next;
-            fast = fast.next.next;
-        }
-        return slow;
-    }
-
-    /**
-     * 时间复杂度：O(nlogn)
-     * 空间复杂度：O(n)
-     * 使用列表存储所有值，然后再根据值新建链表。
-     */
-    public ListNode sortListBrutalForce(ListNode head) {
-        if (head == null) {
-            return null;
-        }
-        List<Integer> data = new ArrayList<>();
-        ListNode node = head;
-        while (node != null) {
-            data.add(node.val);
-            node = node.next;
-        }
-
-        Collections.sort(data);
-
-        ListNode dummyHead = new ListNode(-1);
-        node = dummyHead;
-        for (int num : data) {
-            node.next = new ListNode(num);
-            node = node.next;
-        }
-        return dummyHead.next;
-    }
-
 }

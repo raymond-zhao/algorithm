@@ -1,28 +1,32 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 21:26
- * 题目名称：98. 验证二叉搜索树
- * 题目链接：<a href="https://leetcode.cn/problems/validate-binary-search-tree/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/validate-binary-search-tree/?envType=study-plan-v2&id=top-100-liked">98. 验证二叉搜索树</a>
  */
 public class Hot98ValidBinarySearchTree {
 
+    public static void main(String[] args) {
+        System.out.println("isValidBST(TreeNode.defaultSearchTree()) = " + isValidBST(TreeNode.defaultSearchTree()));
+    }
+
     /**
      * 核心思想：比较根节点与左右子节点的值的大小关系
+     * 根节点的值大于左子树且小于右子树
      */
-    public boolean isValidBST(TreeNode root) {
+    public static boolean isValidBST(TreeNode root) {
         return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
     }
 
-    private boolean isValidBST(TreeNode root, long lower, long upper) {
+    private static boolean isValidBST(TreeNode root, long lower, long upper) {
         if (root == null) {
             // 遍历到叶子节点，返回 true。
             return true;

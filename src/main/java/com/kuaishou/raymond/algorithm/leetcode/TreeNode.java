@@ -21,4 +21,22 @@ public class TreeNode {
         this.left = left;
         this.right = right;
     }
+
+    /**
+     *         3
+     *        / \
+     *       1   4
+     *        \
+     *         2
+     */
+    public static TreeNode defaultSearchTree() {
+        TreeNode root = new TreeNode(3);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(4);
+        TreeNode node3 = new TreeNode(2);
+        root.left = node1;
+        root.right = node2;
+        node1.right = node3;
+        return root;
+    }
 }

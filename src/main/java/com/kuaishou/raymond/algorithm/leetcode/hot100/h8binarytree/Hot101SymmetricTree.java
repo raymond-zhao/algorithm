@@ -1,15 +1,15 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 18:26
- * 题目名称：101. 对称二叉树
- * 题目链接：<a href="https://leetcode.cn/problems/symmetric-tree/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/symmetric-tree/?envType=study-plan-v2&id=top-100-liked">101. 对称二叉树</a>
+ * - 递归
  */
 public class Hot101SymmetricTree {
 
@@ -32,6 +32,12 @@ public class Hot101SymmetricTree {
         return left.val == right.val && isSymmetric(left.right, right.left) && isSymmetric(left.left, right.right);
     }
 
+    /**
+     * 队列
+     * @param left 左子树
+     * @param right 右子树
+     * @return 左右子树是否对称
+     */
     public boolean isSymmetricII(TreeNode left, TreeNode right) {
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(left);

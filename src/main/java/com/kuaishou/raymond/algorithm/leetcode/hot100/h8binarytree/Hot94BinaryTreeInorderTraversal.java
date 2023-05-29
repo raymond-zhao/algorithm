@@ -1,17 +1,18 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 16:52
- * 题目名称：94. 二叉树的中序遍历
- * 题目链接：<a href="https://leetcode.cn/problems/binary-tree-inorder-traversal/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/binary-tree-inorder-traversal/?envType=study-plan-v2&id=top-100-liked">94. 二叉树的中序遍历</a>
+ * - Medium
+ * - 栈
  */
 public class Hot94BinaryTreeInorderTraversal {
 

@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist;
 
+import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
+
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-
-import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21MergeTwoSortedLists.mergeTwoLists;
 
 /**
  * Author: raymond
@@ -20,11 +20,9 @@ import static com.kuaishou.raymond.algorithm.leetcode.hot100.h7linkedlist.Hot21M
 public class Hot148SortList {
 
     public static void main(String[] args) {
-        ListNode headB = AlgoUtils.toLinkedList("[-3,1,4,5,5,8,11,14,15,19]");
-        ListNode head = AlgoUtils.toLinkedList("[4,2,1,3]");
-        ListNode newHead = sortListIterative(head);
-        AlgoUtils.printLinkedList(newHead);
-        ListNode listNode = sortListRecursive(headB);
+        ListNode h = AlgoUtils.toLinkedList("[-3,11,14,15,19,1,4,5,5,8]");
+        // AlgoUtils.printLinkedList(sortListIterative(h));
+        ListNode listNode = sortListRecursive(h);
         AlgoUtils.printLinkedList(listNode);
     }
 
@@ -39,7 +37,6 @@ public class Hot148SortList {
         }
 
         ListNode middleNode = getMiddleNode(head);
-        // slow 为中间节点
         ListNode middleNext = middleNode.next;
         // 将链表断开为前后两段
         middleNode.next = null;
@@ -84,6 +81,7 @@ public class Hot148SortList {
             length++;
             node = node.next;
         }
+
         // 声明伪头结点
         ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;

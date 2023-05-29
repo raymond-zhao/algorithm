@@ -38,7 +38,7 @@ public class Hot21MergeTwoSortedLists {
     /**
      * 递归
      */
-    private static ListNode mergeTwo(ListNode l1, ListNode l2) {
+    private static ListNode mergeTwoRecursive(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
         }
@@ -46,10 +46,10 @@ public class Hot21MergeTwoSortedLists {
             return l1;
         }
         if (l1.val < l2.val) {
-            l1.next = mergeTwo(l1.next, l2);
+            l1.next = mergeTwoRecursive(l1.next, l2);
             return l1;
         }
-        l2.next = mergeTwo(l1, l2.next);
+        l2.next = mergeTwoRecursive(l1, l2.next);
         return l2;
     }
 }

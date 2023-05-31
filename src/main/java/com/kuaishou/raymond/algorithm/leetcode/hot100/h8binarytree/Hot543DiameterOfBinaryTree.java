@@ -5,8 +5,7 @@ import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 /**
  * Author: raymond
  * CreateTime: 2023/4/30 19:26
- * 题目名称：543. 二叉树的直径
- * 题目链接：<a href="https://leetcode.cn/problems/diameter-of-binary-tree/?envType=study-plan-v2&id=top-100-liked">...</a>
+ * 题目链接：<a href="https://leetcode.cn/problems/diameter-of-binary-tree/?envType=study-plan-v2&id=top-100-liked">543. 二叉树的直径</a>
  */
 public class Hot543DiameterOfBinaryTree {
 

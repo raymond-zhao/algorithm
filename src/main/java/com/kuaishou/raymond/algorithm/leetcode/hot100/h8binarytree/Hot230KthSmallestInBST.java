@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
@@ -11,7 +11,7 @@ import java.util.List;
  * 题目名称：230. 二叉搜索树中第K小的元素
  * 题目链接：<a href="https://leetcode.cn/problems/kth-smallest-element-in-a-bst/?envType=study-plan-v2&id=top-100-liked">230. 二叉搜索树中第K小的元素</a>
  * - 中序遍历，然后返回结果集中第 k 个元素
- * - 中序遍历，当结果集中的数据个数达到 k 时，提前返回，退出后续遍历。
+ * - 中序遍历，当结果集中的数据个数达到 k 时，提前返回，退出后序遍历。
  * 相似问题：<a href="https://leetcode.cn/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">剑指 Offer 54. 二叉搜索树的第k大节点</a>
  * - 中序遍历倒序（右根左）与 k-- 提前返回
  */

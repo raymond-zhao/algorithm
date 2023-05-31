@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
-
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
@@ -18,7 +18,7 @@ public class Hot101SymmetricTree {
     }
 
     /**
-     * 递归
+     * 递归判断两棵树是否对称
      */
     public boolean isSymmetric(TreeNode left, TreeNode right) {
         if (left == null && right == null) {
@@ -30,6 +30,19 @@ public class Hot101SymmetricTree {
             return false;
         }
         return left.val == right.val && isSymmetric(left.right, right.left) && isSymmetric(left.left, right.right);
+    }
+
+    /**
+     * 递归判断两个树是否具有完全相同的结构
+     */
+    public static boolean isSameStructure(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+            return true;
+        }
+        if (left == null || right == null) {
+            return false;
+        }
+        return left.val == right.val && isSameStructure(left.left, right.left) && isSameStructure(left.right, right.right);
     }
 
     /**

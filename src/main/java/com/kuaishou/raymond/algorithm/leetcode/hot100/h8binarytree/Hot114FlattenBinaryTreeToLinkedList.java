@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
@@ -30,10 +30,11 @@ public class Hot114FlattenBinaryTreeToLinkedList {
             // 寻找左子节点的最右侧节点
             if (currentNode.left != null) {
                 // 先保存当前节点的左子节点
-                TreeNode next = currentNode.left;
+                TreeNode left = currentNode.left;
                 // 从当前节点的左子节点开始寻找其前驱节点（左子树中最右节点）
-                TreeNode predecessor = next;
+                TreeNode predecessor = left;
                 while (predecessor.right != null) {
+                    // 寻找左子树中的最优节点
                     predecessor = predecessor.right;
                 }
                 // 此时已经找到前驱节点，将前驱节点的右子节点指向当前节点的右子节点。
@@ -41,7 +42,7 @@ public class Hot114FlattenBinaryTreeToLinkedList {
                 // 置空左子节点的指针
                 currentNode.left = null;
                 // 移动到下一个需要处理的节点
-                currentNode.right = next;
+                currentNode.right = left;
             }
             // 处理右子节点
             currentNode = currentNode.right;
@@ -55,7 +56,7 @@ public class Hot114FlattenBinaryTreeToLinkedList {
      * 空间复杂度：O(n)
      */
     public void flattenII(TreeNode root) {
-        List<TreeNode> list = new ArrayList<TreeNode>();
+        List<TreeNode> list = new ArrayList<>();
         preorderTraversal(root, list);
         for (int i = 1; i < list.size(); i++) {
             TreeNode prev = list.get(i - 1);

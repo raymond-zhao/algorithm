@@ -34,7 +34,8 @@ public class Hot124MaxPathSum {
         int left = Math.max(0, maxSum(root.left));
         int right = Math.max(0, maxSum(root.right));
 
-        // 节点的最大路径和取决于该节点的值与该节点的左右子节点的最大贡献值之和
+        // 此方法的作用是返回每个节点能获取到的最大值，这里只是在返回之前先计算一下整体的最大值。
+        // 整体的最大值 = root + left + right
         maxPathSum = Math.max(maxPathSum, left + right + root.val);
 
         // a + b + a 的父节点 || a + c + a 的父节点

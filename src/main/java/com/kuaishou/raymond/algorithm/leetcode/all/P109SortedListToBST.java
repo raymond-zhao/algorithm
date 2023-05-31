@@ -2,6 +2,7 @@ package com.kuaishou.raymond.algorithm.leetcode.all;
 
 import com.kuaishou.raymond.algorithm.leetcode.ListNode;
 import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -9,20 +10,24 @@ import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
  */
 public class P109SortedListToBST {
 
+    public static void main(String[] args) {
+        ListNode list = AlgoUtils.toLinkedList("[-10,-3,0,5,9]");
+        sortedListToBST(list);
+    }
+
     /**
      * 有序链表转二叉搜索树
      */
-    public TreeNode sortedListToBST(ListNode head) {
+    public static TreeNode sortedListToBST(ListNode head) {
         return buildBST(head, null);
     }
 
-    private TreeNode buildBST(ListNode left, ListNode right) {
+    private static TreeNode buildBST(ListNode left, ListNode right) {
         if (left == right) {
             return null;
         }
         ListNode middleNode = getMiddleNode(left, right);
         TreeNode root = new TreeNode(middleNode.val);
-        // 区间左开右闭：[left, right)
         root.left = buildBST(left, middleNode);
         root.right = buildBST(middleNode.next, right);
         return root;
@@ -34,10 +39,10 @@ public class P109SortedListToBST {
      * @param right 链表尾结点
      * @return 链表中间结点
      */
-    private ListNode getMiddleNode(ListNode left, ListNode right) {
+    private static ListNode getMiddleNode(ListNode left, ListNode right) {
         ListNode slow = left;
         ListNode fast = left.next;
-        while (fast != null && fast.next != right) {
+        while (fast != right && fast.next != right) {
             slow = slow.next;
             fast = fast.next.next;
         }

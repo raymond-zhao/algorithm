@@ -7,8 +7,7 @@ import java.util.Queue;
  * Author: raymond
  * CreateTime: 2023/5/1 17:36
  * 题目：<a href="https://leetcode.cn/problems/rotting-oranges/?envType=study-plan-v2&id=top-100-liked">994. 腐烂的橘子</a>
- * 解析：<a href="https://leetcode.cn/problems/rotting-oranges/solution/li-qing-si-lu-wei-shi-yao-yong-bfsyi-ji-ru-he-xie-/">
- * 理清思路：为什么用 BFS，以及如何写 BFS 代码（Java/Python）</a>
+ * 解析：<a href="https://leetcode.cn/problems/rotting-oranges/solution/li-qing-si-lu-wei-shi-yao-yong-bfsyi-ji-ru-he-xie-/">理清思路：为什么用 BFS，以及如何写 BFS 代码（Java/Python）</a>
  */
 public class Hot994RottingOranges {
 

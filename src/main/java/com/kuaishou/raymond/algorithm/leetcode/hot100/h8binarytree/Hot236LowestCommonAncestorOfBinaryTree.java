@@ -25,4 +25,20 @@ public class Hot236LowestCommonAncestorOfBinaryTree {
         return root;
     }
 
+    /**
+     * 在二叉搜索树中，搜索 p，q 的最近公共祖先。
+     */
+    public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || p == null || q == null) {
+            return null;
+        }
+        if (root.val < p.val && root.val < q.val) {
+            return lowestCommonAncestorBST(root.right, p, q);
+        }
+        if (root.val > p.val && root.val > q.val) {
+            return lowestCommonAncestorBST(root.left, p, q);
+        }
+        return root;
+    }
+
 }

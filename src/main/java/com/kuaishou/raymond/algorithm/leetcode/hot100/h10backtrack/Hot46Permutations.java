@@ -70,16 +70,17 @@ public class Hot46Permutations {
             if (idx > 0 && nums[idx] == nums[idx - 1] && !used[idx - 1]) {
                 continue;
             }
-            if (!used[idx]) {
-                // 做出选择
-                permutation.addLast(nums[idx]);
-                used[idx] = true;
-                // 回溯
-                backtrackUnique(nums);
-                // 撤销选择
-                permutation.removeLast();
-                used[idx] = false;
+            if (used[idx]) {
+                continue;
             }
+            // 做出选择
+            permutation.addLast(nums[idx]);
+            used[idx] = true;
+            // 回溯
+            backtrackUnique(nums);
+            // 撤销选择
+            permutation.removeLast();
+            used[idx] = false;
         }
     }
 }

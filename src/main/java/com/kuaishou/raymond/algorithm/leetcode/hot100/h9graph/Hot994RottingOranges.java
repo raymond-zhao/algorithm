@@ -8,6 +8,7 @@ import java.util.Queue;
  * CreateTime: 2023/5/1 17:36
  * 题目：<a href="https://leetcode.cn/problems/rotting-oranges/?envType=study-plan-v2&id=top-100-liked">994. 腐烂的橘子</a>
  * 解析：<a href="https://leetcode.cn/problems/rotting-oranges/solution/li-qing-si-lu-wei-shi-yao-yong-bfsyi-ji-ru-he-xie-/">理清思路：为什么用 BFS，以及如何写 BFS 代码（Java/Python）</a>
+ * - 广度优先搜索
  */
 public class Hot994RottingOranges {
 
@@ -27,9 +28,13 @@ public class Hot994RottingOranges {
     public int orangesRotting(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
+
+        // 队列：记录腐烂的橘子的位置
         Queue<int[]> queue = new ArrayDeque<>();
 
         int freshOranges = 0;
+
+        //
         for (int row = 0; row < m; row++) {
             for (int col = 0; col < n; col++) {
                 if (grid[row][col] == FRESH_ORANGE) {

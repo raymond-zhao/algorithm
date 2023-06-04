@@ -16,7 +16,6 @@ public class Hot51NQueens {
 
     public List<List<String>> solveNQueens(int n) {
         boards = new ArrayList<>();
-        // 1. 生成棋盘
         char[][] board = new char[n][n];
         for (char[] row : board) {
             Arrays.fill(row, '.');

@@ -1,11 +1,11 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h10backtrack;
 
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * Author: raymond
@@ -39,7 +39,7 @@ public class Hot39CombinationSum {
     }
 
     private void backtrack(int[] candidates, int targetSum, int currentSum, int startIdx) {
-        if (targetSum == currentSum) {
+        if (currentSum == targetSum) {
             combinations.add(new ArrayList<>(combination));
             return;
         }

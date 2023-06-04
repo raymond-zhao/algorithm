@@ -5,6 +5,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h9graph;
  * CreateTime: 2023/5/1 11:29
  * 题目：<a href="https://leetcode.cn/problems/number-of-islands/?envType=study-plan-v2&id=top-100-liked">200. 岛屿数量</a>
  * 解答：<a href="https://leetcode.cn/problems/number-of-islands/solution/dao-yu-lei-wen-ti-de-tong-yong-jie-fa-dfs-bian-li-/">岛屿类问题的通用解法、DFS 遍历框架</a>
+ * - 深度优先搜索
  */
 public class Hot200NumberOfIslands {
 
@@ -22,10 +23,10 @@ public class Hot200NumberOfIslands {
     }
 
     private void dfs(char[][] grid, int row, int col) {
-        if (Boolean.FALSE.equals(inGrid(grid, row, col))) {
+        if (outBoundries(grid, row, col)) {
             return;
         }
-        if (isNotVisitedLand(grid, row, col)) {
+        if (!isIsland(grid, row, col)) {
             return;
         }
         // 将访问过的陆地置为 2
@@ -37,11 +38,11 @@ public class Hot200NumberOfIslands {
         dfs(grid, row, col + 1);
     }
 
-    private boolean isNotVisitedLand(char[][] grid, int row, int col) {
-        return grid[row][col] != '1';
+    private boolean isIsland(char[][] grid, int row, int col) {
+        return grid[row][col] == '1';
     }
 
-    private Boolean inGrid(char[][] grid, int row, int col) {
-        return row >= 0 && row <= grid.length - 1 && col >= 0 && col <= grid[0].length - 1;
+    private boolean outBoundries(char[][] grid, int row, int col) {
+        return row < 0 || col >= grid[0].length || row >= grid.length || col < 0;
     }
 }

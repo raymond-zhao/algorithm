@@ -5,6 +5,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h11binarysearch;
  * CreateTime: 2023/5/2 13:14
  * 题目：<a href="https://leetcode.cn/problems/median-of-two-sorted-arrays/?envType=study-plan-v2&id=top-100-liked">4. 寻找两个正序数组的中位数</a>
  * 要求：时间复杂度O(log(m+n))
+ * - Hard
  */
 public class Hot4MedianOfTwoSortedArray {
 
@@ -33,6 +34,11 @@ public class Hot4MedianOfTwoSortedArray {
         return (findKthSmallestElement(nums1, nums2, totalLength / 2) + findKthSmallestElement(nums1, nums2, totalLength / 2 + 1)) / 2.0;
     }
 
+    /**
+     * 寻找两个有序数组中第 K 小的数字
+     * @param nums1 有序数组
+     * @param nums2 有序数组
+     */
     private double findKthSmallestElement(int[] nums1, int[] nums2, int k) {
         // nums1 与 nums2 的起始搜索位置
         int index1 = 0;

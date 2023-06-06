@@ -4,6 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Author: raymond
@@ -29,7 +30,7 @@ public class Hot20ValidParentheses {
             char ch = s.charAt(i);
             if (MAP.containsKey(ch)) {
                 // 如果是右括号
-                if (stack.isEmpty() || stack.peek() != MAP.get(ch)) {
+                if (stack.isEmpty() || !Objects.equals(stack.peek(), MAP.get(ch))) {
                     return false;
                 }
                 stack.pop();

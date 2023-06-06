@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h11binarysearch;
  * Author: raymond
  * CreateTime: 2023/5/2 10:52
  * 题目：<a href="https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/?envType=study-plan-v2&id=top-100-liked">34. 在排序数组中查找元素的第一个和最后一个位置</a>
+ * - Medium
  */
 public class Hot34FindFirstAndLastPosition {
 

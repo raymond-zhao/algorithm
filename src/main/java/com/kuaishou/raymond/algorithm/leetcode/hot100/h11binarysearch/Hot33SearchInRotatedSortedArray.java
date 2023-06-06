@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h11binarysearch;
  * Author: raymond
  * CreateTime: 2023/5/2 12:02
  * 题目：<a href="https://leetcode.cn/problems/search-in-rotated-sorted-array/?envType=study-plan-v2&id=top-100-liked">33. 搜索旋转排序数组</a>
+ * - Medium
  */
 public class Hot33SearchInRotatedSortedArray {
 
@@ -30,7 +31,7 @@ public class Hot33SearchInRotatedSortedArray {
         while (left <= right) {
             int middle = (left + right) >>> 1;
             if (nums[middle] == target) {
-                // 如果直接找到，皆大欢喜，提前返回。
+                // 如果直接找到，提前返回。
                 return middle;
             }
             // 如果 nums[middle] != target，也就是说 middle 这个点一定没用，则开始确定有序区间的位置。

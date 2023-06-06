@@ -19,7 +19,7 @@ public class Hot215KthLargestElement {
         int right = nums.length - 1;
         int target = nums.length - k;
         while (true) {
-            int middle = partition(nums, left, right);
+            int middle = lomutoPartition(nums, left, right);
             if (middle == target) {
                 return nums[middle];
             } else if (middle < target) {
@@ -28,6 +28,22 @@ public class Hot215KthLargestElement {
                 right = middle - 1;
             }
         }
+    }
+
+    /**
+     * 采用 Lomuto 分区
+     */
+    private int lomutoPartition(int[] nums, int left, int right) {
+        int idx = left - 1;
+        int pivot = nums[right];
+        for (int i = left; i < right; i++) {
+            if (nums[i] <= pivot) {
+                ++idx;
+                swap(nums, idx, i);
+            }
+        }
+        swap(nums, idx + 1, right);
+        return idx + 1;
     }
 
     private int hoarePartition(int[] nums, int left, int right) {
@@ -45,22 +61,6 @@ public class Hot215KthLargestElement {
         }
         swap(nums, l, right);
         return l;
-    }
-
-    /**
-     * 采用 Lomuto 分区
-     */
-    private int partition(int[] nums, int left, int right) {
-        int idx = left - 1;
-        int pivot = nums[right];
-        for (int i = left; i < right; i++) {
-            if (nums[i] <= pivot) {
-                ++idx;
-                swap(nums, idx, i);
-            }
-        }
-        swap(nums, idx + 1, right);
-        return idx + 1;
     }
 
     private void swap(int[] nums, int left, int right) {

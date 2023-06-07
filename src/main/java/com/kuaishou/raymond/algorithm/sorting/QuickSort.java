@@ -1,9 +1,10 @@
 package com.kuaishou.raymond.algorithm.sorting;
 
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-import lombok.extern.slf4j.Slf4j;
-
 import static com.kuaishou.raymond.algorithm.sorting.HeapSort.swap;
+
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author raymond <zhaolei09@kuaishou.com>
@@ -24,7 +25,7 @@ public class QuickSort {
      */
     public static int[] tailRecursiveQuickSort(int[] array, int left, int right) {
         while (left < right) {
-            int middle = clrsPartition(array, left, right);
+            int middle = lomutoPartition(array, left, right);
             tailRecursiveQuickSort(array, left, middle - 1);
             left = right + 1;
         }
@@ -40,7 +41,10 @@ public class QuickSort {
         return array;
     }
 
-    private static int clrsPartition(int[] array, int left, int right) {
+    /**
+     * Lomuto 划分
+     */
+    private static int lomutoPartition(int[] array, int left, int right) {
         int key = array[right]; // 选择数组中最右元素作为基准元素
         int idx = left - 1; // idx 及其左侧的数均小于等于 key，所以 idx + 1 指向的是第一个大于 key 的数。
 
@@ -65,11 +69,11 @@ public class QuickSort {
 
         while (i <= j) {
             while (i <= j && array[i] <= key) {
-                // 寻找大于等于 key 的值
+                // 寻找大于 key 的值
                 i++;
             }
             while (i <= j && array[j] > key) {
-                // 寻找小于 key 的值
+                // 寻找小于等于 key 的值
                 j--;
             }
             swap(array, i, j);

@@ -17,7 +17,7 @@ public class Hot394DecodeString {
     }
 
     public String decodeString(String s) {
-        StringBuilder res = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         int counter = 0;
         Deque<Integer> counterStack = new ArrayDeque<>();
         Deque<String> resStack = new ArrayDeque<>();
@@ -25,25 +25,25 @@ public class Hot394DecodeString {
             if (c == '[') {
                 // 如果是左括号，将在此之前的数字与字符串分别入栈。
                 counterStack.addLast(counter);
-                resStack.addLast(res.toString());
                 counter = 0;
-                res = new StringBuilder();
+                resStack.addLast(builder.toString());
+                builder = new StringBuilder();
             } else if (c == ']') {
                 // 如果是右括号
-                // 1. 将字符串 res 拼接 counter 次，存储到临时结果 temp 中；
-                // 2. 将字符串栈顶元素与 temp 拼接，赋值给字符串 res。
+                // 1. 将字符串 builder 拼接 counter 次，存储到临时结果 temp 中；
+                // 2. 将字符串栈顶元素与 temp 拼接，赋值给字符串 builder。
                 StringBuilder tmp = new StringBuilder();
-                int currentMulti = counterStack.removeLast();
-                tmp.append(String.valueOf(res).repeat(Math.max(0, currentMulti)));
-                res = new StringBuilder(resStack.removeLast() + tmp);
+                int lastCounter = counterStack.removeLast();
+                tmp.append(String.valueOf(builder).repeat(Math.max(0, lastCounter)));
+                builder = new StringBuilder(resStack.removeLast() + tmp);
             } else if (c >= '0' && c <= '9') {
                 // 如果是数字，先留着。
                 counter = counter * 10 + c - '0';
             } else {
                 // 如果是字符，也先留着。
-                res.append(c);
+                builder.append(c);
             }
         }
-        return res.toString();
+        return builder.toString();
     }
 }

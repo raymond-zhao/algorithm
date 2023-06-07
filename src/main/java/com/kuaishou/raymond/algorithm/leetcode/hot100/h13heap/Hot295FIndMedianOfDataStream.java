@@ -13,12 +13,12 @@ public class Hot295FIndMedianOfDataStream {
     /**
      * 小根堆存放后 k/2 个元素，堆顶元素为后半段数据的起始位置。
      */
-    private PriorityQueue<Integer> minHeap;
+    private final PriorityQueue<Integer> minHeap;
 
     /**
      * 大根堆存放前 k/2 个元素，堆顶元素为前半段数据的结束位置。
      */
-    private PriorityQueue<Integer> maxHeap;
+    private final PriorityQueue<Integer> maxHeap;
 
     public Hot295FIndMedianOfDataStream() {
         minHeap = new PriorityQueue<>();

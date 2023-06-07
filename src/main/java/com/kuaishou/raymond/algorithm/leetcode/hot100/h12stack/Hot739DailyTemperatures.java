@@ -20,7 +20,8 @@ import java.util.Deque;
 public class Hot739DailyTemperatures {
 
     /**
-     * 单调栈：栈中存储温度索引，从栈底到栈顶单调递减
+     * 使用单调递减栈来保存递减的温度序列，当遍历到一个较高温度时，
+     * 可以将栈中所有小于该温度的元素弹出，并记录它们的间隔天数为当前温度的下一个较高温度。
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      */
@@ -32,6 +33,7 @@ public class Hot739DailyTemperatures {
             while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemperature) {
                 // 如果栈非空，并且当前温度大于栈顶温度，则表示出现更高温度，更新栈中元素。
                 Integer lowerTemperatureIdx = stack.pop();
+                // 注意 answer 的下标刚出栈的栈顶元素，而不是 i。
                 answer[lowerTemperatureIdx] = i - lowerTemperatureIdx;
             }
             stack.push(i);

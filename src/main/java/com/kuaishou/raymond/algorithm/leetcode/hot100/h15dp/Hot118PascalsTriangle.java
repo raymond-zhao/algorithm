@@ -7,6 +7,7 @@ import java.util.List;
  * Author: raymond
  * CreateTime: 2023/5/3 08:38
  * 题目：<a href="https://leetcode.cn/problems/pascals-triangle/?envType=study-plan-v2&id=top-100-liked">118. 杨辉三角</a>
+ * - Easy
  */
 public class Hot118PascalsTriangle {
 

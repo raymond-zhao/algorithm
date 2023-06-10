@@ -1,7 +1,5 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp;
 
-import java.util.Arrays;
-
 /**
  * Author: raymond
  * CreateTime: 2023/5/3 14:48
@@ -34,7 +32,6 @@ public class Hor300LongestIncreasingSubsequences {
             }
             maxLength = Math.max(maxLength, dp[i]);
         }
-        System.out.println("Arrays.toString(dp) = " + Arrays.toString(dp));
         return maxLength;
     }
 

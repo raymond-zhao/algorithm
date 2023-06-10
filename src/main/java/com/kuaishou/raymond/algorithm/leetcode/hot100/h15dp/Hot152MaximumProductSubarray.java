@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp;
  * Author: raymond
  * CreateTime: 2023/5/3 15:28
  * 题目：<a href="https://leetcode.cn/problems/maximum-product-subarray/?envType=study-plan-v2&id=top-100-liked">152. 乘积最大子数组</a>
+ * - Medium
  * - 相似题目：
  * <a href="https://leetcode.cn/problems/maximum-subarray/">53. 最大子数组和</a>
  */

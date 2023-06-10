@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
@@ -34,7 +34,7 @@ public class Hot114FlattenBinaryTreeToLinkedList {
                 // 从当前节点的左子节点开始寻找其前驱节点（左子树中最右节点）
                 TreeNode predecessor = left;
                 while (predecessor.right != null) {
-                    // 寻找左子树中的最优节点
+                    // 寻找左子树中的最右节点
                     predecessor = predecessor.right;
                 }
                 // 此时已经找到前驱节点，将前驱节点的右子节点指向当前节点的右子节点。

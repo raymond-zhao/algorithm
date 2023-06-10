@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp;
  * Author: raymond
  * CreateTime: 2023/5/3 08:32
  * 题目：<a href="https://leetcode.cn/problems/climbing-stairs/">70. 爬楼梯</a>
+ * - Easy
  */
 public class Hot70ClimbingStairs {
 

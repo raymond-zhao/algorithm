@@ -10,7 +10,7 @@ public class Hot72EditDistance {
     public int minDistance(String word1, String word2) {
         int m = word1.length();
         int n = word2.length();
-        // dp[i][j] 将 word1 的前 i 个字符转变为 word2 的前 j 个字符所需要的最少操作次数
+        // dp[i][j]：将 word1 的前 i 个字符转变为 word2 的前 j 个字符所需要的最少操作次数
         int[][] dp = new int[m + 1][n + 1];
         // 第一行
         for (int col = 1; col <= n; col++) {

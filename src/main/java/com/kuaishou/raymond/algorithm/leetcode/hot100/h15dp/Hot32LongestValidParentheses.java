@@ -8,6 +8,7 @@ import java.util.Objects;
  * Author: raymond
  * CreateTime: 2023/5/3 20:56
  * 题目：<a href="https://leetcode.cn/problems/longest-valid-parentheses/?envType=study-plan-v2&id=top-100-liked">32. 最长有效括号</a>
+ * - Hard
  */
 public class Hot32LongestValidParentheses {
 

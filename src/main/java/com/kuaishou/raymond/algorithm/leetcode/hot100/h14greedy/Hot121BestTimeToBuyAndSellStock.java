@@ -13,10 +13,11 @@ public class Hot121BestTimeToBuyAndSellStock {
      * 动态规划
      */
     public int maxProfitDP(int[] prices) {
+        // dp[i][j]: 在只能交易一次的情况下，第 i 天结束后，持有 j 支股票的收益。
         int[][] dp = new int[prices.length][2];
         // 第 0 天结束，持有0份股票的收益。
         dp[0][0] = 0;
-        // 第 1 天结束，持有0份股票的收益。
+        // 第 0 天结束，持有1份股票的收益。
         dp[0][1] = -prices[0];
         for (int i = 1; i < prices.length; i++) {
             dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);

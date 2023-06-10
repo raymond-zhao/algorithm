@@ -12,7 +12,7 @@ public class Hot55JumpGame {
         int maxPosition = 0;
         for (int currentPosition = 0; currentPosition < nums.length; currentPosition++) {
             if (currentPosition <= maxPosition) {
-                // 如果当前位置还在之前的跳跃距离之内，则计算下一跳的最远距离。
+                // 如果当前位置是可达的，则计算下一跳的最远距离。
                 int jumpDistance = nums[currentPosition];
                 maxPosition = Math.max(maxPosition, currentPosition + jumpDistance);
                 if (maxPosition >= nums.length - 1) {

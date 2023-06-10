@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h17technique;
 
-import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
-
 import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.reverse;
 import static com.kuaishou.raymond.algorithm.utils.AlgoUtils.swap;
+
+import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
 /**
  * Author: raymond

@@ -4,6 +4,7 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h16multidp;
  * Author: raymond
  * CreateTime: 2023/5/3 23:05
  * 题目：<a href="https://leetcode.cn/problems/minimum-path-sum/?envType=study-plan-v2&id=top-100-liked">64. 最小路径和</a>
+ * - Medium
  */
 public class Hot64MinimumPathSum {
 

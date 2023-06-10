@@ -4,6 +4,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h16multidp;
  * Author: raymond
  * CreateTime: 2023/5/3 23:11
  * 题目：<a href="https://leetcode.cn/problems/longest-palindromic-substring/?envType=study-plan-v2&id=top-100-liked">5. 最长回文子串</a>
+ * - Medium
+ * - 高德
  */
 public class Hot5LongestPalindrome {
 

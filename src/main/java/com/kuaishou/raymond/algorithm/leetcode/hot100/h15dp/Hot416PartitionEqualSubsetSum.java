@@ -22,59 +22,45 @@ public class Hot416PartitionEqualSubsetSum {
      * 其中，C 为数组全部元素和的一半。
      */
     public static boolean canPartition(int[] nums) {
-        int len = nums.length;
-        int max = nums[0];
         int sum = 0;
+        int maxNum = nums[0];
         for (int num : nums) {
-            max = Math.max(max, num);
             sum += num;
+            maxNum = Math.max(maxNum, num);
         }
-        // 特例特判
-        if ((sum & 1) == 1) {
-            // 如果总和为奇数，则一定无法拆分成两个等和子集。
+        if (sum % 2 == 1) {
             return false;
         }
-        if (max > sum / 2) {
-            // 如果数组中最大的那个数字已经超过了总和的一半，则即使把这个数字单独放到一个子集，其他元素之和也没办法与它相等。
+        if (maxNum > sum / 2) {
             return false;
         }
+        if (maxNum == sum / 2) {
+            return true;
+        }
+
         int target = sum / 2;
-        // dp[i][j]：在数组 0..i 选择若干个元素相加，其和是否能凑成 j。
+        int len = nums.length;
+        // 状态定义：dp[i][j] 表示前 0..i-1 个数字能否组成数字 j
         boolean[][] dp = new boolean[len][target + 1];
 
-        // 初始状态
-        // 只要不选择第 0 个元素，和就为 0。在本题中，dp[0][0] 并不影响最终答案。
+        // 基准条件：
         dp[0][0] = true;
-        // 在只选中第 0 个元素时，只有 dp[0][target] 这种情况能为 true。
-        // dp[0][0..target-1] 与 dp[0][target+1..] 均不能等分。
         if (nums[0] == target) {
             dp[0][target] = true;
         }
 
+        // 状态转移
         for (int i = 1; i < len; i++) {
+            // 外层循环固定可选数字
             for (int j = 0; j <= target; j++) {
-                // 如果 0..i-1 之间的数字相加能凑成 j，那 0..i 之间的数字相加也一定能凑成 j，只要不选择 nums[i] 就行。
                 dp[i][j] = dp[i - 1][j];
-
-//                if (nums[i] == j) {
-//                    // 如果当前数字可以直接凑成 j，甚至不用与 0..i-1 之间的数字组合，那肯定可以凑成 j 了。
-//                    dp[i][j] = true;
-//                    continue;
-//                }
-//
-//                if (nums[i] < j) {
-//                    // 要么 0..i-1 之间的数字已经凑成了 j，要么凑成了 j-nums[i]，
-//                    // 如果是后者，我们只需要选择上 nums[i] 就可以凑成 j。
-//                    dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
-//                }
-
-                // 如果初始化成 dp[0][0] = true，这里可以这么写。
-                if (nums[i] <= j) {
+                // 内层循环使用目前可选的所有数字，判断是否可相加成 j。
+                // 每个数字，有「选」与「不选」两种选择
+                if (j >= nums[i]) {
+                    // dp[i-1][j]: 不选择当前数字，结果取决于前 i-1 个数字能否组成 j
+                    // dp[i-1][j-nums[i]]: 选择当前数字，结果取决于前 i-1 个数字能否组成 j-nums[i]。
                     dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]];
                 }
-
-                // if (nums[i] > j)，也就是说某个单独的数字已经超过了数组总和的一半，
-                // 肯定是 false，但是 Java 内 boolean 数组默认值就是 false，不设置也罢。
             }
         }
         return dp[len - 1][target];

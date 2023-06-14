@@ -7,8 +7,34 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h11binarysearch;
  */
 public class Hot162FindPeakElement {
 
+    /**
+     * 二分爬坡
+     */
+    public int findPeakElementBinarySearch(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+        while (left < right) {
+            int middle = (left + right) >>> 1;
+            if (nums[middle] > nums[middle + 1]) {
+                right = middle;
+            } else {
+                left = middle + 1;
+            }
+        }
+        return left;
+    }
+
+    /**
+     * 寻找最大值
+     */
     public int findPeakElement(int[] nums) {
-        return 0;
+        int idx = 0;
+        for (int i = 1; i < nums.length; ++i) {
+            if (nums[i] > nums[idx]) {
+                idx = i;
+            }
+        }
+        return idx;
     }
 
 }

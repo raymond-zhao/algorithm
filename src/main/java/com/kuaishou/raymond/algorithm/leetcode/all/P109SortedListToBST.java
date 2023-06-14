@@ -7,6 +7,7 @@ import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 /**
  * @author raymond <zhaolei09@kuaishou.com>
  * created on 2023-04-23 20:42
+ * <a href="https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/">109. 有序链表转换二叉搜索树</a>
  */
 public class P109SortedListToBST {
 
@@ -41,7 +42,8 @@ public class P109SortedListToBST {
      */
     private static ListNode getMiddleNode(ListNode left, ListNode right) {
         ListNode slow = left;
-        ListNode fast = left.next;
+        // fast=left 或者 fast=left.next 都可以 AC。
+        ListNode fast = left;
         while (fast != right && fast.next != right) {
             slow = slow.next;
             fast = fast.next.next;

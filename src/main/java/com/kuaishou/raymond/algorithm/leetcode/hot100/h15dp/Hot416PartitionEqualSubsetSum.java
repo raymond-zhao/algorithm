@@ -53,6 +53,7 @@ public class Hot416PartitionEqualSubsetSum {
         for (int i = 1; i < len; i++) {
             // 外层循环固定可选数字
             for (int j = 0; j <= target; j++) {
+                // 照抄上一行的结果，前 i 个数字能否组成 j 取决于前 i-1 个数字能否组成 j（等价于如果不选第 i 个元素，则结果取决于上一行。）
                 dp[i][j] = dp[i - 1][j];
                 // 内层循环使用目前可选的所有数字，判断是否可相加成 j。
                 // 每个数字，有「选」与「不选」两种选择

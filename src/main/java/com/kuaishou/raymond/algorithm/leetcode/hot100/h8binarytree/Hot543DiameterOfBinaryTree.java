@@ -9,6 +9,17 @@ import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
  */
 public class Hot543DiameterOfBinaryTree {
 
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(0);
+        TreeNode left = new TreeNode(1);
+        TreeNode right = new TreeNode(2);
+        root.left = left;
+        root.right = right;
+
+        Hot543DiameterOfBinaryTree hot543 = new Hot543DiameterOfBinaryTree();
+        System.out.println("hot543.diameterOfBinaryTree(root) = " + hot543.diameterOfBinaryTree(root));
+    }
+
     private int diameter;
 
     public int diameterOfBinaryTree(TreeNode root) {

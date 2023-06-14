@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class P2AddTwoNumbers {
 
-    private ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    private static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (Objects.isNull(l1) && Objects.isNull(l2)) {
             return null;
         }

@@ -46,8 +46,7 @@ public class Hot98ValidBinarySearchTree {
             return false;
         }
 
-        long inorder = Long.MIN_VALUE;
-
+        long previousValue = Long.MIN_VALUE;
         Deque<TreeNode> stack = new ArrayDeque<>();
         while (!stack.isEmpty() || root != null) {
             while (root != null) {
@@ -57,10 +56,10 @@ public class Hot98ValidBinarySearchTree {
 
             if (!stack.isEmpty()) {
                 root = stack.pop();
-                if (root.val <= inorder) {
+                if (root.val <= previousValue) {
                     return false;
                 }
-                inorder = root.val;
+                previousValue = root.val;
                 root = root.right;
             }
         }

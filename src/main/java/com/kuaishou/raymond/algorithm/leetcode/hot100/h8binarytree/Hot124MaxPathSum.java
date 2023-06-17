@@ -18,13 +18,7 @@ public class Hot124MaxPathSum {
     }
 
     /**
-     *          a
-     *         / \
-     *        b   c
-     * 只有三种情况:
-     * a + b + a 的父节点
-     * a + c + a 的父节点
-     * a + b + c
+     * 计算以 root 为根节点的子树的路径和，中途更新最大路径和（left+right+root）。
      */
     private int maxSum(TreeNode root) {
         if (root == null) {

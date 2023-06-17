@@ -1,9 +1,9 @@
 package com.kuaishou.raymond.algorithm.leetcode.hot100.h8binarytree;
 
-import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import com.kuaishou.raymond.algorithm.leetcode.TreeNode;
 
 /**
  * Author: raymond
@@ -31,23 +31,23 @@ public class Hot105ConstructBinaryTreeFromPreorderAndInOrderTraversal {
     }
 
     /**
-     * @param rootIdxInPreorder 子树根节点在先序遍历中的索引
+     * @param preorderRootIdx 子树根节点在先序遍历中的索引
      * @param inLeft 中序数组中左区间边界
      * @param inRight 中序数组中右区间边界
      * @return 结合以上三参数构造出的子树根节点
      */
-    private TreeNode buildTree(int rootIdxInPreorder, int inLeft, int inRight) {
+    private TreeNode buildTree(int preorderRootIdx, int inLeft, int inRight) {
         if (inLeft > inRight) {
             return null;
         }
         // 先序遍历中的第一个节点为根节点
-        Integer rootIdxInInorder = MAP.get(preorder[rootIdxInPreorder]);
-        // 中序遍历被划分为 [left, rootIdx-1], [rootIdx], [rootIdx+1];
-        TreeNode root = new TreeNode(preorder[rootIdxInPreorder]);
-        // 前半段区间在先序遍历中的起始位置=rootIdxInPreorder+1（先序遍历中根节点之后的第一个元素是左子树的开始位置）
-        root.left = buildTree(rootIdxInPreorder + 1, inLeft,  rootIdxInInorder - 1);
-        // 后半段区间在先序遍历中的起始位置=rootIdxInPreorder+1+左子树所占用的节点个数
-        root.right = buildTree(rootIdxInPreorder + 1 + (rootIdxInInorder - inLeft), rootIdxInInorder + 1, inRight);
+        Integer rootIdxInInorder = MAP.get(preorder[preorderRootIdx]);
+        // 中序遍历被划分为 [left, rootIdx-1], [rootIdx], [rootIdx+1, right];
+        TreeNode root = new TreeNode(preorder[preorderRootIdx]);
+        // 前半段区间在先序遍历中的起始位置=preorderRootIdx+1（先序遍历中根节点之后的第一个元素是左子树的开始位置）
+        root.left = buildTree(preorderRootIdx + 1, inLeft,  rootIdxInInorder - 1);
+        // 后半段区间在先序遍历中的起始位置=preorderRootIdx+1+左子树所占用的节点个数
+        root.right = buildTree(preorderRootIdx + 1 + (rootIdxInInorder - inLeft), rootIdxInInorder + 1, inRight);
         return root;
     }
 

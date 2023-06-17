@@ -2,6 +2,8 @@ package com.kuaishou.raymond.algorithm.leetcode.hot100.h15dp;
 
 import com.kuaishou.raymond.algorithm.utils.AlgoUtils;
 
+import java.util.Arrays;
+
 /**
  * Author: raymond
  * CreateTime: 2023/5/3 10:38
@@ -19,6 +21,7 @@ public class Hot322CoinChange {
 
     /**
      * 完全背包问题
+     * 先遍历金额，再遍历硬币。
      * 时间复杂度：O(amount * coin_size)
      * @param coins 可供选择的硬币
      * @param amount 目标金额
@@ -44,6 +47,21 @@ public class Hot322CoinChange {
             }
         }
         // 返回结果
+        return dp[amount] == amount + 1 ? -1 : dp[amount];
+    }
+
+    /**
+     * 先遍历硬币，再遍历金额。
+     */
+    public int coinChangeII(int[] coins, int amount) {
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, amount + 1);
+        dp[0] = 0;
+        for (int coin : coins) {
+            for (int money = coin; money <= amount; money++) {
+                dp[money] = Math.min(dp[money], dp[money - coin] + 1);
+            }
+        }
         return dp[amount] == amount + 1 ? -1 : dp[amount];
     }
 

@@ -21,7 +21,7 @@ public class Hot139WordBreak {
 
     public static boolean wordBreak(String s, List<String> wordDict) {
         Set<String> set = new HashSet<>(wordDict);
-        // dp[i]，表示字符 s[0..i-1] 是否能被拆分成若干个字典中出现的单词
+        // dp[i]，表示字符 s[0..i-1] 这个长度为 i 的子串是否能被拆分成若干个字典中出现的单词。
         boolean[] dp = new boolean[s.length() + 1];
         dp[0] = true;
         for (int i = 1; i <= s.length(); i++) {

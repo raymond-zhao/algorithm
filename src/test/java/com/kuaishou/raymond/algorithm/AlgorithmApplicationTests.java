@@ -10,4 +10,7 @@ class AlgorithmApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void testPerfLog() {
+    }
 }

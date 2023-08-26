@@ -1,5 +1,6 @@
 package com.kuaishou.raymond.algorithm.leetcode.all;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +28,11 @@ public class P1TwoSum {
         System.out.println("numOfFourSumCombination(A, B, C, D) = " + numOfFourSumCombination(A, B, C, D));
         System.out.println("Arrays.toString(threeSum(nums, 18)) = " + Arrays.toString(threeSum(nums, 18)));
         System.out.println("Arrays.toString(fourSum(nums, 29)) = " + Arrays.toString(fourSum(nums, 29)));
+
+        Method[] declaredMethods = P1TwoSum.class.getDeclaredMethods();
+        for (Method method : declaredMethods) {
+            System.out.println("method.getName() = " + method.getName());
+        }
     }
 
     /**

@@ -15,7 +15,7 @@ import com.kuaishou.raymond.algorithm.demo.aspect.PerfLog;
  * @Datetime: 2023/8/17 15:54
  * Description:
  */
-@RequestMapping("/api/v1/test")
+@RequestMapping("/api")
 @RestController
 public class TestController {
 
@@ -23,5 +23,10 @@ public class TestController {
     @GetMapping("/divide")
     public ResponseEntity<Integer> divideNumber(@RequestParam("number") Integer number) {
         return ResponseEntity.of(Optional.of(10 / number));
+    }
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() {
+        return ResponseEntity.ok("Hello, World!");
     }
 }
